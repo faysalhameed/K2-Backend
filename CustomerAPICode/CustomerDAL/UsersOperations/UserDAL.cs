@@ -11,7 +11,7 @@ namespace CustomerDAL.UsersOperations
     public class UserDAL : IUsers
     {
         
-        public int SaveUser(UserBO obj)
+        public int SaveUser(Userdata obj)
         {
             try
             {
@@ -65,7 +65,7 @@ namespace CustomerDAL.UsersOperations
                     parameterList.Add(new SqlParameter("@CustomerRating", obj.CustomerRating));
                     parameterList.Add(new SqlParameter("@CustomerWalletAmount", obj.CustomerWalletAmount));
                     parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.CustomerProfileStatus));
-                    parameterList.Add(new SqlParameter("@CreationDateTime", obj.CreationDateTime));
+                    parameterList.Add(new SqlParameter("@CreationDateTime", obj.CreationDate));
                     parameterList.Add(new SqlParameter("@ModifiedDateTime", obj.ModifiedDateTime));
                     parameterList.Add(new SqlParameter("@CreatedbyUserTypeId", obj.CreatedbyUserTypeId));
                     parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.CreatedbyUserId));

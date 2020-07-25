@@ -7,6 +7,6 @@ namespace CustomerDAL.UsersOperations
 {
     interface IUsers
     {
-        int SaveUser(UserBO obj);
+        int SaveUser(Userdata obj);
     }
 }

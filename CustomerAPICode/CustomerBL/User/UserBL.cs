@@ -12,29 +12,29 @@ namespace CustomerBL.User
     public class UserBL
     {
         #region Customer Profile Creation API
-        private bool ValidateUserInfo(UserBO obj)
+        private bool ValidateUserInfo(Userdata obj)
         {
-            if(!string.IsNullOrEmpty(obj.CustomereMailAddress))
+            if(string.IsNullOrEmpty(obj.CustomereMailAddress))
             {
                 return false;
             }
-            else if(!string.IsNullOrEmpty(obj.CustomerMobileNumber))
+            else if(string.IsNullOrEmpty(obj.CustomerMobileNumber))
             {
                 return false;
             }
-            else if(!string.IsNullOrEmpty(obj.CustomerPassword))
+            else if(string.IsNullOrEmpty(obj.CustomerPassword))
             {
                 return false;
             }
-            else if (!string.IsNullOrEmpty(obj.CustomerFirstName))
+            else if (string.IsNullOrEmpty(obj.CustomerFirstName))
             {
                 return false;
             }
-            else if (!string.IsNullOrEmpty(obj.CustomerLastName))
+            else if (string.IsNullOrEmpty(obj.CustomerLastName))
             {
                 return false;
             }
-            else if (!string.IsNullOrEmpty(obj.CustomerGender))
+            else if (string.IsNullOrEmpty(obj.CustomerGender))
             {
                 return false;
             }
@@ -48,7 +48,7 @@ namespace CustomerBL.User
         // -2 : validation failed for request object
         // -3 : bad request object 
         // -4 : Exception in code 
-        public async Task<int> AddUser(UserBO obj)
+        public async Task<int> AddUser(Userdata obj)
         {
             try
             {

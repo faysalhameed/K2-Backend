@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CustomerBO.User
 {
-    public class UserBO
+    public class Userdata
     {
         public int CustomerID { get; set; }
         public string CustomerFirstName { get; set; }
@@ -26,7 +26,7 @@ namespace CustomerBO.User
         public decimal CustomerRating { get; set; }
         public decimal CustomerWalletAmount { get; set; }
         public bool CustomerProfileStatus { get; set; }
-        public DateTime CreationDateTime { get; set; }
+        public DateTime CreationDate { get; set; }
         public DateTime ModifiedDateTime { get; set; }
         public int CreatedbyUserTypeId { get; set; }
         public int CreatedbyUserId { get; set; }
@@ -35,5 +35,11 @@ namespace CustomerBO.User
         public int CreatedbyDeviceId { get; set; }
         public int ModifiedbyDeviceId { get; set; }
      
+    }
+
+    public class Root
+    {
+        public Userdata userdata { get; set; }
+
     }
 }
