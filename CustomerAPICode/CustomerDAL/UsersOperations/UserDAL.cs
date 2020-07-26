@@ -83,7 +83,7 @@ namespace CustomerDAL.UsersOperations
                     int result = dbContext.Database.
                         ExecuteSqlCommand(sql, parameterList);
                     var out1Value = (int)out1.Value;
-                    return result;
+                    return out1Value;
                     
                 }
             }

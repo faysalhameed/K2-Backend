@@ -14,6 +14,7 @@ using CustomerDAL.Models;
 
 namespace CustomerAPI.Controllers
 {
+    // Db Password is : K@2Te@m123
     //[Route("api/[controller]")]
     //[ApiController]
     [Route("api/[controller]/[action]/{id?}")]
