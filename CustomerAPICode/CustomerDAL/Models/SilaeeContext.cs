@@ -1,6 +1,8 @@
 ﻿using System;
+using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace CustomerDAL.Models
 {
@@ -19,11 +21,28 @@ namespace CustomerDAL.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            /* if (!optionsBuilder.IsConfigured)
+             {
+                 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                // optionsBuilder.UseSqlServer("Server=localhost;Database=CustomerDB;user id=sa;password=123;");
+             } */
+
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=CustomerDB;user id=sa;password=123;");
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+                var connectionString = configuration.GetConnectionString("SilaeeConnectionString");
+                optionsBuilder.UseSqlServer(connectionString);
             }
+
+            //IConfigurationRoot configuration = new ConfigurationBuilder()
+            //.SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+            //.AddJsonFile("appsettings.json")
+            //.Build();
+            //optionsBuilder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
