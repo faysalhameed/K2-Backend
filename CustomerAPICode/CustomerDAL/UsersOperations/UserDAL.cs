@@ -43,30 +43,28 @@ namespace CustomerDAL.UsersOperations
                     string sql = "sp_SaveCustomerProfile @CustomerFirstName,@CustomerLastName,@CustomerAge,@CustomerGender," +
                         "@CustomereMailAddress,@CustomerWebsite,@CustomerCountry,@CustomerCity,@CustomerProvince," +
                         "@CustomerZipCode,@CustomerAddress,@CustomerMobileNumber,@CustomerCNIC,@CustomerPicture," +
-                        "@CustomerPassword,@CustomerRating,@CustomerWalletAmount,@CustomerProfileStatus,@CreationDateTime," +
-                        "@ModifiedDateTime,@CreatedbyUserTypeId,@CreatedbyUserId,@ModifiedbyUserTypeId,@ModifiedbyUserId," +
+                        "@CustomerPassword,@CustomerRating,@CustomerWalletAmount,@CustomerProfileStatus," +
+                        "@CreatedbyUserTypeId,@CreatedbyUserId,@ModifiedbyUserTypeId,@ModifiedbyUserId," +
                         "@CreatedbyDeviceId,@ModifiedbyDeviceId,@ResultParam OUT";
                     List<SqlParameter> parameterList = new List<SqlParameter>();
                     parameterList.Add(new SqlParameter("@CustomerFirstName", obj.CustomerFirstName));
                     parameterList.Add(new SqlParameter("@CustomerLastName", obj.CustomerLastName));
                     parameterList.Add(new SqlParameter("@CustomerAge", obj.CustomerAge));
-                    parameterList.Add(new SqlParameter("@CustomerGender",obj.CustomerGender));
+                    parameterList.Add(new SqlParameter("@CustomerGender", (string.IsNullOrEmpty(obj.CustomerGender)) ? "" : obj.CustomerGender));
                     parameterList.Add(new SqlParameter("@CustomereMailAddress", obj.CustomereMailAddress));
-                    parameterList.Add(new SqlParameter("@CustomerWebsite", obj.CustomerWebsite));
-                    parameterList.Add(new SqlParameter("@CustomerCountry", obj.CustomerCountry));
-                    parameterList.Add(new SqlParameter("@CustomerCity", obj.CustomerCity));
-                    parameterList.Add(new SqlParameter("@CustomerProvince", obj.CustomerProvince));
-                    parameterList.Add(new SqlParameter("@CustomerZipCode", obj.CustomerZipCode));
-                    parameterList.Add(new SqlParameter("@CustomerAddress", obj.CustomerAddress));
+                    parameterList.Add(new SqlParameter("@CustomerWebsite", (string.IsNullOrEmpty(obj.CustomerWebsite)) ? "" : obj.CustomerWebsite));
+                    parameterList.Add(new SqlParameter("@CustomerCountry", (string.IsNullOrEmpty(obj.CustomerCountry)) ? "" : obj.CustomerCountry));
+                    parameterList.Add(new SqlParameter("@CustomerCity", (string.IsNullOrEmpty(obj.CustomerCity)) ? "" : obj.CustomerCity));
+                    parameterList.Add(new SqlParameter("@CustomerProvince", (string.IsNullOrEmpty(obj.CustomerProvince)) ? "" : obj.CustomerProvince));
+                    parameterList.Add(new SqlParameter("@CustomerZipCode", (string.IsNullOrEmpty(obj.CustomerZipCode)) ? "" : obj.CustomerZipCode));
+                    parameterList.Add(new SqlParameter("@CustomerAddress", (string.IsNullOrEmpty(obj.CustomerAddress)) ? "" : obj.CustomerAddress));
                     parameterList.Add(new SqlParameter("@CustomerMobileNumber", obj.CustomerMobileNumber));
-                    parameterList.Add(new SqlParameter("@CustomerCNIC", obj.CustomerCNIC));
-                    parameterList.Add(new SqlParameter("@CustomerPicture", obj.CustomerPicture));
+                    parameterList.Add(new SqlParameter("@CustomerCNIC", (string.IsNullOrEmpty(obj.CustomerCNIC)) ? "" : obj.CustomerCNIC));
+                    parameterList.Add(new SqlParameter("@CustomerPicture", (string.IsNullOrEmpty(obj.CustomerPicture)) ? "" : obj.CustomerPicture));
                     parameterList.Add(new SqlParameter("@CustomerPassword", obj.CustomerPassword));
                     parameterList.Add(new SqlParameter("@CustomerRating", obj.CustomerRating));
                     parameterList.Add(new SqlParameter("@CustomerWalletAmount", obj.CustomerWalletAmount));
-                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.CustomerProfileStatus));
-                    parameterList.Add(new SqlParameter("@CreationDateTime", obj.CreationDate));
-                    parameterList.Add(new SqlParameter("@ModifiedDateTime", obj.ModifiedDateTime));
+                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.CustomerProfileStatus));                 
                     parameterList.Add(new SqlParameter("@CreatedbyUserTypeId", obj.CreatedbyUserTypeId));
                     parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.CreatedbyUserId));
                     parameterList.Add(new SqlParameter("@ModifiedbyUserTypeId", obj.ModifiedbyUserTypeId));
