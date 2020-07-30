@@ -28,6 +28,10 @@ namespace CustomerAPI.Controllers
         {
             try
             {
+                if(Param == null)
+                {
+                    return BadRequest();
+                }
                 UserBL objBL = new UserBL();
                 int result = await objBL.AddUser(Param.userdata);
                 if (result > 0)
@@ -73,11 +77,25 @@ namespace CustomerAPI.Controllers
         #region Login API
         //[Route("Login")]
         [HttpGet]
-        public async Task<IActionResult> Login(string Token)
+        public async Task<IActionResult> Login(LoginRootBO Param)
         {
-            UserBL objBL = new UserBL();
-            bool result = await objBL.ValidateFaceBookToken(Token);
-            return BadRequest();
+            try
+            {
+                if(Param == null)
+                {
+                    return BadRequest();
+                }
+                UserBL objBL = new UserBL();
+                int respone = await objBL.Login(Param);
+                
+                
+                
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+            return null;
         }
 
         #endregion
