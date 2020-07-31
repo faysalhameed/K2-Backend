@@ -132,60 +132,71 @@ namespace CustomerBL.User
 
         #region Login Process 
 
-        public async Task<int> Login(LoginRootBO obj)
+        public async Task<Tuple<int,string,string>> Login(LoginRootBO obj)
         {
             try
             {
                 if(obj == null || obj.logindata == null)
                 {
-                    return -2;
+                    return new Tuple<int,string,string>(-2,"",""); // all data missing 
                 }
+
+                //if (string.IsNullOrEmpty(obj.logindata.emailaddress) || string.IsNullOrEmpty(obj.logindata.userpassword))
+                //{
+                //    return -3; // missing email or password 
+                //}
 
                 if (!string.IsNullOrEmpty(obj.logindata.authenticationmedium))
                 {
-                    //UserBL objBL = new UserBL();
+                    UserDAL objDAL = new UserDAL();
                     if (obj.logindata.authenticationmedium.ToLower() == "custom")
                     {
-
+                        // simple just check and return response
+                        if (!string.IsNullOrEmpty(obj.logindata.emailaddress) || !string.IsNullOrEmpty(obj.logindata.userpassword))
+                        {
+                            var response = objDAL.CustomLoginUser(obj.logindata.emailaddress,obj.logindata.userpassword);
+                            return new Tuple<int, string, string>(response.customerid,response.customerfirstname, response.customerlastname);
+                        }
+                        return new Tuple<int, string, string>(-5,"",""); // email or password is missing for authentication
                     }
                     else if (obj.logindata.authenticationmedium.ToLower() == "facebook")
                     {
                         bool result = await ValidateFaceBookToken(obj.logindata.authenticationtoken);
                         if(result)
                         {
-
+                            // check if profile exist if not then create profile and return result
+                            var response = objDAL.LoginMediumUser(obj.logindata);
+                            return new Tuple<int, string, string>(response,"","");
                         }
-                        return -4; // token auth failed
+                        return new Tuple<int, string, string>(-4,"",""); // token auth failed
                     }
                     else if (obj.logindata.authenticationmedium.ToLower() == "google")
                     {
                         bool result = await ValidateFaceBookToken(obj.logindata.authenticationtoken);
                         if(result)
                         {
- 
+                            // check if profile exist if not then create profile and return result 
+                            var response = objDAL.LoginMediumUser(obj.logindata);
+                            return new Tuple<int, string, string>(response,"","");
                         }
-                        return -4; // token auth failed
+                        return new Tuple<int, string, string>(-4,"",""); // token auth failed
                     }
                     else
                     {
                         // faulty msg return no pre defined auth medium  defined
-                        return -3;
+                        return new Tuple<int, string, string>(-6,"","");
                     }
                 }
                 else
                 {
                     // faulty msg return no auth defined
-                    return -3;
+                    return new Tuple<int, string, string>(-3,"","");
                 }
-
-
-
             }
             catch (Exception ex)
             {
-                throw;
+                return new Tuple<int, string, string>(-7,"",""); // exception
             }
-            return -1;
         }
 
         private async Task<bool> ValidateFaceBookToken(string token)

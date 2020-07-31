@@ -58,6 +58,12 @@ namespace CustomerAPI.Controllers
                     var FaultyMsg = new { isSuccessful = false, ResponseMessage = "Error occured while processing", CustomerEmailAddress = Param.userdata.CustomereMailAddress, CustomerMobileNumber = Param.userdata.CustomerMobileNumber };
                     return new OkObjectResult(FaultyMsg);
                 }
+                else if (result == -5)
+                {
+                    // -5 : Profile already exists ( coming from sp )
+                    var FaultyMsg = new { isSuccessful = false, ResponseMessage = "Profile already exists against email", CustomerEmailAddress = Param.userdata.CustomereMailAddress, CustomerMobileNumber = Param.userdata.CustomerMobileNumber };
+                    return new OkObjectResult(FaultyMsg);
+                }
                 else
                 {
                     // return from sp
@@ -86,27 +92,139 @@ namespace CustomerAPI.Controllers
                     return BadRequest();
                 }
                 UserBL objBL = new UserBL();
-                int respone = await objBL.Login(Param);
-                
-                
-                
+                var result = await objBL.Login(Param);
+                int respone = result.Item1;
+                if (respone > 0)
+                {
+                    // true;
+                    string firstname = "", lastname = "";
+                    if(Param.logindata.authenticationmedium.ToLower() == "custom")
+                    {
+                        firstname = result.Item2;
+                        lastname = result.Item3;
+                    }
+                    else
+                    {
+                        firstname = Param.logindata.userfirstname;
+                        lastname = Param.logindata.userlastname;
+                    }
+                    var SuccessMsg = new { 
+                        isSuccessful = true, 
+                        customerID = respone, 
+                        customerFirstName = firstname,
+                        customerLastName = lastname,
+                        ResponseMessage = "Login successfully !",
+                        Sesssiontoken = "" 
+                    };
+                    return new OkObjectResult(SuccessMsg);
+                }
+                else if (respone == -1)
+                {
+                    // from db side  
+                    var FaultyMsg = new
+                    {
+                        isSuccessful = false,
+                        customerID = respone,
+                        customerFirstName = Param.logindata.userfirstname,
+                        customerLastName = Param.logindata.userlastname,
+                        ResponseMessage = "Error Occured!",
+                        Sesssiontoken = ""
+                    };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else if(respone == -2)
+                {
+                    // all data missing 
+                    var FaultyMsg = new
+                    {
+                        isSuccessful = false,
+                        customerID = respone,
+                        customerFirstName = Param.logindata.userfirstname,
+                        customerLastName = Param.logindata.userlastname,
+                        ResponseMessage = "All field missings",
+                        Sesssiontoken = ""
+                    };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else if(respone == -3)
+                {
+                    // missing email or password 
+                    var FaultyMsg = new
+                    {
+                        isSuccessful = false,
+                        customerID = respone,
+                        customerFirstName = Param.logindata.userfirstname,
+                        customerLastName = Param.logindata.userlastname,
+                        ResponseMessage = "Email or password missing.",
+                        Sesssiontoken = ""
+                    };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else if(respone == -4)
+                {
+                    // token auth failed
+                    var FaultyMsg = new
+                    {
+                        isSuccessful = false,
+                        customerID = respone,
+                        customerFirstName = Param.logindata.userfirstname,
+                        customerLastName = Param.logindata.userlastname,
+                        ResponseMessage = "Token authentication failed.",
+                        Sesssiontoken = ""
+                    };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else if(respone == -5)
+                {
+                    // email or password is missing for authentication
+                    var FaultyMsg = new
+                    {
+                        isSuccessful = false,
+                        customerID = respone,
+                        customerFirstName = Param.logindata.userfirstname,
+                        customerLastName = Param.logindata.userlastname,
+                        ResponseMessage = "email or password is missing for authentication",
+                        Sesssiontoken = ""
+                    };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else if(respone == -6)
+                {
+                    // faulty msg return no pre defined auth medium  defined
+                    var FaultyMsg = new
+                    {
+                        isSuccessful = false,
+                        customerID = respone,
+                        customerFirstName = Param.logindata.userfirstname,
+                        customerLastName = Param.logindata.userlastname,
+                        ResponseMessage = "Authentication medium is missing",
+                        Sesssiontoken = ""
+                    };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else
+                {
+                    // exception 
+                    var FaultyMsg = new
+                    {
+                        isSuccessful = false,
+                        customerID = respone,
+                        customerFirstName = Param.logindata.userfirstname,
+                        customerLastName = Param.logindata.userlastname,
+                        ResponseMessage = "Exception occured",
+                        Sesssiontoken = ""
+                    };
+                    return new OkObjectResult(FaultyMsg);
+                }
             }
             catch (Exception ex)
             {
                 return BadRequest();
             }
-            return null;
         }
 
         #endregion
 
-        #region Account Login API        
-        [HttpPost]
-        public async Task<IActionResult> Login(Userdata Param)
-        {
-            return null;
-        }
-
-        #endregion
+        
     }
 }
