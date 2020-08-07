@@ -230,14 +230,15 @@ namespace CustomerBL.User
 
         private async Task<bool> ValidateGoogleToken(string token)
         {
+            //https://oauth2.googleapis.com/tokeninfo?id_token=XYZ123
             try
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri("https://www.googleapis.com/");
+                    client.BaseAddress = new Uri("https://oauth2.googleapis.com/"); //("https://www.googleapis.com/");
                     client.DefaultRequestHeaders.Accept.Clear();
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                    HttpResponseMessage response = await client.GetAsync("oauth2/v1/tokeninfo?access_token=" + token);
+                    HttpResponseMessage response = await client.GetAsync("tokeninfo?id_token=" + token); //("oauth2/v1/tokeninfo?access_token=" + token);
                     if (response.IsSuccessStatusCode)
                     {
                         return true;
