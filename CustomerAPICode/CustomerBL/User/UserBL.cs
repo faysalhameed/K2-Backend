@@ -1,4 +1,5 @@
 ﻿using CustomerBO.User;
+using CustomerCommon;
 using CustomerDAL.UsersOperations;
 using Microsoft.Extensions.Logging.Abstractions;
 using System;
@@ -24,75 +25,76 @@ namespace CustomerBL.User
         {
             #region Optional Values check
 
-            if(obj.CreationDate == DateTime.MinValue)
+            if(obj.creationdate == DateTime.MinValue)
             {
-                obj.CreationDate = DateTime.Now;
+                obj.creationdate = DateTime.Now;
             }
-            if (obj.ModifiedDateTime == DateTime.MinValue)
+            if (obj.modifieddatetime == DateTime.MinValue)
             {
-                obj.ModifiedDateTime = DateTime.Now;
+                obj.modifieddatetime = DateTime.Now;
             }
-            if(obj.CustomerWebsite == null)
+            if(obj.customerwebsite == null)
             {
-                obj.CustomerWebsite = "";
+                obj.customerwebsite = "";
             }
-            if(obj.CustomerCountry == null)
+            if(obj.customercountry == null)
             {
-                obj.CustomerCountry = "";
+                obj.customercountry = "";
             }
-            if(obj.CustomerCity == null)
+            if(obj.customercity == null)
             {
-                obj.CustomerCity = "";
+                obj.customercity = "";
             }
-            if(obj.CustomerProvince == null)
+            if(obj.customerprovince == null)
             {
-                obj.CustomerProvince = "";
+                obj.customerprovince = "";
             }
-            if(obj.CustomerZipCode == null)
+            if(obj.customerzipcode == null)
             {
-                obj.CustomerZipCode = "";
+                obj.customerzipcode = "";
             }
-            if(obj.CustomerAddress == null)
+            if(obj.customeraddress == null)
             {
-                obj.CustomerAddress = "";
+                obj.customeraddress = "";
             }
-            if(obj.CustomerCNIC == null)
+            if(obj.customercnic == null)
             {
-                obj.CustomerCNIC = "";
+                obj.customercnic = "";
             }
-            if(obj.CustomerPicture == null)
+            if(obj.customerpicture == null)
             {
-                obj.CustomerPicture = "";
+                obj.customerpicture = "";
             }
 
 
             #endregion
 
 
-            if (string.IsNullOrEmpty(obj.CustomereMailAddress))
+            if (string.IsNullOrEmpty(obj.customeremailaddress))
             {
                 return false;
             }
-            else if(string.IsNullOrEmpty(obj.CustomerMobileNumber))
+            else if(string.IsNullOrEmpty(obj.customermobilenumber))
             {
                 return false;
             }
-            else if(string.IsNullOrEmpty(obj.CustomerPassword))
+            else if(string.IsNullOrEmpty(obj.customerpassword))
             {
                 return false;
             }
-            else if (string.IsNullOrEmpty(obj.CustomerFirstName))
+            else if (string.IsNullOrEmpty(obj.customerfirstname))
             {
                 return false;
             }
-            else if (string.IsNullOrEmpty(obj.CustomerLastName))
+            else if (string.IsNullOrEmpty(obj.customerlastname))
             {
                 return false;
             }
-            else if (string.IsNullOrEmpty(obj.CustomerGender))
-            {
-                return false;
-            }
+            // Commented after discussion with faisal
+            //else if (string.IsNullOrEmpty(obj.customergender))
+            //{
+            //    return false;
+            //}
             else
             {
                 return true;
@@ -172,7 +174,7 @@ namespace CustomerBL.User
                     }
                     else if (obj.logindata.authenticationmedium.ToLower() == "google")
                     {
-                        bool result = await ValidateFaceBookToken(obj.logindata.authenticationtoken);
+                        bool result = await ValidateGoogleToken(obj.logindata.authenticationtoken);
                         if(result)
                         {
                             // check if profile exist if not then create profile and return result 
@@ -252,6 +254,33 @@ namespace CustomerBL.User
                 return false;
             }
         }
+        #endregion
+
+        #region Update Process 
+
+        public async Task<Tuple<int, string, string>> UpdateCustomer(LoginRootBO obj)
+        {
+            try
+            {
+                if (obj == null || obj.logindata == null)
+                {
+                    return new Tuple<int, string, string>(-2, "", ""); // all data missing 
+                }
+
+                UserDAL objDAL = new UserDAL();
+                var response = objDAL.UpdateCustomerInfo(); // param need to define later
+               // LoginResponseLog.LoginResponse();// later
+                return new Tuple<int, string, string>(response.customerid, response.customerfirstname, response.customerlastname);
+
+
+            }
+            catch (Exception ex)
+            {
+                return new Tuple<int, string, string>(-7, "", ""); // exception
+            }
+        }
+
+
         #endregion
 
     }

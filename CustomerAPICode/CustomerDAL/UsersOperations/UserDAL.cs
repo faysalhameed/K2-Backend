@@ -25,30 +25,30 @@ namespace CustomerDAL.UsersOperations
                         "@CreatedbyUserTypeId,@CreatedbyUserId,@ModifiedbyUserTypeId,@ModifiedbyUserId," +
                         "@CreatedbyDeviceId,@ModifiedbyDeviceId,@ResultParam OUT";
                     List<SqlParameter> parameterList = new List<SqlParameter>();
-                    parameterList.Add(new SqlParameter("@CustomerFirstName", obj.CustomerFirstName));
-                    parameterList.Add(new SqlParameter("@CustomerLastName", obj.CustomerLastName));
-                    parameterList.Add(new SqlParameter("@CustomerAge", obj.CustomerAge));
-                    parameterList.Add(new SqlParameter("@CustomerGender", obj.CustomerGender));
-                    parameterList.Add(new SqlParameter("@CustomereMailAddress", obj.CustomereMailAddress));
-                    parameterList.Add(new SqlParameter("@CustomerWebsite",obj.CustomerWebsite));
-                    parameterList.Add(new SqlParameter("@CustomerCountry", obj.CustomerCountry));
-                    parameterList.Add(new SqlParameter("@CustomerCity", obj.CustomerCity));
-                    parameterList.Add(new SqlParameter("@CustomerProvince", obj.CustomerProvince));
-                    parameterList.Add(new SqlParameter("@CustomerZipCode", obj.CustomerZipCode));
-                    parameterList.Add(new SqlParameter("@CustomerAddress", obj.CustomerAddress));
-                    parameterList.Add(new SqlParameter("@CustomerMobileNumber", obj.CustomerMobileNumber));
-                    parameterList.Add(new SqlParameter("@CustomerCNIC", obj.CustomerCNIC));
-                    parameterList.Add(new SqlParameter("@CustomerPicture",obj.CustomerPicture));
-                    parameterList.Add(new SqlParameter("@CustomerPassword", obj.CustomerPassword));
-                    parameterList.Add(new SqlParameter("@CustomerRating", obj.CustomerRating));
-                    parameterList.Add(new SqlParameter("@CustomerWalletAmount", obj.CustomerWalletAmount));
-                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.CustomerProfileStatus));                 
-                    parameterList.Add(new SqlParameter("@CreatedbyUserTypeId", obj.CreatedbyUserTypeId));
-                    parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.CreatedbyUserId));
-                    parameterList.Add(new SqlParameter("@ModifiedbyUserTypeId", obj.ModifiedbyUserTypeId));
-                    parameterList.Add(new SqlParameter("@ModifiedbyUserId", obj.ModifiedbyUserId));
-                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", obj.CreatedbyDeviceId));
-                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", obj.ModifiedbyDeviceId));
+                    parameterList.Add(new SqlParameter("@CustomerFirstName", obj.customerfirstname));
+                    parameterList.Add(new SqlParameter("@CustomerLastName", obj.customerlastname));
+                    parameterList.Add(new SqlParameter("@CustomerAge", obj.customerage));
+                    parameterList.Add(new SqlParameter("@CustomerGender", obj.customergender));
+                    parameterList.Add(new SqlParameter("@CustomereMailAddress", obj.customeremailaddress));
+                    parameterList.Add(new SqlParameter("@CustomerWebsite",obj.customerwebsite));
+                    parameterList.Add(new SqlParameter("@CustomerCountry", obj.customercountry));
+                    parameterList.Add(new SqlParameter("@CustomerCity", obj.customercity));
+                    parameterList.Add(new SqlParameter("@CustomerProvince", obj.customerprovince));
+                    parameterList.Add(new SqlParameter("@CustomerZipCode", obj.customerzipcode));
+                    parameterList.Add(new SqlParameter("@CustomerAddress", obj.customeraddress));
+                    parameterList.Add(new SqlParameter("@CustomerMobileNumber", obj.customermobilenumber));
+                    parameterList.Add(new SqlParameter("@CustomerCNIC", obj.customercnic));
+                    parameterList.Add(new SqlParameter("@CustomerPicture",obj.customerpicture));
+                    parameterList.Add(new SqlParameter("@CustomerPassword", obj.customerpassword));
+                    parameterList.Add(new SqlParameter("@CustomerRating", obj.customerrating));
+                    parameterList.Add(new SqlParameter("@CustomerWalletAmount", obj.customerwalletamount));
+                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.customerprofilestatus));                 
+                    parameterList.Add(new SqlParameter("@CreatedbyUserTypeId", obj.createdbyusertypeid));
+                    parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.createdbyuserid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyUserTypeId", obj.modifiedbyusertypeid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyUserId", obj.modifiedbyuserid));
+                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", obj.createdbydeviceid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", obj.modifiedbydeviceid));
                     var out1 = new SqlParameter
                     {
                         ParameterName = "@ResultParam",
@@ -142,30 +142,30 @@ namespace CustomerDAL.UsersOperations
                         "@CreatedbyUserTypeId,@CreatedbyUserId,@ModifiedbyUserTypeId,@ModifiedbyUserId," +
                         "@CreatedbyDeviceId,@ModifiedbyDeviceId,@CustomerID OUT";
                     List<SqlParameter> parameterList = new List<SqlParameter>();
-                    parameterList.Add(new SqlParameter("@CustomerFirstName", obj.CustomerFirstName));
-                    parameterList.Add(new SqlParameter("@CustomerLastName", obj.CustomerLastName));
-                    parameterList.Add(new SqlParameter("@CustomerAge", obj.CustomerAge));
-                    parameterList.Add(new SqlParameter("@CustomerGender", obj.CustomerGender));
-                    parameterList.Add(new SqlParameter("@CustomereMailAddress", obj.CustomereMailAddress));
-                    parameterList.Add(new SqlParameter("@CustomerWebsite", obj.CustomerWebsite));
-                    parameterList.Add(new SqlParameter("@CustomerCountry", obj.CustomerCountry));
-                    parameterList.Add(new SqlParameter("@CustomerCity", obj.CustomerCity));
-                    parameterList.Add(new SqlParameter("@CustomerProvince", obj.CustomerProvince));
-                    parameterList.Add(new SqlParameter("@CustomerZipCode", obj.CustomerZipCode));
-                    parameterList.Add(new SqlParameter("@CustomerAddress", obj.CustomerAddress));
-                    parameterList.Add(new SqlParameter("@CustomerMobileNumber", obj.CustomerMobileNumber));
-                    parameterList.Add(new SqlParameter("@CustomerCNIC", obj.CustomerCNIC));
-                    parameterList.Add(new SqlParameter("@CustomerPicture", obj.CustomerPicture));
-                    parameterList.Add(new SqlParameter("@CustomerPassword", obj.CustomerPassword));
-                    parameterList.Add(new SqlParameter("@CustomerRating", obj.CustomerRating));
-                    parameterList.Add(new SqlParameter("@CustomerWalletAmount", obj.CustomerWalletAmount));
-                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.CustomerProfileStatus));
-                    parameterList.Add(new SqlParameter("@CreatedbyUserTypeId", obj.CreatedbyUserTypeId));
-                    parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.CreatedbyUserId));
-                    parameterList.Add(new SqlParameter("@ModifiedbyUserTypeId", obj.ModifiedbyUserTypeId));
-                    parameterList.Add(new SqlParameter("@ModifiedbyUserId", obj.ModifiedbyUserId));
-                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", obj.CreatedbyDeviceId));
-                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", obj.ModifiedbyDeviceId));
+                    parameterList.Add(new SqlParameter("@CustomerFirstName", obj.customerfirstname));
+                    parameterList.Add(new SqlParameter("@CustomerLastName", obj.customerlastname));
+                    parameterList.Add(new SqlParameter("@CustomerAge", obj.customerage));
+                    parameterList.Add(new SqlParameter("@CustomerGender", obj.customergender));
+                    parameterList.Add(new SqlParameter("@CustomereMailAddress", obj.customeremailaddress));
+                    parameterList.Add(new SqlParameter("@CustomerWebsite", obj.customerwebsite));
+                    parameterList.Add(new SqlParameter("@CustomerCountry", obj.customercountry));
+                    parameterList.Add(new SqlParameter("@CustomerCity", obj.customercity));
+                    parameterList.Add(new SqlParameter("@CustomerProvince", obj.customerprovince));
+                    parameterList.Add(new SqlParameter("@CustomerZipCode", obj.customerzipcode));
+                    parameterList.Add(new SqlParameter("@CustomerAddress", obj.customeraddress));
+                    parameterList.Add(new SqlParameter("@CustomerMobileNumber", obj.customermobilenumber));
+                    parameterList.Add(new SqlParameter("@CustomerCNIC", obj.customercnic));
+                    parameterList.Add(new SqlParameter("@CustomerPicture", obj.customerpicture));
+                    parameterList.Add(new SqlParameter("@CustomerPassword", obj.customerpassword));
+                    parameterList.Add(new SqlParameter("@CustomerRating", obj.customerrating));
+                    parameterList.Add(new SqlParameter("@CustomerWalletAmount", obj.customerwalletamount));
+                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.customerprofilestatus));
+                    parameterList.Add(new SqlParameter("@CreatedbyUserTypeId", obj.createdbyusertypeid));
+                    parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.createdbyuserid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyUserTypeId", obj.modifiedbyusertypeid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyUserId", obj.modifiedbyuserid));
+                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", obj.createdbydeviceid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", obj.modifiedbydeviceid));
                     var out1 = new SqlParameter
                     {
                         ParameterName = "@CustomerID",
@@ -192,21 +192,21 @@ namespace CustomerDAL.UsersOperations
             try
             {
                 Userdata objEntity = new Userdata();
-                objEntity.CustomereMailAddress = objLoginUser.emailaddress;
-                objEntity.CustomerMobileNumber = objLoginUser.phonenumber;
-                objEntity.CustomerFirstName = objLoginUser.userfirstname;
-                objEntity.CustomerLastName = objLoginUser.userlastname;
-                objEntity.CustomerAge = 0;
-                objEntity.CustomerGender = "Default";
-                objEntity.CustomerPassword = "Default-Password";
-                objEntity.CustomerWebsite = "";
-                objEntity.CustomerCountry = "";
-                objEntity.CustomerCity = "";
-                objEntity.CustomerProvince = "";
-                objEntity.CustomerZipCode = "";
-                objEntity.CustomerAddress = "";
-                objEntity.CustomerCNIC = "";
-                objEntity.CustomerPicture = "";
+                objEntity.customeremailaddress = objLoginUser.emailaddress;
+                objEntity.customermobilenumber = objLoginUser.phonenumber;
+                objEntity.customerfirstname = objLoginUser.userfirstname;
+                objEntity.customerlastname = objLoginUser.userlastname;
+                objEntity.customerage = 0;
+                objEntity.customergender = "Default";
+                objEntity.customerpassword = "Default-Password";
+                objEntity.customerwebsite = "";
+                objEntity.customercountry = "";
+                objEntity.customercity = "";
+                objEntity.customerprovince = "";
+                objEntity.customerzipcode = "";
+                objEntity.customeraddress = "";
+                objEntity.customercnic = "";
+                objEntity.customerpicture = "";
                 return objEntity;
             }
             catch (Exception ex)
@@ -238,6 +238,24 @@ namespace CustomerDAL.UsersOperations
                 return -1;
             }
         }
+
+        #endregion
+
+        #region Update API DAL Function 
+
+        public LoginResponseBO UpdateCustomerInfo()
+        {
+            try
+            {
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
 
         #endregion
 

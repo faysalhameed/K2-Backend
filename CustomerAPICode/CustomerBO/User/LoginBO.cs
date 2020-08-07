@@ -16,6 +16,7 @@ namespace CustomerBO.User
         public string userfirstname { get; set; }
         public string userlastname { get; set; }
         public string authenticationtoken { get; set; }
+        public int CustomerID { get; set; }
     }
 
     public class LoginRootBO

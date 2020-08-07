@@ -21,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CustomerBL\CustomerBL.csproj" />
     <ProjectReference Include="..\CustomerBO\CustomerBO.csproj" />
+    <ProjectReference Include="..\CustomerCommon\CustomerCommon.csproj" />
   </ItemGroup>
 
 

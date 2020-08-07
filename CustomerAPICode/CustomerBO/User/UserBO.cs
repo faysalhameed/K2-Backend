@@ -6,34 +6,34 @@ namespace CustomerBO.User
 {
     public class Userdata
     {
-        public int CustomerID { get; set; }
-        public string CustomerFirstName { get; set; }
-        public string CustomerLastName { get; set; }
-        public int CustomerAge { get; set; }
-        public string CustomerGender { get; set; }
-        public string CustomereMailAddress { get; set; }
-        public string CustomerWebsite { get; set; }
-        public string CustomerCountry { get; set; }
-        public string CustomerCity { get; set; }
-        public string CustomerProvince { get; set; }
-        public string CustomerZipCode { get; set; }
-        public string CustomerAddress { get; set; }
-        public string CustomerMobileNumber { get; set; }
-        public string CustomerOtherContactNumber { get; set; }
-        public string CustomerCNIC { get; set; }
-        public string CustomerPicture { get; set; }
-        public string CustomerPassword { get; set; }
-        public decimal CustomerRating { get; set; }
-        public decimal CustomerWalletAmount { get; set; }
-        public bool CustomerProfileStatus { get; set; }
-        public DateTime CreationDate { get; set; }
-        public DateTime ModifiedDateTime { get; set; }
-        public int CreatedbyUserTypeId { get; set; }
-        public int CreatedbyUserId { get; set; }
-        public int ModifiedbyUserTypeId { get; set; }
-        public int ModifiedbyUserId { get; set; }
-        public int CreatedbyDeviceId { get; set; }
-        public int ModifiedbyDeviceId { get; set; }
+        public int customerid { get; set; }
+        public string customerfirstname { get; set; }
+        public string customerlastname { get; set; }
+        public int customerage { get; set; }
+        public string customergender { get; set; }
+        public string customeremailaddress { get; set; }
+        public string customerwebsite { get; set; }
+        public string customercountry { get; set; }
+        public string customercity { get; set; }
+        public string customerprovince { get; set; }
+        public string customerzipcode { get; set; }
+        public string customeraddress { get; set; }
+        public string customermobilenumber { get; set; }
+        public string customerothercontactnumber { get; set; }
+        public string customercnic { get; set; }
+        public string customerpicture { get; set; }
+        public string customerpassword { get; set; }
+        public decimal customerrating { get; set; }
+        public decimal customerwalletamount { get; set; }
+        public bool customerprofilestatus { get; set; }
+        public DateTime creationdate { get; set; }
+        public DateTime modifieddatetime { get; set; }
+        public int createdbyusertypeid { get; set; }
+        public int createdbyuserid { get; set; }
+        public int modifiedbyusertypeid { get; set; }
+        public int modifiedbyuserid { get; set; }
+        public int createdbydeviceid { get; set; }
+        public int modifiedbydeviceid { get; set; }
      
     }
 

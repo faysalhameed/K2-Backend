@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CustomerCommon;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,10 @@ namespace SilaeeAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers().AddNewtonsoftJson(); // this need to be same as previous
+            services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add(typeof(ShortCircuitingResourceFilterAttribute));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
