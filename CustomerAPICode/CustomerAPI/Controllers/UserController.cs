@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using CustomerBL.User;
 using CustomerBO.User;
 using CustomerDAL.Models;
+using CustomerCommon;
 
 namespace CustomerAPI.Controllers
 {
@@ -37,37 +38,37 @@ namespace CustomerAPI.Controllers
                 if (result > 0)
                 {
                     //var SuccessMsg = new { isSuccessful = true, ResponseMessage = "Profile created successfully !", CustomerEmailAddress = HttpStatusCode.OK, Result = "Saved Sucessfully" };
-                    var SuccessMsg = new { issuccessful = true, responsemessage = "Profile created successfully !", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber };
+                    var SuccessMsg = new { issuccessful = true, responsemessage = "Profile created successfully !", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result };
                     return new OkObjectResult(SuccessMsg);
                 }
                 else if (result == -2)
                 {
                     //validation failed for request object
-                    var FaultyMsg = new { issuccessful = false, responsemessage = "One or more fields missing", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber };
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "One or more fields missing", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result };
                     return new OkObjectResult(FaultyMsg);
                 }
                 else if (result == -3)
                 {
                     // -3 : bad request object
-                    var FaultyMsg = new { issuccessful = false, responsemessage = "Bad Request !", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber };
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Bad Request !", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result };
                     return new OkObjectResult(FaultyMsg);
                 }
                 else if (result == -4)
                 {
                     // -4 : Exception in code
-                    var FaultyMsg = new { issuccessful = false, responsemessage = "Error occured while processing", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber };
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Error occured while processing", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result };
                     return new OkObjectResult(FaultyMsg);
                 }
                 else if (result == -5)
                 {
                     // -5 : Profile already exists ( coming from sp )
-                    var FaultyMsg = new { issuccessful = false, responsemessage = "Profile already exists against email", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber };
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Profile already exists against email", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result };
                     return new OkObjectResult(FaultyMsg);
                 }
                 else
                 {
                     // return from sp
-                    var FaultyMsg = new { issuccessful = false, responsemessage = "Unable to process request", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber };
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Unable to process request", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result };
                     return new OkObjectResult(FaultyMsg);
                 }
             }
@@ -94,6 +95,29 @@ namespace CustomerAPI.Controllers
                 UserBL objBL = new UserBL();
                 var result = await objBL.Login(Param);
                 int respone = result.Item1;
+
+                var activityResult = objBL.CreateActivityObject(Param.logindata);
+                if (respone > 0)
+                {
+                   if(activityResult != null)
+                    {
+                        activityResult.customerID = respone;
+                        activityResult.LoginSucess = true;
+                        activityResult.SessionToken = result.Item4;
+                        LoginResponseLog.LoginResponse(activityResult);
+                    }
+                }
+                else
+                {
+                    if (activityResult != null)
+                    {
+                        activityResult.customerID = respone;
+                        activityResult.LoginSucess = false;
+                        activityResult.SessionToken = result.Item4;
+                        LoginResponseLog.LoginResponse(activityResult);
+                    }
+                }
+
                 if (respone > 0)
                 {
                     // true;
@@ -108,13 +132,13 @@ namespace CustomerAPI.Controllers
                         firstname = Param.logindata.userfirstname;
                         lastname = Param.logindata.userlastname;
                     }
-                    var SuccessMsg = new { 
-                        issuccessful = true, 
-                        customerid = respone, 
+                    var SuccessMsg = new {
+                        issuccessful = true,
+                        customerid = respone,
                         customerfirstname = firstname,
                         customerlastname = lastname,
                         responsemessage = "Login successfully !",
-                        sesssiontoken = Guid.NewGuid()
+                        sesssiontoken = result.Item4 //Guid.NewGuid()
                     };
                     return new OkObjectResult(SuccessMsg);
                 }
@@ -228,7 +252,7 @@ namespace CustomerAPI.Controllers
         #region Update API
 
         [HttpPost]
-        public async Task<IActionResult> UpdateCustomer(LoginRootBO Param)
+        public async Task<IActionResult> UpdateCustomer(Root Param)
         {
             try
             {
@@ -237,129 +261,119 @@ namespace CustomerAPI.Controllers
                     return BadRequest();
                 }
                 UserBL objBL = new UserBL();
-                var result = await objBL.UpdateCustomer(Param);
-                int respone = result.Item1;
-                if (respone > 0)
+                var result = await objBL.UpdateCustomer(Param.userdata);
+                if (result > 0)
                 {
-                    // true;
-                    string firstname = "", lastname = "";
-                    if (Param.logindata.authenticationmedium.ToLower() == "custom")
-                    {
-                        firstname = result.Item2;
-                        lastname = result.Item3;
-                    }
-                    else
-                    {
-                        firstname = Param.logindata.userfirstname;
-                        lastname = Param.logindata.userlastname;
-                    }
-                    var SuccessMsg = new
-                    {
-                        issuccessful = true,
-                        customerid = respone,
-                        customerfirstname = firstname,
-                        customerlastname = lastname,
-                        responsemessage = "Login successfully !",
-                        sesssiontoken = Guid.NewGuid()
-                    };
+                    var SuccessMsg = new { issuccessful = true, responsemessage = "Profile Updated successfully !", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = Param.userdata.customerid, sessiontoken = Param.userdata.sessiontoken };
                     return new OkObjectResult(SuccessMsg);
                 }
-                else if (respone == -1)
+                else if (result == -2)
                 {
-                    // from db side  
-                    var FaultyMsg = new
-                    {
-                        issuccessful = false,
-                        customerid = respone,
-                        customerfirstname = Param.logindata.userfirstname,
-                        customerlastname = Param.logindata.userlastname,
-                        responsemessage = "Error Occured!",
-                        sesssiontoken = ""
-                    };
+                    //validation failed for request object
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "One or more fields missing", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result, sessiontoken = Param.userdata.sessiontoken };
                     return new OkObjectResult(FaultyMsg);
                 }
-                else if (respone == -2)
+                else if (result == -3)
                 {
-                    // all data missing 
-                    var FaultyMsg = new
-                    {
-                        issuccessful = false,
-                        customerid = respone,
-                        customerfirstname = Param.logindata.userfirstname,
-                        customerlastname = Param.logindata.userlastname,
-                        responsemessage = "All field missings",
-                        sesssiontoken = ""
-                    };
+                    // -3 : bad request object
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Bad Request !", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result, sessiontoken = Param.userdata.sessiontoken };
                     return new OkObjectResult(FaultyMsg);
                 }
-                else if (respone == -3)
+                else if (result == -4)
                 {
-                    // missing email or password 
-                    var FaultyMsg = new
-                    {
-                        issuccessful = false,
-                        customerid = respone,
-                        customerfirstname = Param.logindata.userfirstname,
-                        customerlastname = Param.logindata.userlastname,
-                        responsemessage = "Email or password missing.",
-                        sesssiontoken = ""
-                    };
-                    return new OkObjectResult(FaultyMsg);
-                }
-                else if (respone == -4)
-                {
-                    // token auth failed
-                    var FaultyMsg = new
-                    {
-                        issuccessful = false,
-                        customerid = respone,
-                        customerfirstname = Param.logindata.userfirstname,
-                        customerlastname = Param.logindata.userlastname,
-                        responsemessage = "Token authentication failed.",
-                        sesssiontoken = ""
-                    };
-                    return new OkObjectResult(FaultyMsg);
-                }
-                else if (respone == -5)
-                {
-                    // email or password is missing for authentication
-                    var FaultyMsg = new
-                    {
-                        issuccessful = false,
-                        customerid = respone,
-                        customerfirstname = Param.logindata.userfirstname,
-                        customerlastname = Param.logindata.userlastname,
-                        responsemessage = "email or password is missing for authentication",
-                        sesssiontoken = ""
-                    };
-                    return new OkObjectResult(FaultyMsg);
-                }
-                else if (respone == -6)
-                {
-                    // faulty msg return no pre defined auth medium  defined
-                    var FaultyMsg = new
-                    {
-                        issuccessful = false,
-                        customerid = respone,
-                        customerfirstname = Param.logindata.userfirstname,
-                        customerlastname = Param.logindata.userlastname,
-                        responsemessage = "Authentication medium is missing",
-                        sesssiontoken = ""
-                    };
+                    // -4 : Exception in code
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Error occured while processing", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result, sessiontoken = Param.userdata.sessiontoken };
                     return new OkObjectResult(FaultyMsg);
                 }
                 else
                 {
-                    // exception 
-                    var FaultyMsg = new
+                    // return from sp
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Unable to process request", customeremailaddress = Param.userdata.customeremailaddress, customermobilenumber = Param.userdata.customermobilenumber, customerid = result, sessiontoken = Param.userdata.sessiontoken };
+                    return new OkObjectResult(FaultyMsg);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
+        #region Forgetpassword 
+
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgotPasswordcontainer Param)
+        {
+            try
+            {
+                if(Param == null || Param.userdata == null || string.IsNullOrEmpty(Param.userdata.customeremailaddress))
+                {
+                    return BadRequest();
+                }
+
+                UserBL objBL = new UserBL();
+                var result = await objBL.ForgetPasswordBL(Param.userdata);
+                if(result != null)
+                {
+                    if(result.Item1 > 0)
                     {
-                        issuccessful = false,
-                        customerid = respone,
-                        customerfirstname = Param.logindata.userfirstname,
-                        customerlastname = Param.logindata.userlastname,
-                        responsemessage = "Exception occured",
-                        sesssiontoken = ""
-                    };
+                        var SuccessMsg = new { issuccessful = true, responsemessage = "Token emailed successfully!", uniquetoken = result.Item2 };
+                        return new OkObjectResult(SuccessMsg);
+                    }
+                    else if(result.Item1 == -2)
+                    {
+                        var FaultyMsg = new { issuccessful = false, responsemessage = "Email doesn't exist.", uniquetoken = result.Item2 };
+                        return new OkObjectResult(FaultyMsg);
+                    }
+                    else if (result.Item1 == -3)
+                    {
+                        var FaultyMsg = new { issuccessful = false, responsemessage = "Param missing", uniquetoken = result.Item2 };
+                        return new OkObjectResult(FaultyMsg);
+                    }
+                    else if (result.Item1 == -4)
+                    {
+                        var FaultyMsg = new { issuccessful = false, responsemessage = "Error occured while processing..", uniquetoken = result.Item2 };
+                        return new OkObjectResult(FaultyMsg);
+                    }
+                    else if (result.Item1 == -5)
+                    {
+                        var FaultyMsg = new { issuccessful = false, responsemessage = "Failed to send email !", uniquetoken = result.Item2 };
+                        return new OkObjectResult(FaultyMsg);
+                    }
+                    else
+                    {
+                        return BadRequest();
+                    }
+                }
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ForgotPasswordcontainer Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null || string.IsNullOrEmpty(Param.userdata.customeremailaddress))
+                {
+                    return BadRequest();
+                }
+                UserBL objBL = new UserBL();
+                var result = await objBL.ResetPasswordBL(Param.userdata);
+                if(result > 0)
+                {
+                    var SuccessMsg = new { issuccessful = true, responsemessage = "password changed successfully!" };
+                    return new OkObjectResult(SuccessMsg);
+                }
+                else
+                {
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Unable to process process request !" };
                     return new OkObjectResult(FaultyMsg);
                 }
             }

@@ -32,9 +32,13 @@ namespace CustomerBO.User
         public int createdbyuserid { get; set; }
         public int modifiedbyusertypeid { get; set; }
         public int modifiedbyuserid { get; set; }
-        public int createdbydeviceid { get; set; }
-        public int modifiedbydeviceid { get; set; }
-     
+        public string deviceid { get; set; }
+        //public string createdbydeviceid { get; set; }
+        //public string modifiedbydeviceid { get; set; }
+        public string devicetype { get; set; }
+
+        public string sessiontoken { get; set; }
+
     }
 
     public class Root

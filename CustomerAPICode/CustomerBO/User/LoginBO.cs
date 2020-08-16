@@ -9,7 +9,7 @@ namespace CustomerBO.User
         public string emailaddress { get; set; }
         public string phonenumber { get; set; }
         public string userpassword { get; set; }
-        public int deviceid { get; set; }
+        public string deviceid { get; set; }
         public string devicetype { get; set; }
         public DateTime logindate { get; set; }
         public string authenticationmedium { get; set; }

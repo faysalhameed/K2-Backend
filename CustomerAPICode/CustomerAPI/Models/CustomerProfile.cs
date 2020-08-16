@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SilaeeAPI.Models
+namespace CustomerAPI.Models
 {
     public partial class CustomerProfile
     {
@@ -33,5 +33,6 @@ namespace SilaeeAPI.Models
         public int? ModifiedbyUserId { get; set; }
         public int? CreatedbyDeviceId { get; set; }
         public int? ModifiedbyDeviceId { get; set; }
+        public string Uniquedeviceid { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace SilaeeAPI.Models
+namespace CustomerAPI.Models
 {
     public partial class SilaeeContext : DbContext
     {
@@ -16,13 +16,16 @@ namespace SilaeeAPI.Models
         }
 
         public virtual DbSet<CustomerProfile> CustomerProfile { get; set; }
+        public virtual DbSet<Customerloginactivities> Customerloginactivities { get; set; }
+        public virtual DbSet<Devicetypeinfo> Devicetypeinfo { get; set; }
+        public virtual DbSet<Usertypeinfo> Usertypeinfo { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
-                //#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=localhost;Database=CustomerDB;user id=sa;password=123;");
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Server=sql5052.site4now.net;Database=DB_A6503A_CustomerDB;user id=DB_A6503A_CustomerDB_admin;password=K@2Te@m123;");
             }
         }
 
@@ -67,6 +70,39 @@ namespace SilaeeAPI.Models
                 entity.Property(e => e.CustomereMailAddress).HasMaxLength(100);
 
                 entity.Property(e => e.ModifiedDateTime).HasColumnType("datetime");
+
+                entity.Property(e => e.Uniquedeviceid).HasMaxLength(500);
+            });
+
+            modelBuilder.Entity<Customerloginactivities>(entity =>
+            {
+                entity.HasKey(e => e.Activityid);
+
+                entity.Property(e => e.Authenticationmedium).HasMaxLength(50);
+
+                entity.Property(e => e.Creationdatetime).HasColumnType("datetime");
+
+                entity.Property(e => e.Logindatetime).HasColumnType("datetime");
+
+                entity.Property(e => e.Logoutdatetime).HasColumnType("datetime");
+
+                entity.Property(e => e.Modifieddatetime).HasColumnType("datetime");
+
+                entity.Property(e => e.SessionToken).HasMaxLength(200);
+            });
+
+            modelBuilder.Entity<Devicetypeinfo>(entity =>
+            {
+                entity.HasKey(e => e.Devicetypeid);
+
+                entity.Property(e => e.Devicetypename).HasMaxLength(200);
+            });
+
+            modelBuilder.Entity<Usertypeinfo>(entity =>
+            {
+                entity.HasKey(e => e.Usertypeid);
+
+                entity.Property(e => e.Usertype).HasMaxLength(200);
             });
 
             OnModelCreatingPartial(modelBuilder);

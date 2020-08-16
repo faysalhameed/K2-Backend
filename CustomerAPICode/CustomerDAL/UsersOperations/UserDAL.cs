@@ -11,7 +11,116 @@ namespace CustomerDAL.UsersOperations
 {
     public class UserDAL : IUsers
     {
-        
+
+        #region Reset Password 
+
+        public int ResetPassword(string email, string password,string deviceID, string DeviceType)
+        {
+            try
+            {
+                using (var dbContext = new SilaeeContext())
+                {
+                    string sql = "sp_ResetPassword @CustomerMailAddress,@CustomerPassword,@deviceID,@deviceType,@ResultParam OUT";
+                    List<SqlParameter> parameterList = new List<SqlParameter>();
+                    parameterList.Add(new SqlParameter("@CustomerMailAddress", email));
+                    parameterList.Add(new SqlParameter("@CustomerPassword", password));
+                    parameterList.Add(new SqlParameter("@deviceID", deviceID));
+                    parameterList.Add(new SqlParameter("@deviceType", DeviceType));
+                    var out1 = new SqlParameter
+                    {
+                        ParameterName = "@ResultParam",
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Output
+                    };
+                    parameterList.Add(out1);
+                    var result = dbContext.Database.
+                        ExecuteSqlCommand(sql, parameterList);
+                    var out1Value = (int)out1.Value;
+                    return out1Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
+        public int ValidateEmailAddress(string emailAddress)
+        {
+            try
+            {
+                using (var dbContext = new SilaeeContext())
+                {
+                    string sql = "sp_ValidateEmail @CustomerMailAddress,@ResultParam OUT";
+                    List<SqlParameter> parameterList = new List<SqlParameter>();
+                    parameterList.Add(new SqlParameter("@CustomerMailAddress", emailAddress));
+                    var out1 = new SqlParameter
+                    {
+                        ParameterName = "@ResultParam",
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Output
+                    };
+                    parameterList.Add(out1);
+                    var result = dbContext.Database.
+                        ExecuteSqlCommand(sql, parameterList);
+                    var out1Value = (int)out1.Value;
+                    return out1Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
+
+        #endregion
+
+        #region Login/Logout Activity 
+
+        public void LoginActivity(LoginActivityBO objActivity)
+        {
+            try
+            {
+                using (var dbContext = new SilaeeContext())
+                {
+                    string sql = "sp_SaveLoginResponse @CustomerID,@LoginDate,@LogOutDate,@LoginSuccess," +
+                        "@creationDate,@ModifyDate,@createdbyUserTypeID,@CreatedbyUserID,@modifiedbyUserTypeID," +
+                        "@modifiedbyUserID,@createdbyDeviceID,@modifiedbyDeviceID,@SessionTokken,@Authmedium," +
+                        "@DeviceType,@UniqueDeviceID";
+                    //"@UniqueDeviceID,@DeviceType,@ResultParam OUT";
+                    List<SqlParameter> parameterList = new List<SqlParameter>();
+                    parameterList.Add(new SqlParameter("@CustomerID", objActivity.customerID));
+                    parameterList.Add(new SqlParameter("@LoginDate", objActivity.LoginDate));
+                    parameterList.Add(new SqlParameter("@LogOutDate", objActivity.logOut));
+                    parameterList.Add(new SqlParameter("@LoginSuccess", objActivity.LoginSucess));
+                    parameterList.Add(new SqlParameter("@creationDate", objActivity.creationDate));
+                    parameterList.Add(new SqlParameter("@ModifyDate", objActivity.ModifyDate));
+                    parameterList.Add(new SqlParameter("@createdbyUserTypeID", objActivity.createdbyUserTypeID));
+                    parameterList.Add(new SqlParameter("@CreatedbyUserID", objActivity.CreatedbyUserID));
+                    parameterList.Add(new SqlParameter("@modifiedbyUserTypeID", objActivity.modifiedbyUserTypeID));
+                    parameterList.Add(new SqlParameter("@modifiedbyUserID", objActivity.modifiedbyUserID));
+                    parameterList.Add(new SqlParameter("@createdbyDeviceID", -1));
+                    parameterList.Add(new SqlParameter("@modifiedbyDeviceID", -1));
+                    parameterList.Add(new SqlParameter("@SessionTokken", objActivity.SessionToken));
+                    parameterList.Add(new SqlParameter("@Authmedium", objActivity.Authmedium));
+                    parameterList.Add(new SqlParameter("@DeviceType", objActivity.deviceType));
+                    parameterList.Add(new SqlParameter("@UniqueDeviceID", objActivity.DeviceID));
+
+                    var result = dbContext.Database.
+                        ExecuteSqlCommand(sql, parameterList);
+                
+                }
+            }
+            catch (Exception ex)
+            {
+               
+            }
+        }
+
+        #endregion
+
+        #region Create Profile 
+
         public int SaveUser(Userdata obj)
         {
             try
@@ -21,9 +130,10 @@ namespace CustomerDAL.UsersOperations
                     string sql = "sp_SaveCustomerProfile @CustomerFirstName,@CustomerLastName,@CustomerAge,@CustomerGender," +
                         "@CustomereMailAddress,@CustomerWebsite,@CustomerCountry,@CustomerCity,@CustomerProvince," +
                         "@CustomerZipCode,@CustomerAddress,@CustomerMobileNumber,@CustomerCNIC,@CustomerPicture," +
-                        "@CustomerPassword,@CustomerRating,@CustomerWalletAmount,@CustomerProfileStatus," +
+                        "@CustomerPassword,@CustomerRating,@CustomerWalletAmount,@CustomerProfileStatus,@CreationDateTime,@ModifiedDateTime," +
                         "@CreatedbyUserTypeId,@CreatedbyUserId,@ModifiedbyUserTypeId,@ModifiedbyUserId," +
-                        "@CreatedbyDeviceId,@ModifiedbyDeviceId,@ResultParam OUT";
+                        "@CreatedbyDeviceId,@ModifiedbyDeviceId,@UniqueDeviceID,@DeviceType,@ResultParam OUT";
+                        //"@UniqueDeviceID,@DeviceType,@ResultParam OUT";
                     List<SqlParameter> parameterList = new List<SqlParameter>();
                     parameterList.Add(new SqlParameter("@CustomerFirstName", obj.customerfirstname));
                     parameterList.Add(new SqlParameter("@CustomerLastName", obj.customerlastname));
@@ -42,13 +152,19 @@ namespace CustomerDAL.UsersOperations
                     parameterList.Add(new SqlParameter("@CustomerPassword", obj.customerpassword));
                     parameterList.Add(new SqlParameter("@CustomerRating", obj.customerrating));
                     parameterList.Add(new SqlParameter("@CustomerWalletAmount", obj.customerwalletamount));
-                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.customerprofilestatus));                 
+                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.customerprofilestatus));
+
+                    parameterList.Add(new SqlParameter("@CreationDateTime", obj.creationdate));
+                    parameterList.Add(new SqlParameter("@ModifiedDateTime", obj.modifieddatetime));
+
                     parameterList.Add(new SqlParameter("@CreatedbyUserTypeId", obj.createdbyusertypeid));
                     parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.createdbyuserid));
                     parameterList.Add(new SqlParameter("@ModifiedbyUserTypeId", obj.modifiedbyusertypeid));
                     parameterList.Add(new SqlParameter("@ModifiedbyUserId", obj.modifiedbyuserid));
-                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", obj.createdbydeviceid));
-                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", obj.modifiedbydeviceid));
+                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", -1)); //obj.createdbydeviceid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", -1)); //obj.modifiedbydeviceid));
+                    parameterList.Add(new SqlParameter("@UniqueDeviceID", obj.deviceid));
+                    parameterList.Add(new SqlParameter("@DeviceType", obj.devicetype));
                     var out1 = new SqlParameter
                     {
                         ParameterName = "@ResultParam",
@@ -56,7 +172,7 @@ namespace CustomerDAL.UsersOperations
                         Direction = System.Data.ParameterDirection.Output
                     };
                     parameterList.Add(out1); //new SqlParameter("@ResultParam", obj.ModifiedbyDeviceId));
-                    int result = dbContext.Database.
+                    var result = dbContext.Database.
                         ExecuteSqlCommand(sql, parameterList);
                     var out1Value = (int)out1.Value;
                     return out1Value;
@@ -70,6 +186,7 @@ namespace CustomerDAL.UsersOperations
             }
         }
 
+        #endregion
 
         #region Login API DAL Function
 
@@ -140,7 +257,7 @@ namespace CustomerDAL.UsersOperations
                         "@CustomerZipCode,@CustomerAddress,@CustomerMobileNumber,@CustomerCNIC,@CustomerPicture," +
                         "@CustomerPassword,@CustomerRating,@CustomerWalletAmount,@CustomerProfileStatus," +
                         "@CreatedbyUserTypeId,@CreatedbyUserId,@ModifiedbyUserTypeId,@ModifiedbyUserId," +
-                        "@CreatedbyDeviceId,@ModifiedbyDeviceId,@CustomerID OUT";
+                        "@CreatedbyDeviceId,@ModifiedbyDeviceId,@UniqueDeviceID,@DeviceType,@CustomerID OUT";
                     List<SqlParameter> parameterList = new List<SqlParameter>();
                     parameterList.Add(new SqlParameter("@CustomerFirstName", obj.customerfirstname));
                     parameterList.Add(new SqlParameter("@CustomerLastName", obj.customerlastname));
@@ -164,8 +281,10 @@ namespace CustomerDAL.UsersOperations
                     parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.createdbyuserid));
                     parameterList.Add(new SqlParameter("@ModifiedbyUserTypeId", obj.modifiedbyusertypeid));
                     parameterList.Add(new SqlParameter("@ModifiedbyUserId", obj.modifiedbyuserid));
-                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", obj.createdbydeviceid));
-                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", obj.modifiedbydeviceid));
+                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", -1)); //obj.createdbydeviceid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", -1)); //obj.modifiedbydeviceid));
+                    parameterList.Add(new SqlParameter("@UniqueDeviceID", obj.deviceid));
+                    parameterList.Add(new SqlParameter("@DeviceType", obj.devicetype));
                     var out1 = new SqlParameter
                     {
                         ParameterName = "@CustomerID",
@@ -207,6 +326,8 @@ namespace CustomerDAL.UsersOperations
                 objEntity.customeraddress = "";
                 objEntity.customercnic = "";
                 objEntity.customerpicture = "";
+                objEntity.deviceid = objLoginUser.deviceid;
+                objEntity.devicetype = objLoginUser.devicetype;
                 return objEntity;
             }
             catch (Exception ex)
@@ -243,15 +364,69 @@ namespace CustomerDAL.UsersOperations
 
         #region Update API DAL Function 
 
-        public LoginResponseBO UpdateCustomerInfo()
+        public int UpdateCustomerInfo(Userdata obj)
         {
             try
             {
-                return null;
+                using (var dbContext = new SilaeeContext())
+                {
+                    string sql = "sp_UpdateCustomerProfile @CustomerID,@CustomerFirstName,@CustomerLastName,@CustomerAge,@CustomerGender," +
+                        "@CustomereMailAddress,@CustomerWebsite,@CustomerCountry,@CustomerCity,@CustomerProvince," +
+                        "@CustomerZipCode,@CustomerAddress,@CustomerMobileNumber,@CustomerCNIC,@CustomerPicture," +
+                        "@CustomerPassword,@CustomerRating,@CustomerWalletAmount,@CustomerProfileStatus,@CreationDateTime,@ModifiedDateTime," +
+                        "@CreatedbyUserTypeId,@CreatedbyUserId,@ModifiedbyUserTypeId,@ModifiedbyUserId," +
+                        "@CreatedbyDeviceId,@ModifiedbyDeviceId,@UniqueDeviceID,@DeviceType,@sessiontoken,@ResultParam OUT";
+                    List<SqlParameter> parameterList = new List<SqlParameter>();
+                    parameterList.Add(new SqlParameter("@CustomerID", obj.customerid));
+                    parameterList.Add(new SqlParameter("@CustomerFirstName", obj.customerfirstname));
+                    parameterList.Add(new SqlParameter("@CustomerLastName", obj.customerlastname));
+                    parameterList.Add(new SqlParameter("@CustomerAge", obj.customerage));
+                    parameterList.Add(new SqlParameter("@CustomerGender", obj.customergender));
+                    parameterList.Add(new SqlParameter("@CustomereMailAddress", obj.customeremailaddress));
+                    parameterList.Add(new SqlParameter("@CustomerWebsite", obj.customerwebsite));
+                    parameterList.Add(new SqlParameter("@CustomerCountry", obj.customercountry));
+                    parameterList.Add(new SqlParameter("@CustomerCity", obj.customercity));
+                    parameterList.Add(new SqlParameter("@CustomerProvince", obj.customerprovince));
+                    parameterList.Add(new SqlParameter("@CustomerZipCode", obj.customerzipcode));
+                    parameterList.Add(new SqlParameter("@CustomerAddress", obj.customeraddress));
+                    parameterList.Add(new SqlParameter("@CustomerMobileNumber", obj.customermobilenumber));
+                    parameterList.Add(new SqlParameter("@CustomerCNIC", obj.customercnic));
+                    parameterList.Add(new SqlParameter("@CustomerPicture", obj.customerpicture));
+                    parameterList.Add(new SqlParameter("@CustomerPassword", obj.customerpassword));
+                    parameterList.Add(new SqlParameter("@CustomerRating", obj.customerrating));
+                    parameterList.Add(new SqlParameter("@CustomerWalletAmount", obj.customerwalletamount));
+                    parameterList.Add(new SqlParameter("@CustomerProfileStatus", obj.customerprofilestatus));
+
+                    parameterList.Add(new SqlParameter("@CreationDateTime", obj.creationdate));
+                    parameterList.Add(new SqlParameter("@ModifiedDateTime", obj.modifieddatetime));
+
+                    parameterList.Add(new SqlParameter("@CreatedbyUserTypeId", obj.createdbyusertypeid));
+                    parameterList.Add(new SqlParameter("@CreatedbyUserId", obj.createdbyuserid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyUserTypeId", obj.modifiedbyusertypeid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyUserId", obj.modifiedbyuserid));
+                    parameterList.Add(new SqlParameter("@CreatedbyDeviceId", -1)); //obj.createdbydeviceid));
+                    parameterList.Add(new SqlParameter("@ModifiedbyDeviceId", -1)); //obj.modifiedbydeviceid));
+                    parameterList.Add(new SqlParameter("@UniqueDeviceID", obj.deviceid));
+                    parameterList.Add(new SqlParameter("@DeviceType", obj.devicetype));
+                    parameterList.Add(new SqlParameter("@sessiontoken", obj.sessiontoken));
+                    var out1 = new SqlParameter
+                    {
+                        ParameterName = "@ResultParam",
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Output
+                    };
+                    parameterList.Add(out1); //new SqlParameter("@ResultParam", obj.ModifiedbyDeviceId));
+                    var result = dbContext.Database.
+                        ExecuteSqlCommand(sql, parameterList);
+                    var out1Value = (int)out1.Value;
+                    return out1Value;
+
+                }
             }
             catch (Exception ex)
             {
-                return null;
+                return -1;
+                // return null; // also we can log exception through common layer }
             }
         }
 

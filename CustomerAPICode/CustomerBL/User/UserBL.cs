@@ -1,12 +1,17 @@
-﻿using CustomerBO.User;
+﻿using CustomerBO.Settings;
+using CustomerBO.User;
 using CustomerCommon;
+using CustomerDAL.SettingOperations;
 using CustomerDAL.UsersOperations;
 using Microsoft.Extensions.Logging.Abstractions;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlTypes;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,12 +19,142 @@ namespace CustomerBL.User
 {
     public class UserBL
     {
+        #region Customer Activity 
+
+        public LoginActivityBO CreateActivityObject(LoginBO obj)
+        {
+            try
+            {
+                LoginActivityBO objActivity = new LoginActivityBO();
+                //objActivity.customerID = obj.CustomerID;
+                
+                if(obj.logindate == null || obj.logindate == DateTime.MinValue)
+                {
+                    objActivity.LoginDate = DateTime.Now;
+                }
+                else
+                {
+                    objActivity.LoginDate = obj.logindate;
+                }
+
+                objActivity.logOut = DateTime.Now;
+                objActivity.creationDate = DateTime.Now;
+                objActivity.ModifyDate = DateTime.Now;
+                objActivity.createdbyUserTypeID = -1;
+                objActivity.CreatedbyUserID = -1;
+                objActivity.modifiedbyUserTypeID = -1;
+                objActivity.modifiedbyUserID = -1;
+                objActivity.deviceType = obj.devicetype;
+                //objActivity.SessionToken = obj.authenticationtoken;
+                objActivity.Authmedium = obj.authenticationmedium;
+                objActivity.DeviceID = obj.deviceid;
+               
+                return objActivity;
+                   
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        #endregion
+
+
         #region Customer Profile Creation API
 
         // -1 : return value from sp side
         // -2 : validation failed for request object
         // -3 : bad request object 
         // -4 : Exception in code 
+
+        private bool ValidateUpdateUserInfo(Userdata obj)
+        {
+            #region Optional Values check
+
+            if (obj.creationdate == DateTime.MinValue)
+            {
+                obj.creationdate = DateTime.Now;
+            }
+            if (string.IsNullOrEmpty(obj.customerpassword))
+            {
+                obj.customerpassword = "";
+            }
+            if (string.IsNullOrEmpty(obj.customeremailaddress))
+            {
+                obj.customeremailaddress = "";
+            }
+            if (obj.modifieddatetime == DateTime.MinValue)
+            {
+                obj.modifieddatetime = DateTime.Now;
+            }
+            if (obj.customerwebsite == null)
+            {
+                obj.customerwebsite = "";
+            }
+            if (obj.customercountry == null)
+            {
+                obj.customercountry = "";
+            }
+            if (obj.customercity == null)
+            {
+                obj.customercity = "";
+            }
+            if (obj.customerprovince == null)
+            {
+                obj.customerprovince = "";
+            }
+            if (obj.customerzipcode == null)
+            {
+                obj.customerzipcode = "";
+            }
+            if (obj.customeraddress == null)
+            {
+                obj.customeraddress = "";
+            }
+            if (obj.customercnic == null)
+            {
+                obj.customercnic = "";
+            }
+            if (obj.customerpicture == null)
+            {
+                obj.customerpicture = "";
+            }
+
+
+            #endregion
+
+
+            //if (string.IsNullOrEmpty(obj.customeremailaddress))
+            //{
+            //    return false;
+            //}
+            if (string.IsNullOrEmpty(obj.customermobilenumber))
+            {
+                return false;
+            }
+            //else if (string.IsNullOrEmpty(obj.customerpassword))
+            //{
+            //    return false;
+            //}
+            else if (string.IsNullOrEmpty(obj.customerfirstname))
+            {
+                return false;
+            }
+            else if (string.IsNullOrEmpty(obj.customerlastname))
+            {
+                return false;
+            }
+            // Commented after discussion with faisal
+            //else if (string.IsNullOrEmpty(obj.customergender))
+            //{
+            //    return false;
+            //}
+            else
+            {
+                return true;
+            }
+        }
 
         private bool ValidateUserInfo(Userdata obj)
         {
@@ -134,13 +269,13 @@ namespace CustomerBL.User
 
         #region Login Process 
 
-        public async Task<Tuple<int,string,string>> Login(LoginRootBO obj)
+        public async Task<Tuple<int,string,string,string>> Login(LoginRootBO obj)
         {
             try
             {
                 if(obj == null || obj.logindata == null)
                 {
-                    return new Tuple<int,string,string>(-2,"",""); // all data missing 
+                    return new Tuple<int,string,string,string>(-2,"","",""); // all data missing 
                 }
 
                 //if (string.IsNullOrEmpty(obj.logindata.emailaddress) || string.IsNullOrEmpty(obj.logindata.userpassword))
@@ -157,9 +292,9 @@ namespace CustomerBL.User
                         if (!string.IsNullOrEmpty(obj.logindata.emailaddress) || !string.IsNullOrEmpty(obj.logindata.userpassword))
                         {
                             var response = objDAL.CustomLoginUser(obj.logindata.emailaddress,obj.logindata.userpassword);
-                            return new Tuple<int, string, string>(response.customerid,response.customerfirstname, response.customerlastname);
+                            return new Tuple<int, string, string,string>(response.customerid,response.customerfirstname, response.customerlastname,Guid.NewGuid().ToString());
                         }
-                        return new Tuple<int, string, string>(-5,"",""); // email or password is missing for authentication
+                        return new Tuple<int, string, string,string>(-5,"","",""); // email or password is missing for authentication
                     }
                     else if (obj.logindata.authenticationmedium.ToLower() == "facebook")
                     {
@@ -168,9 +303,9 @@ namespace CustomerBL.User
                         {
                             // check if profile exist if not then create profile and return result
                             var response = objDAL.LoginMediumUser(obj.logindata);
-                            return new Tuple<int, string, string>(response,"","");
+                            return new Tuple<int, string, string,string>(response,"","",Guid.NewGuid().ToString());
                         }
-                        return new Tuple<int, string, string>(-4,"",""); // token auth failed
+                        return new Tuple<int, string, string,string>(-4,"","",""); // token auth failed
                     }
                     else if (obj.logindata.authenticationmedium.ToLower() == "google")
                     {
@@ -179,25 +314,25 @@ namespace CustomerBL.User
                         {
                             // check if profile exist if not then create profile and return result 
                             var response = objDAL.LoginMediumUser(obj.logindata);
-                            return new Tuple<int, string, string>(response,"","");
+                            return new Tuple<int, string, string,string>(response,"","",Guid.NewGuid().ToString());
                         }
-                        return new Tuple<int, string, string>(-4,"",""); // token auth failed
+                        return new Tuple<int, string, string,string>(-4,"","",""); // token auth failed
                     }
                     else
                     {
                         // faulty msg return no pre defined auth medium  defined
-                        return new Tuple<int, string, string>(-6,"","");
+                        return new Tuple<int, string, string,string>(-6,"","","");
                     }
                 }
                 else
                 {
                     // faulty msg return no auth defined
-                    return new Tuple<int, string, string>(-3,"","");
+                    return new Tuple<int, string, string,string>(-3,"","","");
                 }
             }
             catch (Exception ex)
             {
-                return new Tuple<int, string, string>(-7,"",""); // exception
+                return new Tuple<int, string, string,string>(-7,"","",""); // exception
             }
         }
 
@@ -259,30 +394,219 @@ namespace CustomerBL.User
 
         #region Update Process 
 
-        public async Task<Tuple<int, string, string>> UpdateCustomer(LoginRootBO obj)
+        public async Task<int> UpdateCustomer(Userdata obj)
         {
             try
             {
-                if (obj == null || obj.logindata == null)
+                if (obj != null)
                 {
-                    return new Tuple<int, string, string>(-2, "", ""); // all data missing 
+                    bool isValidate = ValidateUpdateUserInfo(obj);
+                    if (!isValidate)
+                    {
+                        return -2; // for validation failed
+                    }
+                    UserDAL objDal = new UserDAL();
+                    return await Task.Run(() => {
+                        if(obj.sessiontoken == null)
+                        {
+                            obj.sessiontoken = "";
+                        }
+                        int respone = objDal.UpdateCustomerInfo(obj);
+                        return respone;
+                    });
                 }
-
-                UserDAL objDAL = new UserDAL();
-                var response = objDAL.UpdateCustomerInfo(); // param need to define later
-               // LoginResponseLog.LoginResponse();// later
-                return new Tuple<int, string, string>(response.customerid, response.customerfirstname, response.customerlastname);
-
-
+                else
+                {
+                    return -3; // for having bad object 
+                }
             }
             catch (Exception ex)
             {
-                return new Tuple<int, string, string>(-7, "", ""); // exception
+                return -4;
             }
         }
 
 
         #endregion
+
+        #region Forget Password 
+
+        public SettingBO getEmailSettings()
+        {
+            try
+            {
+                SettingBO objResponse = new SettingBO();
+                SettingDAL objDAL = new SettingDAL();
+                var result = objDAL.getEmailSettings();
+                if(result != null && result.Count > 0)
+                {
+                    for (int i = 0; i < result.Count; i++)
+                    {
+                        if(result[i].vSettingName == "FromEmailAddress")
+                        {
+                            objResponse.FromEmailAddress = result[i].vSettingValue;
+                        }
+                        else if (result[i].vSettingName == "SMTPPort")
+                        {
+                            objResponse.SMTPPort = Convert.ToInt32(result[i].vSettingValue);
+                        }
+                        else if (result[i].vSettingName == "SMTPHost")
+                        {
+                            objResponse.SMTPHost = result[i].vSettingValue;
+                        }
+                        else if (result[i].vSettingName == "SMTPEnableSSL")
+                        {
+                            objResponse.SMTPEnableSSL = Convert.ToBoolean(result[i].vSettingValue);
+                        }
+                        else if (result[i].vSettingName == "SMTPUseDefaultCredential")
+                        {
+                            objResponse.SMTPUseDefaultCredential = Convert.ToBoolean(result[i].vSettingValue);
+                        }
+                        else if (result[i].vSettingName == "FromEmailAddressPassword")
+                        {
+                            objResponse.FromEmailAddressPassword = result[i].vSettingValue;
+                        }
+
+                    }
+                    return objResponse;
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        private string getHtml(string _heading, String Guid)
+        {
+            try
+            {
+                string messageBody = "<font><b>" + _heading + "</b></font><br>";
+                string htmlTableStart = "<table style=\"border-collapse:collapse; text-align:center;\" >";
+                string htmlTableEnd = "</table>";
+                string htmlHeaderRowStart = "<tr style=\"background-color:#6FA1D2; color:#ffffff;\">";
+                string htmlHeaderRowEnd = "</tr>";
+                string htmlTrStart = "<tr style=\"color:#555555;\">";
+                string htmlTrEnd = "</tr>";
+                string htmlTdStart = "<td style=\" border-color:#5c87b2; border-style:solid; border-width:thin; padding: 5px;\">";
+                string htmlTdEnd = "</td>";
+                messageBody += htmlTableStart;
+                messageBody += htmlHeaderRowStart;
+                messageBody += htmlTdStart + "Reset Code" + htmlTdEnd;
+                messageBody += htmlHeaderRowEnd;
+                messageBody = messageBody + htmlTrStart;
+                messageBody = messageBody + htmlTdStart + Guid + htmlTdEnd;
+                messageBody = messageBody + htmlTrEnd;
+                messageBody = messageBody + htmlTableEnd;
+                return messageBody; // return HTML Table as string from this function  
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        private bool EmailSending(string emailAddress, string guid)
+        {
+            try
+            {
+                var EmailSetting = getEmailSettings();
+                if(EmailSetting != null)
+                {
+                    string _Mainheading = "Password Reset";
+                    string _emailBody = getHtml(_Mainheading, guid);
+                    MailMessage message = new MailMessage();
+                    SmtpClient smtp = new SmtpClient();
+                    message.From = new MailAddress(EmailSetting.FromEmailAddress);
+                    string _toArr = emailAddress;
+                    message.To.Add(emailAddress);
+                    message.Subject = "Reset password Code";
+                    message.IsBodyHtml = true;
+                    message.Body = _emailBody;
+                    message.BodyEncoding = System.Text.Encoding.GetEncoding("utf-8");
+                    smtp.Port = EmailSetting.SMTPPort;
+                    smtp.Host = EmailSetting.SMTPHost;
+                    smtp.EnableSsl = EmailSetting.SMTPEnableSSL;
+                    smtp.UseDefaultCredentials = EmailSetting.SMTPUseDefaultCredential;
+                    smtp.Credentials = new NetworkCredential(EmailSetting.FromEmailAddress, EmailSetting.FromEmailAddressPassword);
+                    smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                    smtp.Send(message);
+                    return true;
+                }
+                return false;     
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public async Task<Tuple<int,string>> ForgetPasswordBL(ForgotPasswordBO obj)
+        {
+            try
+            {
+                if (obj != null)
+                {
+                    return await Task.Run(() =>
+                    {
+                        UserDAL objDal = new UserDAL();
+                        int result = objDal.ValidateEmailAddress(obj.customeremailaddress);
+                        if (result > 0)
+                        {
+                            string guid = Guid.NewGuid().ToString();
+                            bool isEmailSent = EmailSending(obj.customeremailaddress, guid);
+                            if(isEmailSent)
+                            {
+                                return new Tuple<int, string>(result, guid);
+                            }
+                            else
+                            {
+                                return new Tuple<int, string>(-5, "");
+                            }
+                            
+                        }
+                        else
+                        {
+                            return new Tuple<int, string>(result, "");
+                        }
+                    });
+                }
+                else
+                {
+                    return new Tuple<int, string>(-3, ""); // for having bad object 
+                }
+            }
+            catch (Exception ex)
+            {
+                return new Tuple<int, string>(-4, ""); // exception
+            }
+        }
+
+        public async Task<int> ResetPasswordBL(ForgotPasswordBO obj)
+        {
+            try
+            {
+                if (obj != null)
+                {
+                    return await Task.Run(() =>
+                    {
+                        UserDAL objDal = new UserDAL();
+                        return objDal.ResetPassword(obj.customeremailaddress, obj.password,obj.deviceid,obj.devicetype);
+                    });
+                }
+                else
+                {
+                    return -2; // for having bad object 
+                }
+            }
+            catch (Exception ex)
+            {
+                return -3;
+            }
+        }
+
+        #endregion 
 
     }
 }
