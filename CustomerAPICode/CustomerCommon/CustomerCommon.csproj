@@ -5,12 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CustomerBO\CustomerBO.csproj" />
     <ProjectReference Include="..\CustomerDAL\CustomerDAL.csproj" />
+    <ProjectReference Include="..\logginglibrary\logginglibrary.csproj" />
   </ItemGroup>
 
 </Project>

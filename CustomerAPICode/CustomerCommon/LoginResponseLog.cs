@@ -1,18 +1,27 @@
 ﻿using CustomerBO.User;
 using CustomerDAL.UsersOperations;
+using logginglibrary;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace CustomerCommon
 {
-    public static class LoginResponseLog
+
+    public class LoginResponseLog
     {
-        public static void LoginResponse(LoginActivityBO obj)
+        private ILog logger;
+
+
+        public LoginResponseLog(ILog templogger)
+        {
+            this.logger = templogger;
+        }
+        public  void LoginResponse(LoginActivityBO obj)
         {
             try
             {
-                UserDAL objDAL = new UserDAL();
+                UserDAL objDAL = new UserDAL(logger);
                 objDAL.LoginActivity(obj);
             }
             catch (Exception ex)

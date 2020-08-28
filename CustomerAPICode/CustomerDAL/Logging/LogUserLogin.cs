@@ -11,6 +11,26 @@ namespace CustomerDAL.Logging
 {
     public static class LogUserLogin
     {
+        public static string CreateErrorMsg(string ClassName, string MethodName, string Datetime, string exceptionMsg)
+        {
+            try
+            {
+                string msg = "";
+                msg += Environment.NewLine + "***Error Message**" + Environment.NewLine;
+                msg += "ClassName : " + ClassName + Environment.NewLine;
+                msg += "Method name : " + MethodName + Environment.NewLine;
+                msg += "DateTime : " + Datetime + Environment.NewLine;
+                msg += "Exception Msg : " + exceptionMsg + Environment.NewLine;
+                msg += "************************";
+                return msg;
+            }
+            catch (Exception ex)
+            {
+                return ex.ToString();
+            }
+        }
+
+
         //public static void SaveLoginResponse(int customerID, DateTime LoginDate, DateTime LogOut, bool LoginSuccess, DateTime creationDate,
         //    DateTime ModifyDate, int createdbyUserTypeID, int CreatedbyUserID, int modifiedbyUserTypeID, int modifiedbyUserID,
         //    int createdbyDeviceID, int modifiedbyDeviceID, string SessionTokken, string Authmedium)
@@ -37,7 +57,7 @@ namespace CustomerDAL.Logging
         //            parameterList.Add(new SqlParameter("@modifiedbyDeviceID", obj.customermobilenumber));
         //            parameterList.Add(new SqlParameter("@SessionTokken", obj.customercnic));
         //            parameterList.Add(new SqlParameter("@Authmedium", obj.customerpicture));
-                    
+
         //            var out1 = new SqlParameter
         //            {
         //                ParameterName = "@ResultParam",

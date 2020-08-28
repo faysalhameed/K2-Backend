@@ -16,12 +16,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="NLog" Version="4.7.3" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CustomerBL\CustomerBL.csproj" />
     <ProjectReference Include="..\CustomerBO\CustomerBO.csproj" />
     <ProjectReference Include="..\CustomerCommon\CustomerCommon.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="CUSTOMERLOG\" />
   </ItemGroup>
 
 

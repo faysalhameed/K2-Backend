@@ -1,0 +1,50 @@
+2020-08-18 00:25:39.4221 INFO 
+2020-08-18 00:26:18.9714 INFO {
+    "userdata": {
+        "customerid": "16",
+        "customerfirstname": "hassan",
+        "customerlastname": "raza",
+        "customerage": "36",
+        "customergender": "Male",
+        "customeraddress": "",
+        "customercnic": "",
+        "customermobilenumber": "03004581826",
+        "customeremailaddress": "hassanrazathegreat@gmail.com",
+        "devicetype": "android",
+        "deviceid": "312d03f76144fbb2",
+        "sessiontoken": "7521b8e3-3c98-421e-9096-d30caf4be2a4"
+    }
+}
+2020-08-18 00:43:11.1681 INFO {
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "962012d09b8170d912f0669f6d7d9d07",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+2020-08-18 00:56:41.9921 INFO 
+2020-08-18 00:57:08.9402 INFO {
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "a87c2aff394a27e3ba17beda2e0afbd4",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+2020-08-18 00:57:52.4675 INFO {
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "a87c2aff394a27e3ba17beda2e0afbd4",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}

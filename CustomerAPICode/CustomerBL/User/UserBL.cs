@@ -3,6 +3,7 @@ using CustomerBO.User;
 using CustomerCommon;
 using CustomerDAL.SettingOperations;
 using CustomerDAL.UsersOperations;
+using logginglibrary;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.VisualBasic;
 using System;
@@ -19,6 +20,14 @@ namespace CustomerBL.User
 {
     public class UserBL
     {
+        private ILog logger;
+
+       
+        public UserBL(ILog templogger)
+        {
+           this.logger = templogger;
+        }
+
         #region Customer Activity 
 
         public LoginActivityBO CreateActivityObject(LoginBO obj)
@@ -52,8 +61,9 @@ namespace CustomerBL.User
                 return objActivity;
                    
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "CreateActivityObject", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }
@@ -70,169 +80,185 @@ namespace CustomerBL.User
 
         private bool ValidateUpdateUserInfo(Userdata obj)
         {
-            #region Optional Values check
+            try
+            {
+                #region Optional Values check
 
-            if (obj.creationdate == DateTime.MinValue)
-            {
-                obj.creationdate = DateTime.Now;
-            }
-            if (string.IsNullOrEmpty(obj.customerpassword))
-            {
-                obj.customerpassword = "";
-            }
-            if (string.IsNullOrEmpty(obj.customeremailaddress))
-            {
-                obj.customeremailaddress = "";
-            }
-            if (obj.modifieddatetime == DateTime.MinValue)
-            {
-                obj.modifieddatetime = DateTime.Now;
-            }
-            if (obj.customerwebsite == null)
-            {
-                obj.customerwebsite = "";
-            }
-            if (obj.customercountry == null)
-            {
-                obj.customercountry = "";
-            }
-            if (obj.customercity == null)
-            {
-                obj.customercity = "";
-            }
-            if (obj.customerprovince == null)
-            {
-                obj.customerprovince = "";
-            }
-            if (obj.customerzipcode == null)
-            {
-                obj.customerzipcode = "";
-            }
-            if (obj.customeraddress == null)
-            {
-                obj.customeraddress = "";
-            }
-            if (obj.customercnic == null)
-            {
-                obj.customercnic = "";
-            }
-            if (obj.customerpicture == null)
-            {
-                obj.customerpicture = "";
-            }
+                if (obj.creationdate == DateTime.MinValue)
+                {
+                    obj.creationdate = DateTime.Now;
+                }
+                if (string.IsNullOrEmpty(obj.customerpassword))
+                {
+                    obj.customerpassword = "";
+                }
+                if (string.IsNullOrEmpty(obj.customeremailaddress))
+                {
+                    obj.customeremailaddress = "";
+                }
+                if (obj.modifieddatetime == DateTime.MinValue)
+                {
+                    obj.modifieddatetime = DateTime.Now;
+                }
+                if (obj.customerwebsite == null)
+                {
+                    obj.customerwebsite = "";
+                }
+                if (obj.customercountry == null)
+                {
+                    obj.customercountry = "";
+                }
+                if (obj.customercity == null)
+                {
+                    obj.customercity = "";
+                }
+                if (obj.customerprovince == null)
+                {
+                    obj.customerprovince = "";
+                }
+                if (obj.customerzipcode == null)
+                {
+                    obj.customerzipcode = "";
+                }
+                if (obj.customeraddress == null)
+                {
+                    obj.customeraddress = "";
+                }
+                if (obj.customercnic == null)
+                {
+                    obj.customercnic = "";
+                }
+                if (obj.customerpicture == null)
+                {
+                    obj.customerpicture = "";
+                }
 
 
-            #endregion
+                #endregion
 
 
-            //if (string.IsNullOrEmpty(obj.customeremailaddress))
-            //{
-            //    return false;
-            //}
-            if (string.IsNullOrEmpty(obj.customermobilenumber))
+                //if (string.IsNullOrEmpty(obj.customeremailaddress))
+                //{
+                //    return false;
+                //}
+                if (string.IsNullOrEmpty(obj.customermobilenumber))
+                {
+                    return false;
+                }
+                //else if (string.IsNullOrEmpty(obj.customerpassword))
+                //{
+                //    return false;
+                //}
+                else if (string.IsNullOrEmpty(obj.customerfirstname))
+                {
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(obj.customerlastname))
+                {
+                    return false;
+                }
+                // Commented after discussion with faisal
+                //else if (string.IsNullOrEmpty(obj.customergender))
+                //{
+                //    return false;
+                //}
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "ValidateUpdateUserInfo", DateTime.Now.ToString(), ex.ToString()));
                 return false;
-            }
-            //else if (string.IsNullOrEmpty(obj.customerpassword))
-            //{
-            //    return false;
-            //}
-            else if (string.IsNullOrEmpty(obj.customerfirstname))
-            {
-                return false;
-            }
-            else if (string.IsNullOrEmpty(obj.customerlastname))
-            {
-                return false;
-            }
-            // Commented after discussion with faisal
-            //else if (string.IsNullOrEmpty(obj.customergender))
-            //{
-            //    return false;
-            //}
-            else
-            {
-                return true;
             }
         }
 
         private bool ValidateUserInfo(Userdata obj)
         {
-            #region Optional Values check
+            try
+            {
+                #region Optional Values check
 
-            if(obj.creationdate == DateTime.MinValue)
-            {
-                obj.creationdate = DateTime.Now;
-            }
-            if (obj.modifieddatetime == DateTime.MinValue)
-            {
-                obj.modifieddatetime = DateTime.Now;
-            }
-            if(obj.customerwebsite == null)
-            {
-                obj.customerwebsite = "";
-            }
-            if(obj.customercountry == null)
-            {
-                obj.customercountry = "";
-            }
-            if(obj.customercity == null)
-            {
-                obj.customercity = "";
-            }
-            if(obj.customerprovince == null)
-            {
-                obj.customerprovince = "";
-            }
-            if(obj.customerzipcode == null)
-            {
-                obj.customerzipcode = "";
-            }
-            if(obj.customeraddress == null)
-            {
-                obj.customeraddress = "";
-            }
-            if(obj.customercnic == null)
-            {
-                obj.customercnic = "";
-            }
-            if(obj.customerpicture == null)
-            {
-                obj.customerpicture = "";
-            }
+                if (obj.creationdate == DateTime.MinValue)
+                {
+                    obj.creationdate = DateTime.Now;
+                }
+                if (obj.modifieddatetime == DateTime.MinValue)
+                {
+                    obj.modifieddatetime = DateTime.Now;
+                }
+                if (obj.customerwebsite == null)
+                {
+                    obj.customerwebsite = "";
+                }
+                if (obj.customercountry == null)
+                {
+                    obj.customercountry = "";
+                }
+                if (obj.customercity == null)
+                {
+                    obj.customercity = "";
+                }
+                if (obj.customerprovince == null)
+                {
+                    obj.customerprovince = "";
+                }
+                if (obj.customerzipcode == null)
+                {
+                    obj.customerzipcode = "";
+                }
+                if (obj.customeraddress == null)
+                {
+                    obj.customeraddress = "";
+                }
+                if (obj.customercnic == null)
+                {
+                    obj.customercnic = "";
+                }
+                if (obj.customerpicture == null)
+                {
+                    obj.customerpicture = "";
+                }
 
 
-            #endregion
+                #endregion
 
 
-            if (string.IsNullOrEmpty(obj.customeremailaddress))
-            {
-                return false;
+                if (string.IsNullOrEmpty(obj.customeremailaddress))
+                {
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(obj.customermobilenumber))
+                {
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(obj.customerpassword))
+                {
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(obj.customerfirstname))
+                {
+                    return false;
+                }
+                else if (string.IsNullOrEmpty(obj.customerlastname))
+                {
+                    return false;
+                }
+                // Commented after discussion with faisal
+                //else if (string.IsNullOrEmpty(obj.customergender))
+                //{
+                //    return false;
+                //}
+                else
+                {
+                    return true;
+                }
             }
-            else if(string.IsNullOrEmpty(obj.customermobilenumber))
+            catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "ValidateUserInfo", DateTime.Now.ToString(), ex.ToString()));
                 return false;
-            }
-            else if(string.IsNullOrEmpty(obj.customerpassword))
-            {
-                return false;
-            }
-            else if (string.IsNullOrEmpty(obj.customerfirstname))
-            {
-                return false;
-            }
-            else if (string.IsNullOrEmpty(obj.customerlastname))
-            {
-                return false;
-            }
-            // Commented after discussion with faisal
-            //else if (string.IsNullOrEmpty(obj.customergender))
-            //{
-            //    return false;
-            //}
-            else
-            {
-                return true;
             }
         }
 
@@ -247,7 +273,7 @@ namespace CustomerBL.User
                     {
                         return -2; // for validation failed
                     }
-                    UserDAL objDal = new UserDAL();
+                    UserDAL objDal = new UserDAL(logger);
                     return await Task.Run(() => {
 
                         int respone = objDal.SaveUser(obj);
@@ -261,6 +287,7 @@ namespace CustomerBL.User
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "AddUser", DateTime.Now.ToString(), ex.ToString()));
                 return -4;
             }
         }
@@ -285,7 +312,7 @@ namespace CustomerBL.User
 
                 if (!string.IsNullOrEmpty(obj.logindata.authenticationmedium))
                 {
-                    UserDAL objDAL = new UserDAL();
+                    UserDAL objDAL = new UserDAL(logger);
                     if (obj.logindata.authenticationmedium.ToLower() == "custom")
                     {
                         // simple just check and return response
@@ -332,6 +359,7 @@ namespace CustomerBL.User
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "Login", DateTime.Now.ToString(), ex.ToString()));
                 return new Tuple<int, string, string,string>(-7,"","",""); // exception
             }
         }
@@ -359,6 +387,7 @@ namespace CustomerBL.User
             catch (Exception ex)
             {
                 // need logging code here
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "ValidateFaceBookToken", DateTime.Now.ToString(), ex.ToString()));
                 return false;
             }
         }
@@ -387,6 +416,7 @@ namespace CustomerBL.User
             catch (Exception ex)
             {
                 // need logging code here
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "ValidateGoogleToken", DateTime.Now.ToString(), ex.ToString()));
                 return false;
             }
         }
@@ -405,7 +435,7 @@ namespace CustomerBL.User
                     {
                         return -2; // for validation failed
                     }
-                    UserDAL objDal = new UserDAL();
+                    UserDAL objDal = new UserDAL(logger);
                     return await Task.Run(() => {
                         if(obj.sessiontoken == null)
                         {
@@ -422,6 +452,7 @@ namespace CustomerBL.User
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "UpdateCustomer", DateTime.Now.ToString(), ex.ToString()));
                 return -4;
             }
         }
@@ -474,6 +505,7 @@ namespace CustomerBL.User
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "getEmailSettings", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }
@@ -503,6 +535,7 @@ namespace CustomerBL.User
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "getHTML", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }
@@ -511,6 +544,7 @@ namespace CustomerBL.User
         {
             try
             {
+                
                 var EmailSetting = getEmailSettings();
                 if(EmailSetting != null)
                 {
@@ -538,6 +572,7 @@ namespace CustomerBL.User
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "EmailSending", DateTime.Now.ToString(), ex.ToString()));
                 return false;
             }
         }
@@ -550,7 +585,7 @@ namespace CustomerBL.User
                 {
                     return await Task.Run(() =>
                     {
-                        UserDAL objDal = new UserDAL();
+                        UserDAL objDal = new UserDAL(logger);
                         int result = objDal.ValidateEmailAddress(obj.customeremailaddress);
                         if (result > 0)
                         {
@@ -579,6 +614,7 @@ namespace CustomerBL.User
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "ForgetPasswordBL", DateTime.Now.ToString(), ex.ToString()));
                 return new Tuple<int, string>(-4, ""); // exception
             }
         }
@@ -591,7 +627,7 @@ namespace CustomerBL.User
                 {
                     return await Task.Run(() =>
                     {
-                        UserDAL objDal = new UserDAL();
+                        UserDAL objDal = new UserDAL(logger);
                         return objDal.ResetPassword(obj.customeremailaddress, obj.password,obj.deviceid,obj.devicetype);
                     });
                 }
@@ -602,11 +638,171 @@ namespace CustomerBL.User
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "ResetPasswordBL", DateTime.Now.ToString(), ex.ToString()));
                 return -3;
             }
         }
 
-        #endregion 
+        #endregion
+
+        #region Change Password 
+
+        public async Task<Tuple<int,string>> ChangePassword(ChangePasswordBO obj)
+        {
+            try
+            {
+                if (obj != null)
+                {
+                    return await Task.Run(() =>
+                    {
+                        UserDAL objDal = new UserDAL(logger);
+                        var response =  objDal.ChangePassword(obj); // change password ResetPassword(obj.customeremailaddress, obj.password, obj.deviceid, obj.devicetype);
+                        if(!string.IsNullOrEmpty(response.Result))
+                        {
+                            return new Tuple<int, string>(1, response.Result);
+                        }
+
+                        return new Tuple<int, string>(-1,"");
+                    
+                    });
+                }
+                else
+                {
+                    return new Tuple<int, string>(-2, "");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "ChangePassword", DateTime.Now.ToString(), ex.ToString()));
+                return new Tuple<int, string>(-3, "");
+            }
+        }
+
+        #endregion
+
+        #region OTP 
+
+        public async Task<OTPResponseBO> OTPHandling(OtpBO obj)
+        {
+            try
+            {
+                OTPResponseBO objResponse = new OTPResponseBO();
+                UserDAL objDal = new UserDAL(logger);
+                // Common case
+                if (string.IsNullOrEmpty(obj.customeremailaddress))
+                {
+                    obj.customeremailaddress = "";
+                }
+                if (string.IsNullOrEmpty(obj.customermobilenumber))
+                {
+                    obj.customermobilenumber = "";
+                }
+                // comparison cases
+                if (obj.otptype.Trim().ToLower() == "forgetpassword" && string.IsNullOrEmpty(obj.otp))
+                {
+                    // generate otp from db 
+                    var result = await objDal.ValidateEmailAddressOrPhoneNumber(obj);
+                    if(result != null)
+                    {
+                        // set value in object and return 
+                        bool returnVal = EmailSending(obj.customeremailaddress, result);
+                        if(returnVal)
+                        {
+                            objResponse.issuccessfullCode = 1;
+                            objResponse.ResponseCode = result;
+                            objResponse.ResponseMsg = "Code sent successfully !";
+                        }
+                        else
+                        {
+                            objResponse.issuccessfullCode = 1;
+                            objResponse.ResponseCode = result;
+                            objResponse.ResponseMsg = "Email Sending failed !";
+                        }
+                        return objResponse;
+                    }
+                    else
+                    {
+                        objResponse.issuccessfullCode = -1;
+                        objResponse.ResponseCode = "";
+                        objResponse.ResponseMsg = "Invalid phone number or email !";
+                        return objResponse;
+                    }
+                }
+                else if(obj.otptype.Trim().ToLower() == "forgetpassword" && !string.IsNullOrEmpty(obj.otp))
+                {
+                    // check verification time
+                    var result = await objDal.VerifyOtpDAL(obj);
+                    if (result > 0)
+                    {
+                        objResponse.issuccessfullCode = 3;
+                        objResponse.ResponseCode = obj.otp;
+                        objResponse.ResponseMsg = "Code verify successfully !";
+                    }
+                    else
+                    {
+                        objResponse.issuccessfullCode = -3;
+                        objResponse.ResponseCode = obj.otp;
+                        objResponse.ResponseMsg = "Code verify Failed !";
+                    }
+                }
+                else if (obj.otptype.Trim().ToLower() == "logintime" && string.IsNullOrEmpty(obj.otp))
+                {
+                    var result = await objDal.ValidateEmailAddressOrPhoneNumber(obj);
+                    if (result != null)
+                    {
+                        // set value in object and return 
+                        bool returnVal = EmailSending(obj.customeremailaddress, result);
+                        if (returnVal)
+                        {
+                            objResponse.issuccessfullCode = 2;
+                            objResponse.ResponseCode = result;
+                            objResponse.ResponseMsg = "Code sent successfully !";
+                        }
+                        else
+                        {
+                            objResponse.issuccessfullCode = 2;
+                            objResponse.ResponseCode = result;
+                            objResponse.ResponseMsg = "Email Sending failed !";
+                        }
+                        return objResponse;
+                    }
+                    else
+                    {
+                        objResponse.issuccessfullCode = -2;
+                        objResponse.ResponseCode = "";
+                        objResponse.ResponseMsg = "Invalid phone number or email !";
+                        return objResponse;
+                    }
+                }
+                else if (obj.otptype.Trim().ToLower() == "logintime" && !string.IsNullOrEmpty(obj.otp))
+                {
+                    var result = await objDal.VerifyOtpDAL(obj);
+                    if (result > 0)
+                    {
+                        objResponse.issuccessfullCode = 4;
+                        objResponse.ResponseCode = obj.otp;
+                        objResponse.ResponseMsg = "Code verify successfully !";
+                    }
+                    else
+                    {
+                        objResponse.issuccessfullCode = -4;
+                        objResponse.ResponseCode = obj.otp;
+                        objResponse.ResponseMsg = "Code verify Failed !";
+                    }
+                }
+                else
+                {
+                    // return error code 
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        #endregion
 
     }
 }

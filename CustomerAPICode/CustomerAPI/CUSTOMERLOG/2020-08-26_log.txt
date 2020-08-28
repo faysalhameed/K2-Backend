@@ -1,0 +1,31 @@
+2020-08-26 04:37:05.1632 INFO 
+2020-08-26 05:07:57.0118 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/26/2020 5:07:56 AM
+2020-08-26 05:08:47.8054 INFO Request Type :POST
+Request EndPoint :/api/User/UpdateCustomer
+Request Body :{"userdata":{"customerid":"18","customerfirstname":"Hassan","customeremailaddress" : "ahraza.solutions@gmail.com",  "customerlastname":"raza", "customerpassword" : "123456", "deviceid": "312d03f76144fbb2", "customerage":"36","customergender":"Male","customeraddress":"","customercnic":"","customermobilenumber":"0300458126","devicetype":"android","sessiontoken":"887bb24a-4249-4e0e-bbab-cba294486c4b"}}
+Request DateTime :8/26/2020 5:08:32 AM
+2020-08-26 05:11:31.3284 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/26/2020 5:11:31 AM===================================================================
+
+2020-08-26 05:11:39.8648 INFO Request Type :POST
+Request EndPoint :/api/User/UpdateCustomer
+Request Body :{"userdata":{"customerid":"18","customerfirstname":"Hassan","customeremailaddress" : "ahraza.solutions@gmail.com",  "customerlastname":"raza", "customerpassword" : "123456", "deviceid": "312d03f76144fbb2", "customerage":"36","customergender":"Male","customeraddress":"","customercnic":"","customermobilenumber":"0300458126","devicetype":"android","sessiontoken":"887bb24a-4249-4e0e-bbab-cba294486c4b"}}
+Request DateTime :8/26/2020 5:11:39 AM===================================================================
+
+2020-08-26 05:13:52.2607 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/26/2020 5:13:51 AM
+===================================================================
+
+2020-08-26 05:14:16.3714 INFO Request Type :POST
+Request EndPoint :/api/User/UpdateCustomer
+Request Body :{"userdata":{"customerid":"18","customerfirstname":"Hassan","customeremailaddress" : "ahraza.solutions@gmail.com",  "customerlastname":"raza", "customerpassword" : "123456", "deviceid": "312d03f76144fbb2", "customerage":"36","customergender":"Male","customeraddress":"","customercnic":"","customermobilenumber":"0300458126","devicetype":"android","sessiontoken":"887bb24a-4249-4e0e-bbab-cba294486c4b"}}
+Request DateTime :8/26/2020 5:14:16 AM
+===================================================================
+

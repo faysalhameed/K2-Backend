@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CustomerBO\CustomerBO.csproj" />
+    <ProjectReference Include="..\logginglibrary\logginglibrary.csproj" />
   </ItemGroup>
 
 </Project>

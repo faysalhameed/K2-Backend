@@ -6,11 +6,21 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Data;
+using System.Threading.Tasks;
+using logginglibrary;
+using CustomerDAL.Logging;
+using System.Dynamic;
 
 namespace CustomerDAL.UsersOperations
 {
     public class UserDAL : IUsers
     {
+        private ILog logger;
+
+        public UserDAL(ILog templogger)
+        {
+            this.logger = templogger;
+        }
 
         #region Reset Password 
 
@@ -41,6 +51,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "ResetPassword", DateTime.Now.ToString(), ex.ToString()));
                 return -1;
             }
         }
@@ -69,9 +80,13 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "ValidateEmailAddress", DateTime.Now.ToString(), ex.ToString()));
                 return -1;
             }
         }
+
+        
+
 
         #endregion
 
@@ -113,7 +128,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
-               
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "LoginActivity", DateTime.Now.ToString(), ex.ToString()));
             }
         }
 
@@ -181,6 +196,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "SaveUser", DateTime.Now.ToString(), ex.ToString()));
                 return - 1;
                // return null; // also we can log exception through common layer }
             }
@@ -190,7 +206,7 @@ namespace CustomerDAL.UsersOperations
 
         #region Login API DAL Function
 
-        public LoginResponseBO CustomLoginUser(string UserName, string Password)
+        public  LoginResponseBO CustomLoginUser(string UserName, string Password)
         {
             try
             {
@@ -242,6 +258,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "CustomLoginUser", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }
@@ -301,6 +318,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "GetUserID", DateTime.Now.ToString(), ex.ToString()));
                 return -1;
                 // return null; // also we can log exception through common layer }
             }
@@ -332,6 +350,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "CreateUserObject", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }
@@ -356,6 +375,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "LoginMediumUser", DateTime.Now.ToString(), ex.ToString()));
                 return -1;
             }
         }
@@ -425,6 +445,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "UpdateCustomerINfo", DateTime.Now.ToString(), ex.ToString()));
                 return -1;
                 // return null; // also we can log exception through common layer }
             }
@@ -434,6 +455,176 @@ namespace CustomerDAL.UsersOperations
 
         #endregion
 
+        #region Change password DAL function
+
+        public async Task<string> ChangePassword(ChangePasswordBO obj)
+        {
+            try
+            {
+                return await Task.Run(() =>
+                {
+                    using (var dbContext = new SilaeeContext())
+                    {
+                        using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
+                        {
+                            cmd.CommandText = "sp_ChangePassword";
+                            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                            var UserPasswordParam = cmd.CreateParameter();
+                            UserPasswordParam.ParameterName = "password";
+                            UserPasswordParam.Value = obj.newpassword;
+                            cmd.Parameters.Add(UserPasswordParam);
+
+                            var UserCustomerIDParam = cmd.CreateParameter();
+                            UserCustomerIDParam.ParameterName = "customerID";
+                            UserCustomerIDParam.Value = obj.customerid;
+                            cmd.Parameters.Add(UserCustomerIDParam);
+
+                            var UserDeviceIDParam = cmd.CreateParameter();
+                            UserDeviceIDParam.ParameterName = "deviceID";
+                            UserDeviceIDParam.Value = obj.deviceid;
+                            cmd.Parameters.Add(UserDeviceIDParam);
+
+                            var UserDeviceTypeParam = cmd.CreateParameter();
+                            UserDeviceTypeParam.ParameterName = "deviceType";
+                            UserDeviceTypeParam.Value = obj.devicetype;
+                            cmd.Parameters.Add(UserDeviceTypeParam);
+
+                            dbContext.Database.OpenConnection();
+
+                            using (var reader = cmd.ExecuteReader())
+                            {
+                                if (reader.HasRows)
+                                {
+                                    if (reader.Read())
+                                    {
+                                        return reader["CustomereMailAddress"].ToString();
+                                    }
+                                }
+                                else
+                                {
+                                    return "";
+                                }
+                            }
+                        }
+                        return "";
+                    }
+
+
+                });
+                
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "ChangePassword", DateTime.Now.ToString(), ex.ToString()));
+                return null;
+            }
+        }
+
+        #endregion
+
+        #region OTP 
+
+        public async Task<string> ValidateEmailAddressOrPhoneNumber(OtpBO obj)
+        {
+            try
+            {
+                string ResponseValue = "";
+                using (var dbContext = new SilaeeContext())
+                {
+                    using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
+                    {
+                        cmd.CommandText = "sp_ValidateForgetPasswordOTP";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        var MailAddressParam = cmd.CreateParameter();
+                        MailAddressParam.ParameterName = "CustomerMailAddress";
+                        MailAddressParam.Value = obj.customeremailaddress;
+                        cmd.Parameters.Add(MailAddressParam);
+
+                        var MobileNumberParam = cmd.CreateParameter();
+                        MobileNumberParam.ParameterName = "CustomerMobileNumber";
+                        MobileNumberParam.Value = obj.customermobilenumber;
+                        cmd.Parameters.Add(MobileNumberParam);
+
+                        var DeviceIDParam = cmd.CreateParameter();
+                        DeviceIDParam.ParameterName = "DeviceID";
+                        DeviceIDParam.Value = obj.deviceid;
+                        cmd.Parameters.Add(DeviceIDParam);
+
+                        var OtpTypeParam = cmd.CreateParameter();
+                        OtpTypeParam.ParameterName = "Otptype";
+                        OtpTypeParam.Value = obj.otptype;
+                        cmd.Parameters.Add(OtpTypeParam);
+
+                        var OtpParam = cmd.CreateParameter();
+                        OtpParam.ParameterName = "Otp";
+                        OtpParam.Value = obj.otp;
+                        cmd.Parameters.Add(OtpParam);
+
+                        var DeviceTypeParam = cmd.CreateParameter();
+                        DeviceTypeParam.ParameterName = "devicetype";
+                        DeviceTypeParam.Value = obj.devicetype;
+                        cmd.Parameters.Add(DeviceTypeParam);
+
+                        await dbContext.Database.OpenConnectionAsync();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (await reader.ReadAsync())
+                                {
+                                    ResponseValue = reader["Otp"].ToString();
+                                }
+                            }
+                        }
+                    }
+                    return ResponseValue;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "ValidateEmailAddressOrPhoneNumber", DateTime.Now.ToString(), ex.ToString()));
+                return "";
+            }
+        }
+
+        public async Task<int> VerifyOtpDAL(OtpBO obj)
+        {
+            try
+            {
+                using (var dbContext = new SilaeeContext())
+                {
+                    string sql = "sp_ValidateOTPCode @CustomerMailAddress,@CustomerMobileNumber," +
+                        "@DeviceID,@Otp,@ResultParam OUT";
+                    List<SqlParameter> parameterList = new List<SqlParameter>();
+                    parameterList.Add(new SqlParameter("@CustomerMailAddress", obj.customeremailaddress));
+                    parameterList.Add(new SqlParameter("@CustomerMobileNumber", obj.customermobilenumber));
+                    parameterList.Add(new SqlParameter("@DeviceID", obj.deviceid));
+                    parameterList.Add(new SqlParameter("@Otp", obj.otp));
+                    var out1 = new SqlParameter
+                    {
+                        ParameterName = "@ResultParam",
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Output
+                    };
+                    parameterList.Add(out1);
+                    var result = await dbContext.Database.
+                        ExecuteSqlCommandAsync(sql, parameterList);
+                    var out1Value = (int)out1.Value;
+                    return out1Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "ValidateEmailAddress", DateTime.Now.ToString(), ex.ToString()));
+                return -1;
+            }
+        }
+
+
+        #endregion
 
     }
 }

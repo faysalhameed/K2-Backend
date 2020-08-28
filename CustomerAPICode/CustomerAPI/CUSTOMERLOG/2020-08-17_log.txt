@@ -1,0 +1,54 @@
+2020-08-17 17:33:49.0300 INFO 
+2020-08-17 17:34:26.7272 INFO 
+2020-08-17 17:35:49.7450 INFO {
+    "userdata": {
+        "customeremailaddress": "hamza_chaudhary02@outlook.com",
+        "deviceid": "123-abc-907",
+        "devicetype": "Android"
+    }
+}
+2020-08-17 17:36:28.8195 INFO {
+    "userdata": {
+        "customeremailaddress": "hamza_chaudhary02@outlook.com",
+        "deviceid": "123-abc-907",
+        "devicetype": "Android"
+    }
+}
+2020-08-17 17:38:13.5745 INFO {
+    "userdata": {
+        "customeremailaddress": "hamza_chaudhary02@outlook.com",
+        "deviceid": "123-abc-907",
+        "devicetype": "Android"
+    }
+}
+2020-08-17 17:48:58.7268 INFO {
+    "userdata": {
+        "customeremailaddress": "hamza_chaudhary02@outlook.com",
+        "deviceid": "123-abc-907",
+        "devicetype": "Android"
+    }
+}
+2020-08-17 21:49:45.7023 INFO 
+2020-08-17 21:49:54.8822 INFO {
+    "userdata": {
+        "customeremailaddress": "hamza_chaudhary02@outlook.com",
+        "deviceid": "123-abc-907",
+        "devicetype": "Android"
+    }
+}
+2020-08-17 21:52:41.9817 INFO {
+    "userdata": {
+        "customeremailaddress": "hamza_chaudhary02@outlook.com",
+        "deviceid": "123-abc-907",
+        "devicetype": "Android"
+    }
+}
+2020-08-17 21:57:02.8740 INFO 
+2020-08-17 21:57:07.6874 INFO {
+    "userdata": {
+        "customeremailaddress": "hamza_chaudhary02@outlook.com",
+        "deviceid": "123-abc-907",
+        "devicetype": "Android"
+    }
+}
+2020-08-17 21:57:17.9448 ERROR plz kill me

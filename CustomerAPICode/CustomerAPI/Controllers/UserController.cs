@@ -12,6 +12,7 @@ using CustomerBL.User;
 using CustomerBO.User;
 using CustomerDAL.Models;
 using CustomerCommon;
+using logginglibrary;
 
 namespace CustomerAPI.Controllers
 {
@@ -22,6 +23,13 @@ namespace CustomerAPI.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
+        private ILog logger;
+
+        public UserController(ILog logger)
+        {
+            this.logger = logger;
+        }
+
         #region Account Creation API
         //[Route("AddCustomer")]
         [HttpPost]
@@ -33,7 +41,7 @@ namespace CustomerAPI.Controllers
                 {
                     return BadRequest();
                 }
-                UserBL objBL = new UserBL();
+                UserBL objBL = new UserBL(logger);
                 int result = await objBL.AddUser(Param.userdata);
                 if (result > 0)
                 {
@@ -74,7 +82,7 @@ namespace CustomerAPI.Controllers
             }
             catch (Exception ex)
             {
-
+                logger.Error(LoggingRequest.CreateErrorMsg("User Controller", "AddCustomer",DateTime.Now.ToString(),ex.ToString()));
                 return BadRequest();
             }
         }
@@ -92,7 +100,7 @@ namespace CustomerAPI.Controllers
                 {
                     return BadRequest();
                 }
-                UserBL objBL = new UserBL();
+                UserBL objBL = new UserBL(logger);
                 var result = await objBL.Login(Param);
                 int respone = result.Item1;
 
@@ -104,7 +112,8 @@ namespace CustomerAPI.Controllers
                         activityResult.customerID = respone;
                         activityResult.LoginSucess = true;
                         activityResult.SessionToken = result.Item4;
-                        LoginResponseLog.LoginResponse(activityResult);
+                        LoginResponseLog objLogin = new LoginResponseLog(logger);
+                        objLogin.LoginResponse(activityResult);
                     }
                 }
                 else
@@ -114,7 +123,8 @@ namespace CustomerAPI.Controllers
                         activityResult.customerID = respone;
                         activityResult.LoginSucess = false;
                         activityResult.SessionToken = result.Item4;
-                        LoginResponseLog.LoginResponse(activityResult);
+                        LoginResponseLog objlogin = new LoginResponseLog(logger);
+                        objlogin.LoginResponse(activityResult);
                     }
                 }
 
@@ -243,6 +253,7 @@ namespace CustomerAPI.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("User Controller", "Login", DateTime.Now.ToString(), ex.ToString()));
                 return BadRequest();
             }
         }
@@ -260,7 +271,7 @@ namespace CustomerAPI.Controllers
                 {
                     return BadRequest();
                 }
-                UserBL objBL = new UserBL();
+                UserBL objBL = new UserBL(logger);
                 var result = await objBL.UpdateCustomer(Param.userdata);
                 if (result > 0)
                 {
@@ -295,6 +306,7 @@ namespace CustomerAPI.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("User Controller", "UpdateCustomer", DateTime.Now.ToString(), ex.ToString()));
                 return BadRequest();
             }
         }
@@ -313,7 +325,7 @@ namespace CustomerAPI.Controllers
                     return BadRequest();
                 }
 
-                UserBL objBL = new UserBL();
+                UserBL objBL = new UserBL(logger);
                 var result = await objBL.ForgetPasswordBL(Param.userdata);
                 if(result != null)
                 {
@@ -351,6 +363,7 @@ namespace CustomerAPI.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("User Controller", "ForgetPassword", DateTime.Now.ToString(), ex.ToString()));
                 return BadRequest();
             }
         }
@@ -364,7 +377,7 @@ namespace CustomerAPI.Controllers
                 {
                     return BadRequest();
                 }
-                UserBL objBL = new UserBL();
+                UserBL objBL = new UserBL(logger);
                 var result = await objBL.ResetPasswordBL(Param.userdata);
                 if(result > 0)
                 {
@@ -379,12 +392,91 @@ namespace CustomerAPI.Controllers
             }
             catch (Exception ex)
             {
+                logger.Error(LoggingRequest.CreateErrorMsg("User Controller", "ResetPassword", DateTime.Now.ToString(), ex.ToString()));
                 return BadRequest();
             }
         }
 
         #endregion
 
+        #region UpdatePassword API
+
+        [HttpPost]
+        public async Task<IActionResult> ChangePassword(ChangePasswordContainer Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null)
+                {
+                    return BadRequest();
+                }
+                UserBL objBL = new UserBL(logger);
+                var result = await objBL.ChangePassword(Param.userdata);
+                if (result.Item1 > 0)
+                {
+                    var SuccessMsg = new { issuccessful = true, responsemessage = "password changed successfully!", customeremailaddress = result.Item2, customerid = Param.userdata.customerid };
+                    return new OkObjectResult(SuccessMsg);
+                }
+                else if(result.Item1 == -1)
+                {
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Unable to process process request !", customeremailaddress = "", customerid = Param.userdata.customerid };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else if (result.Item1 == -2)
+                {
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Required parameters are missing.", customeremailaddress = "", customerid = Param.userdata.customerid };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else if (result.Item1 == -3)
+                {
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Error occured while processing request.", customeremailaddress = "", customerid = Param.userdata.customerid };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else
+                {
+                    var FaultyMsg = new { issuccessful = false, responsemessage = "Unable to process process request !" };
+                    return new OkObjectResult(FaultyMsg);
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("User Controller", "ChangePassword", DateTime.Now.ToString(), ex.ToString()));
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
+        #region Otp Verification API 
+         
+        public async Task<IActionResult> OTPVerification(OTPContainerBO Param)
+        {
+            try
+            {
+                if(Param == null || Param.userdate == null)
+                {
+                    return BadRequest();
+                }
+                UserBL objbl = new UserBL(logger);
+                var result = objbl.OTPHandling(Param.userdate);
+                if(result != null)
+                {
+                    var FaultyMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "Fail!"};
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else
+                {
+                    var SuccessMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "successfully!" };
+                    return new OkObjectResult(SuccessMsg);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
 
 
     }
