@@ -1,0 +1,70 @@
+2020-08-29 02:08:40.3761 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/29/2020 2:08:40 AM
+===================================================================
+
+2020-08-29 02:12:36.4470 INFO Request Type :POST
+Request EndPoint :/api/User/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+Request DateTime :8/29/2020 2:12:36 AM
+===================================================================
+
+2020-08-29 02:15:10.6950 INFO Request Type :POST
+Request EndPoint :/api/User/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword",
+"Otp" : "7F32D3C9",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+Request DateTime :8/29/2020 2:15:10 AM
+===================================================================
+
+2020-08-29 02:16:45.8716 INFO Request Type :POST
+Request EndPoint :/api/User/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "loginTime",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+Request DateTime :8/29/2020 2:16:45 AM
+===================================================================
+
+2020-08-29 02:17:30.8097 INFO Request Type :POST
+Request EndPoint :/api/User/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "loginTime",
+"Otp" : "8D730FBE",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+Request DateTime :8/29/2020 2:17:30 AM
+===================================================================
+

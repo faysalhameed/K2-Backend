@@ -461,13 +461,14 @@ namespace CustomerAPI.Controllers
                 var result = objbl.OTPHandling(Param.userdate);
                 if(result != null)
                 {
-                    var FaultyMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "Fail!"};
-                    return new OkObjectResult(FaultyMsg);
+                    var SuccessMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "successfully!" };
+                    return new OkObjectResult(SuccessMsg);
+                   
                 }
                 else
                 {
-                    var SuccessMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "successfully!" };
-                    return new OkObjectResult(SuccessMsg);
+                    var FaultyMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "Fail!" };
+                    return new OkObjectResult(FaultyMsg);
                 }
             }
             catch (Exception ex)

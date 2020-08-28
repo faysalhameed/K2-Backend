@@ -711,14 +711,15 @@ namespace CustomerBL.User
                             objResponse.issuccessfullCode = 1;
                             objResponse.ResponseCode = result;
                             objResponse.ResponseMsg = "Code sent successfully !";
+                            return objResponse;
                         }
                         else
                         {
                             objResponse.issuccessfullCode = 1;
                             objResponse.ResponseCode = result;
                             objResponse.ResponseMsg = "Email Sending failed !";
+                            return objResponse;
                         }
-                        return objResponse;
                     }
                     else
                     {
@@ -737,12 +738,14 @@ namespace CustomerBL.User
                         objResponse.issuccessfullCode = 3;
                         objResponse.ResponseCode = obj.otp;
                         objResponse.ResponseMsg = "Code verify successfully !";
+                        return objResponse;
                     }
                     else
                     {
                         objResponse.issuccessfullCode = -3;
                         objResponse.ResponseCode = obj.otp;
                         objResponse.ResponseMsg = "Code verify Failed !";
+                        return objResponse;
                     }
                 }
                 else if (obj.otptype.Trim().ToLower() == "logintime" && string.IsNullOrEmpty(obj.otp))
@@ -782,19 +785,25 @@ namespace CustomerBL.User
                         objResponse.issuccessfullCode = 4;
                         objResponse.ResponseCode = obj.otp;
                         objResponse.ResponseMsg = "Code verify successfully !";
+                        return objResponse;
                     }
                     else
                     {
                         objResponse.issuccessfullCode = -4;
                         objResponse.ResponseCode = obj.otp;
                         objResponse.ResponseMsg = "Code verify Failed !";
+                        return objResponse;
                     }
                 }
                 else
                 {
                     // return error code 
+                    objResponse.issuccessfullCode = -5;
+                    objResponse.ResponseCode = "";
+                    objResponse.ResponseMsg = "Failed !";
+                    return objResponse;
                 }
-                return null;
+                //return null;
             }
             catch (Exception ex)
             {
