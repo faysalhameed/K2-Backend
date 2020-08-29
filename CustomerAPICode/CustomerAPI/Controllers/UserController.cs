@@ -458,16 +458,16 @@ namespace CustomerAPI.Controllers
                     return BadRequest();
                 }
                 UserBL objbl = new UserBL(logger);
-                var result = objbl.OTPHandling(Param.userdate);
+                var result = await objbl.OTPHandling(Param.userdate);
                 if(result != null)
                 {
-                    var SuccessMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "successfully!" };
+                    var SuccessMsg = new { issuccessfullCode = result.issuccessfullCode, responsemessage = "successfully!" };
                     return new OkObjectResult(SuccessMsg);
                    
                 }
                 else
                 {
-                    var FaultyMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "Fail!" };
+                    var FaultyMsg = new { issuccessfullCode = result.issuccessfullCode, responsemessage = "Fail!" };
                     return new OkObjectResult(FaultyMsg);
                 }
             }
