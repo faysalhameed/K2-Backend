@@ -68,3 +68,345 @@ Request Body :{
 Request DateTime :8/29/2020 2:17:30 AM
 ===================================================================
 
+2020-08-29 11:34:24.1383 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/29/2020 11:34:23 AM
+===================================================================
+
+2020-08-29 11:35:08.6706 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword",
+"Otp" : "",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 11:35:08 AM
+===================================================================
+
+2020-08-29 11:39:54.7560 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/29/2020 11:39:54 AM
+===================================================================
+
+2020-08-29 11:40:05.2928 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"OtpType" : "logintime",
+"Otp" : "8250",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 11:40:05 AM
+===================================================================
+
+2020-08-29 11:41:58.0792 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword",
+"Otp" : "8250",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 11:41:58 AM
+===================================================================
+
+2020-08-29 11:46:49.7286 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "forgetpassword",
+"otp" : "D2BF5DD4",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 11:46:49 AM
+===================================================================
+
+2020-08-29 11:48:18.6233 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "forgetpassword",
+"otp" : "D2BF5DD4",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 11:48:18 AM
+===================================================================
+
+2020-08-29 11:50:10.2305 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "forgetpassword",
+"otp" : "D2BF5DD4",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 11:50:10 AM
+===================================================================
+
+2020-08-29 11:59:50.5727 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/29/2020 11:59:50 AM
+===================================================================
+
+2020-08-29 11:59:55.2586 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "forgetpassword",
+"otp" : "D2BF5DD4",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 11:59:55 AM
+===================================================================
+
+2020-08-29 12:01:04.2709 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/29/2020 12:01:04 PM
+===================================================================
+
+2020-08-29 12:01:07.0512 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "forgetpassword",
+"otp" : "D2BF5DD4",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:01:07 PM
+===================================================================
+
+2020-08-29 12:02:33.2671 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/29/2020 12:02:33 PM
+===================================================================
+
+2020-08-29 12:02:37.3735 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "forgetpassword",
+"otp" : "D2BF5DD4",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:02:37 PM
+===================================================================
+
+2020-08-29 12:03:57.4493 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "forgetpassword",
+"otp" : "5033B7EA",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:03:57 PM
+===================================================================
+
+2020-08-29 12:04:15.3023 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "forgetpassword",
+"otp" : "02DCE0CF",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:04:15 PM
+===================================================================
+
+2020-08-29 12:07:12.3191 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/29/2020 12:07:12 PM
+===================================================================
+
+2020-08-29 12:07:15.1211 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "gjhghj",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:07:15 PM
+===================================================================
+
+2020-08-29 12:12:27.6527 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "gjhghj",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:12:27 PM
+===================================================================
+
+2020-08-29 12:13:11.2407 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "jjjjjj",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:13:11 PM
+===================================================================
+
+2020-08-29 12:13:26.6255 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:13:26 PM
+===================================================================
+
+2020-08-29 12:13:54.3612 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "klklkl,
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:13:54 PM
+===================================================================
+
+2020-08-29 12:14:07.4118 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "klklkl",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:14:07 PM
+===================================================================
+
+2020-08-29 12:14:25.9161 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "klklkl",
+"deviceid" : "123-xyz-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/29/2020 12:14:25 PM
+===================================================================
+

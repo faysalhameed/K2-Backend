@@ -1,0 +1,154 @@
+2020-08-28 20:46:21.4733 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/28/2020 8:46:21 PM
+===================================================================
+
+2020-08-28 21:24:13.0016 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/28/2020 9:24:12 PM
+===================================================================
+
+2020-08-28 21:24:46.2995 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword" or "loginTime",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/28/2020 9:24:46 PM
+===================================================================
+
+2020-08-28 21:24:51.5379 INFO Request Type :GET
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword" or "loginTime",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/28/2020 9:24:51 PM
+===================================================================
+
+2020-08-28 21:25:25.5271 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/28/2020 9:25:25 PM
+===================================================================
+
+2020-08-28 21:42:30.3173 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :8/28/2020 9:42:30 PM
+===================================================================
+
+2020-08-28 21:42:46.7807 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/28/2020 9:42:46 PM
+===================================================================
+
+2020-08-28 21:44:11.5551 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/28/2020 9:44:11 PM
+===================================================================
+
+2020-08-28 21:49:59.9154 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "logintime",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/28/2020 9:49:59 PM
+===================================================================
+
+2020-08-28 22:05:33.0347 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "logintime",
+"Otp" : "",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/28/2020 10:05:33 PM
+===================================================================
+
+2020-08-28 22:07:38.1129 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hamza.chaudhary@rezaid.co.uk",
+"customermobilenumber" : "",
+"OtpType" : "logintime",
+"Otp" : "7F92DEB9",
+"deviceid" : "123-abc-456",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :8/28/2020 10:07:38 PM
+===================================================================
+

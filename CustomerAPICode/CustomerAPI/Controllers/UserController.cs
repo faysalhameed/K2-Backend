@@ -33,11 +33,11 @@ namespace CustomerAPI.Controllers
         #region Account Creation API
         //[Route("AddCustomer")]
         [HttpPost]
-        public async Task<IActionResult> AddCustomer(Root Param) 
+        public async Task<IActionResult> AddCustomer(Root Param)
         {
             try
             {
-                if(Param == null)
+                if (Param == null)
                 {
                     return BadRequest();
                 }
@@ -82,7 +82,7 @@ namespace CustomerAPI.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(LoggingRequest.CreateErrorMsg("User Controller", "AddCustomer",DateTime.Now.ToString(),ex.ToString()));
+                logger.Error(LoggingRequest.CreateErrorMsg("User Controller", "AddCustomer", DateTime.Now.ToString(), ex.ToString()));
                 return BadRequest();
             }
         }
@@ -96,7 +96,7 @@ namespace CustomerAPI.Controllers
         {
             try
             {
-                if(Param == null)
+                if (Param == null)
                 {
                     return BadRequest();
                 }
@@ -107,7 +107,7 @@ namespace CustomerAPI.Controllers
                 var activityResult = objBL.CreateActivityObject(Param.logindata);
                 if (respone > 0)
                 {
-                   if(activityResult != null)
+                    if (activityResult != null)
                     {
                         activityResult.customerID = respone;
                         activityResult.LoginSucess = true;
@@ -132,7 +132,7 @@ namespace CustomerAPI.Controllers
                 {
                     // true;
                     string firstname = "", lastname = "";
-                    if(Param.logindata.authenticationmedium.ToLower() == "custom")
+                    if (Param.logindata.authenticationmedium.ToLower() == "custom")
                     {
                         firstname = result.Item2;
                         lastname = result.Item3;
@@ -166,7 +166,7 @@ namespace CustomerAPI.Controllers
                     };
                     return new OkObjectResult(FaultyMsg);
                 }
-                else if(respone == -2)
+                else if (respone == -2)
                 {
                     // all data missing 
                     var FaultyMsg = new
@@ -180,7 +180,7 @@ namespace CustomerAPI.Controllers
                     };
                     return new OkObjectResult(FaultyMsg);
                 }
-                else if(respone == -3)
+                else if (respone == -3)
                 {
                     // missing email or password 
                     var FaultyMsg = new
@@ -194,7 +194,7 @@ namespace CustomerAPI.Controllers
                     };
                     return new OkObjectResult(FaultyMsg);
                 }
-                else if(respone == -4)
+                else if (respone == -4)
                 {
                     // token auth failed
                     var FaultyMsg = new
@@ -208,7 +208,7 @@ namespace CustomerAPI.Controllers
                     };
                     return new OkObjectResult(FaultyMsg);
                 }
-                else if(respone == -5)
+                else if (respone == -5)
                 {
                     // email or password is missing for authentication
                     var FaultyMsg = new
@@ -222,7 +222,7 @@ namespace CustomerAPI.Controllers
                     };
                     return new OkObjectResult(FaultyMsg);
                 }
-                else if(respone == -6)
+                else if (respone == -6)
                 {
                     // faulty msg return no pre defined auth medium  defined
                     var FaultyMsg = new
@@ -320,21 +320,21 @@ namespace CustomerAPI.Controllers
         {
             try
             {
-                if(Param == null || Param.userdata == null || string.IsNullOrEmpty(Param.userdata.customeremailaddress))
+                if (Param == null || Param.userdata == null || string.IsNullOrEmpty(Param.userdata.customeremailaddress))
                 {
                     return BadRequest();
                 }
 
                 UserBL objBL = new UserBL(logger);
                 var result = await objBL.ForgetPasswordBL(Param.userdata);
-                if(result != null)
+                if (result != null)
                 {
-                    if(result.Item1 > 0)
+                    if (result.Item1 > 0)
                     {
                         var SuccessMsg = new { issuccessful = true, responsemessage = "Token emailed successfully!", uniquetoken = result.Item2 };
                         return new OkObjectResult(SuccessMsg);
                     }
-                    else if(result.Item1 == -2)
+                    else if (result.Item1 == -2)
                     {
                         var FaultyMsg = new { issuccessful = false, responsemessage = "Email doesn't exist.", uniquetoken = result.Item2 };
                         return new OkObjectResult(FaultyMsg);
@@ -379,7 +379,7 @@ namespace CustomerAPI.Controllers
                 }
                 UserBL objBL = new UserBL(logger);
                 var result = await objBL.ResetPasswordBL(Param.userdata);
-                if(result > 0)
+                if (result > 0)
                 {
                     var SuccessMsg = new { issuccessful = true, responsemessage = "password changed successfully!" };
                     return new OkObjectResult(SuccessMsg);
@@ -417,7 +417,7 @@ namespace CustomerAPI.Controllers
                     var SuccessMsg = new { issuccessful = true, responsemessage = "password changed successfully!", customeremailaddress = result.Item2, customerid = Param.userdata.customerid };
                     return new OkObjectResult(SuccessMsg);
                 }
-                else if(result.Item1 == -1)
+                else if (result.Item1 == -1)
                 {
                     var FaultyMsg = new { issuccessful = false, responsemessage = "Unable to process process request !", customeremailaddress = "", customerid = Param.userdata.customerid };
                     return new OkObjectResult(FaultyMsg);
@@ -448,33 +448,26 @@ namespace CustomerAPI.Controllers
         #endregion
 
         #region Otp Verification API 
-         
+
         public async Task<IActionResult> OTPVerification(OTPContainerBO Param)
         {
             try
             {
-                if(Param == null || Param.userdate == null)
+                if (Param == null || Param.userdate == null)
                 {
                     return BadRequest();
                 }
                 UserBL objbl = new UserBL(logger);
-                var result = objbl.OTPHandling(Param.userdate);
-                if(result != null)
+                var result = await objbl.OTPHandling(Param.userdate);
+                if (result != null)
                 {
-                    if(result.Result.issuccessfullCode > 0)
-                    {
-                        var SuccessMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "successfully!" };
-                        return new OkObjectResult(SuccessMsg);
-                    }
-                    else
-                    {
-                        var FaultyMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "Fail!" };
-                        return new OkObjectResult(FaultyMsg);
-                    }
+                    var SuccessMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "successfully!" };
+                    return new OkObjectResult(SuccessMsg);
+                   
                 }
                 else
                 {
-                    var FaultyMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "Fail!" };
+                    var FaultyMsg = new { issuccessfullCode = result.issuccessfullCode, responsemessage = "Fail!" };
                     return new OkObjectResult(FaultyMsg);
                 }
             }
@@ -484,6 +477,155 @@ namespace CustomerAPI.Controllers
             }
         }
 
+        #endregion
+
+        #region TailorListing
+
+        // First the backend will check sessiontoken and deviceid existance in customerDB in customerloginactivities table.
+        // Then the backend will connect to tailordatabase and fetch tailor listings. I have created the tailorDB on live server.
+        // if the searchtype = 'top' then just call the "sp_RetrieveTailorListing" procedure
+        // if the searchtype = 'nearest' then call the "sp_RetrieveTailorListing" procedure and then call private function (see region: 'privatenearestdistancecalculatingmethods' below) for calculating distance.
+        // If after figuring our distance for all the tailors then sort the tailor data based on distance. Lowest distance data will come first.
+        // Send the listing back to app
+
+        //Request:
+
+        //     {
+        //"userdata" :
+        //	{
+        //		"customerid" : "",					
+        //		"sessiontoken" : "",
+        //		"city" : "", --> <individual city name> or 'all'
+        //		"searchtype" : "", --> 'top' or 'nearest'
+        //		“devicelatitude” : “”,
+        //		“devicelongitude” : “”,
+        //		“listingcount” : “”,
+        //		"deviceid" : "",
+        //		"devicetype" : ""	
+        //	}
+        //     }
+
+
+        //      Response:
+
+        //{
+        //	"reponse" :
+        //		{
+        //		"issuccessfull" : "true/false",
+        //              “responsemessage” : “”,				
+        //		"tailorlist": [
+        //        					{
+        //          				"tailorid": "",
+        //          				"tailorcompanytitle": "",
+        //          				"tailorcompanyimage": "<base 64 string>",
+        //			        "tailorReview" : "" <-- integer number between 1 and 5
+
+        //                            },
+        //        					{
+        //          				"tailorid": "",
+        //          				"tailorcompanytitle": "",
+        //          				"tailorcompanyimage": "<base 64 string>",
+        //			        "tailorReview" : "" <-- integer number between 1 and 5
+        //        					},
+        //  						]
+        //		}
+        //}
+
+
+
+
+        #endregion
+
+        #region PromotionListing
+
+        // For this Api. you need to first check the sessiontoken and deviceid existance in customerDb in customerloginactivities table.
+        // Secondly you need to connect to TailorDB and call the Stored procedure 'sp_RetrievePromotions'
+        // Return the data back to app
+
+        //Request:
+        // {
+        // "userdata" : 
+        //  {
+        //   "customerid" : "",
+        //   "sessiontoken" : "",
+        //   "city" : "",
+        //   "deviceid" : "",
+        //   "devicetype" : "",
+        //   “listingcount” : “”	
+
+        //  }
+        //    }
+
+        //Response:
+        // {	
+        // "response" : 
+        //  {
+        //   "issuccessful" : true/false,
+        //   "responsemessage" : "",
+        //   "promotionlist" :
+        //   [
+        //    {
+        //    "promotionid" : "",
+        //    "promotionenddate" : "",
+        //    "promotionimage" : "<base 64 string>",
+        //    "productid" : "",
+        //    "tailorid" : ""
+
+        //                },
+        //    {
+        //    "promotionid" : "",
+        //    "promotionenddate" : "",
+        //    "promotionimage" : "<base 64 string>",
+        //    "productid" : "",
+        //    "tailorid" : ""
+        //    }					     
+        //   ]	
+        //  }			
+        // }
+
+        #endregion
+
+        #region privatenearestdistancecalculatingmethods
+        private double distance(double lat1, double lon1, double lat2, double lon2, string unit)
+        {
+            if ((lat1 == lat2) && (lon1 == lon2))
+            {
+                return 0;
+            }
+            else
+            {
+                double theta = lon1 - lon2;
+                double dist = Math.Sin(deg2rad(lat1)) * Math.Sin(deg2rad(lat2)) + Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) * Math.Cos(deg2rad(theta));
+                dist = Math.Acos(dist);
+                dist = rad2deg(dist);
+                dist = dist * 60 * 1.1515;
+                if (unit == "K")
+                {
+                    dist = dist * 1.609344;
+                }
+                else if (unit == "N")
+                {
+                    dist = dist * 0.8684;
+                }
+                return (dist);
+            }
+        }
+
+        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //::  This function converts decimal degrees to radians             :::
+        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        private double deg2rad(double deg)
+        {
+            return (deg * Math.PI / 180.0);
+        }
+
+        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        //::  This function converts radians to decimal degrees             :::
+        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        private double rad2deg(double rad)
+        {
+            return (rad / Math.PI * 180.0);
+        }
         #endregion
 
 
