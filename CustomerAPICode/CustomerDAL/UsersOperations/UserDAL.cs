@@ -206,11 +206,11 @@ namespace CustomerDAL.UsersOperations
 
         #region Login API DAL Function
 
-        public  LoginResponseBO CustomLoginUser(string UserName, string Password)
+        public  LoginResponseBO CustomLoginUser(string UserName, string Password,string deviceID)
         {
+            LoginResponseBO objResponse = new LoginResponseBO();
             try
             {
-                LoginResponseBO objResponse = new LoginResponseBO();
                 using (var dbContext = new SilaeeContext())
                 {
                     using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
@@ -228,6 +228,12 @@ namespace CustomerDAL.UsersOperations
                         UserPasswordParam.Value = Password;
                         cmd.Parameters.Add(UserPasswordParam);
 
+                        var UserDeviceIDParam = cmd.CreateParameter();
+                        UserDeviceIDParam.ParameterName = "DeviceID";
+                        UserDeviceIDParam.Value = deviceID;
+                        cmd.Parameters.Add(UserDeviceIDParam);
+
+                        
                         dbContext.Database.OpenConnection();
                         
                         using (var reader = cmd.ExecuteReader())
@@ -236,19 +242,69 @@ namespace CustomerDAL.UsersOperations
                             {
                                 if(reader.Read())
                                 {
-                                    objResponse.issuccessful = true;
-                                    objResponse.customerid = Convert.ToInt32(reader["CustomerID"]);
-                                    objResponse.customerfirstname = reader["CustomerFirstName"].ToString();
-                                    objResponse.customerlastname = reader["CustomerLastName"].ToString();
-                                    objResponse.responsemessage = "Login Successfully !";
+                                    string _deviceID = reader["Uniquedeviceid"].ToString();
+
+                                    if(!string.IsNullOrEmpty(_deviceID))
+                                    {
+                                        objResponse.issuccessful = true;
+                                        objResponse.loginresponsecode = 1;
+                                        objResponse.customerid = Convert.ToInt32(reader["CustomerID"]);
+                                        objResponse.customerfirstname = reader["CustomerFirstName"].ToString();
+                                        objResponse.customerlastname = reader["CustomerLastName"].ToString();
+                                        objResponse.userdata = new Userdata();
+                                        objResponse.userdata.customerage = Convert.ToInt32(reader["CustomerAge"].ToString());
+                                        objResponse.userdata.customeremailaddress = reader["CustomereMailAddress"].ToString();
+                                        objResponse.userdata.customerwebsite = reader["CustomerWebsite"].ToString();
+                                        objResponse.userdata.customercountry = reader["CustomerCountry"].ToString();
+                                        objResponse.userdata.customercity = reader["CustomerCity"].ToString();
+                                        objResponse.userdata.customerprovince = reader["CustomerProvince"].ToString();
+                                        objResponse.userdata.customeraddress = reader["CustomerAddress"].ToString();
+                                        objResponse.userdata.customermobilenumber = reader["CustomerMobileNumber"].ToString();
+                                        objResponse.userdata.customerothercontactnumber = reader["CustomerOtherContactNumber"].ToString();
+                                        objResponse.userdata.customercnic = reader["CustomerCNIC"].ToString();
+                                        objResponse.userdata.customerpicture = reader["CustomerPicture"].ToString();
+                                        objResponse.userdata.customerrating = Convert.ToDecimal(reader["CustomerRating"].ToString());
+                                        objResponse.userdata.customerprofilestatus = Convert.ToBoolean(reader["CustomerProfileStatus"].ToString());
+                                        objResponse.userdata.deviceid = reader["Uniquedeviceid"].ToString();
+                                        objResponse.responsemessage = "Login Successfully !";
+                                    }
+                                    else
+                                    {
+                                        //otp case
+                                        objResponse.issuccessful = true;
+                                        objResponse.loginresponsecode = 2;
+                                        objResponse.customerid = Convert.ToInt32(reader["CustomerID"]);
+                                        objResponse.customerfirstname = reader["CustomerFirstName"].ToString();
+                                        objResponse.customerlastname = reader["CustomerLastName"].ToString();
+                                        objResponse.userdata = new Userdata();
+                                        objResponse.userdata.customerage = Convert.ToInt32(reader["CustomerAge"].ToString());
+                                        objResponse.userdata.customeremailaddress = reader["CustomereMailAddress"].ToString();
+                                        objResponse.userdata.customerwebsite = reader["CustomerWebsite"].ToString();
+                                        objResponse.userdata.customercountry = reader["CustomerCountry"].ToString();
+                                        objResponse.userdata.customercity = reader["CustomerCity"].ToString();
+                                        objResponse.userdata.customerprovince = reader["CustomerProvince"].ToString();
+                                        objResponse.userdata.customeraddress = reader["CustomerAddress"].ToString();
+                                        objResponse.userdata.customermobilenumber = reader["CustomerMobileNumber"].ToString();
+                                        objResponse.userdata.customerothercontactnumber = reader["CustomerOtherContactNumber"].ToString();
+                                        objResponse.userdata.customercnic = reader["CustomerCNIC"].ToString();
+                                        objResponse.userdata.customerpicture = reader["CustomerPicture"].ToString();
+                                        objResponse.userdata.customerrating = Convert.ToDecimal(reader["CustomerRating"].ToString());
+                                        objResponse.userdata.customerprofilestatus = Convert.ToBoolean(reader["CustomerProfileStatus"].ToString());
+                                        objResponse.userdata.deviceid = "";
+                                        objResponse.responsemessage = "Login Successfully !";
+                                    }
+
+                                    
                                 }
                             }
                             else
                             {
                                 objResponse.issuccessful = false;
+                                objResponse.loginresponsecode = -1;
                                 objResponse.customerid = -1;
                                 objResponse.customerfirstname = "";
                                 objResponse.customerlastname = "";
+                                objResponse.userdata = new Userdata();
                                 objResponse.responsemessage = "No user found";
                             }
                         }
@@ -259,7 +315,14 @@ namespace CustomerDAL.UsersOperations
             catch (Exception ex)
             {
                 logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "CustomLoginUser", DateTime.Now.ToString(), ex.ToString()));
-                return null;
+                objResponse.issuccessful = false;
+                objResponse.loginresponsecode = -1;
+                objResponse.customerid = -1;
+                objResponse.customerfirstname = "";
+                objResponse.customerlastname = "";
+                objResponse.userdata = new Userdata();
+                objResponse.responsemessage = "Exception occured !";
+                return objResponse;
             }
         }
 
@@ -623,6 +686,39 @@ namespace CustomerDAL.UsersOperations
             }
         }
 
+
+        #endregion
+
+        #region Verify Session token 
+
+        public async Task<int> VerifyToken(string sessionToken, string deviceID)
+        {
+            try
+            {
+                using (var dbContext = new SilaeeContext())
+                {
+                    string sql = "sp_ValidateSessionToken @sessionToken,@deviceID,@ResultParam OUT";
+                    List<SqlParameter> parameterList = new List<SqlParameter>();
+                    parameterList.Add(new SqlParameter("@sessionToken", sessionToken));
+                    parameterList.Add(new SqlParameter("@deviceID", deviceID));
+                    var out1 = new SqlParameter
+                    {
+                        ParameterName = "@ResultParam",
+                        DbType = System.Data.DbType.Int32,
+                        Direction = System.Data.ParameterDirection.Output
+                    };
+                    parameterList.Add(out1);
+                    var result = await dbContext.Database.
+                        ExecuteSqlCommandAsync(sql, parameterList);
+                    var out1Value = (int)out1.Value;
+                    return out1Value;
+                }
+            }
+            catch (Exception ex)
+            {
+                return -1;
+            }
+        }
 
         #endregion
 

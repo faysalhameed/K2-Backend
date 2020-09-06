@@ -296,13 +296,15 @@ namespace CustomerBL.User
 
         #region Login Process 
 
-        public async Task<Tuple<int,string,string,string>> Login(LoginRootBO obj)
+
+
+        public async Task<Tuple<int,string,string,string,LoginResponseBO>> Login(LoginRootBO obj)
         {
             try
             {
                 if(obj == null || obj.logindata == null)
                 {
-                    return new Tuple<int,string,string,string>(-2,"","",""); // all data missing 
+                    return new Tuple<int,string,string,string,LoginResponseBO>(-2,"","","",null); // all data missing 
                 }
 
                 //if (string.IsNullOrEmpty(obj.logindata.emailaddress) || string.IsNullOrEmpty(obj.logindata.userpassword))
@@ -318,10 +320,57 @@ namespace CustomerBL.User
                         // simple just check and return response
                         if (!string.IsNullOrEmpty(obj.logindata.emailaddress) || !string.IsNullOrEmpty(obj.logindata.userpassword))
                         {
-                            var response = objDAL.CustomLoginUser(obj.logindata.emailaddress,obj.logindata.userpassword);
-                            return new Tuple<int, string, string,string>(response.customerid,response.customerfirstname, response.customerlastname,Guid.NewGuid().ToString());
+                            var response = objDAL.CustomLoginUser(obj.logindata.emailaddress,obj.logindata.userpassword, obj.logindata.deviceid);
+                            if(response.issuccessful)
+                            {
+                                if(response.loginresponsecode == 2) //(response.userdata.deviceid.ToLower() != obj.logindata.deviceid.ToLower())
+                                {
+                                    OtpBO objOTP = new OtpBO();
+                                    if(!string.IsNullOrEmpty(response.userdata.customeremailaddress))
+                                    {
+                                        objOTP.customeremailaddress = response.userdata.customeremailaddress;
+                                        objOTP.customermobilenumber = "";
+                                        objOTP.otptype = "logintime";
+                                        objOTP.otp = "";
+                                        objOTP.deviceid = obj.logindata.deviceid;
+                                        objOTP.devicetype = obj.logindata.devicetype;
+                                        var result = await OTPHandling(objOTP);
+                                        if(result.issuccessfullCode > 0)
+                                        {
+                                            response.loginresponsecode = 2;
+                                            response.responsemessage = "New device detected. Otp sent in email.";
+                                        }
+                                        else
+                                        {
+                                            response.loginresponsecode = -1;
+                                            response.responsemessage = "Otp sending failed";
+                                        }
+                                    }
+                                    else
+                                    {
+                                        objOTP.customeremailaddress = "";
+                                        objOTP.customermobilenumber = response.userdata.customermobilenumber;
+                                        objOTP.otptype = "logintime";
+                                        objOTP.otp = "";
+                                        objOTP.deviceid = obj.logindata.deviceid;
+                                        objOTP.devicetype = obj.logindata.devicetype;
+                                        var result = await OTPHandling(objOTP);
+                                        if (result.issuccessfullCode > 0)
+                                        {
+                                            response.loginresponsecode = 2;
+                                            response.responsemessage = "New device detected. Otp sent in email.";
+                                        }
+                                        else
+                                        {
+                                            response.loginresponsecode = -1;
+                                            response.responsemessage = "Otp sending failed";
+                                        }
+                                    }
+                                }
+                            }
+                            return new Tuple<int, string, string,string,LoginResponseBO>(response.customerid,response.customerfirstname, response.customerlastname,Guid.NewGuid().ToString(),response);
                         }
-                        return new Tuple<int, string, string,string>(-5,"","",""); // email or password is missing for authentication
+                        return new Tuple<int, string, string,string,LoginResponseBO>(-5,"","","",null); // email or password is missing for authentication
                     }
                     else if (obj.logindata.authenticationmedium.ToLower() == "facebook")
                     {
@@ -330,9 +379,9 @@ namespace CustomerBL.User
                         {
                             // check if profile exist if not then create profile and return result
                             var response = objDAL.LoginMediumUser(obj.logindata);
-                            return new Tuple<int, string, string,string>(response,"","",Guid.NewGuid().ToString());
+                            return new Tuple<int, string, string,string,LoginResponseBO>(response,"","",Guid.NewGuid().ToString(),null);
                         }
-                        return new Tuple<int, string, string,string>(-4,"","",""); // token auth failed
+                        return new Tuple<int, string, string,string,LoginResponseBO>(-4,"","","",null); // token auth failed
                     }
                     else if (obj.logindata.authenticationmedium.ToLower() == "google")
                     {
@@ -341,26 +390,26 @@ namespace CustomerBL.User
                         {
                             // check if profile exist if not then create profile and return result 
                             var response = objDAL.LoginMediumUser(obj.logindata);
-                            return new Tuple<int, string, string,string>(response,"","",Guid.NewGuid().ToString());
+                            return new Tuple<int, string, string,string,LoginResponseBO>(response,"","",Guid.NewGuid().ToString(),null);
                         }
-                        return new Tuple<int, string, string,string>(-4,"","",""); // token auth failed
+                        return new Tuple<int, string, string,string,LoginResponseBO>(-4,"","","",null); // token auth failed
                     }
                     else
                     {
                         // faulty msg return no pre defined auth medium  defined
-                        return new Tuple<int, string, string,string>(-6,"","","");
+                        return new Tuple<int, string, string,string,LoginResponseBO>(-6,"","","",null);
                     }
                 }
                 else
                 {
                     // faulty msg return no auth defined
-                    return new Tuple<int, string, string,string>(-3,"","","");
+                    return new Tuple<int, string, string,string,LoginResponseBO>(-3,"","","",null);
                 }
             }
             catch (Exception ex)
             {
                 logger.Error(LoggingRequest.CreateErrorMsg("UserBL", "Login", DateTime.Now.ToString(), ex.ToString()));
-                return new Tuple<int, string, string,string>(-7,"","",""); // exception
+                return new Tuple<int, string, string,string,LoginResponseBO>(-7,"","","",null); // exception
             }
         }
 

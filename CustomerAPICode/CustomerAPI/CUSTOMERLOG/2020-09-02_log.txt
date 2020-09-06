@@ -1,0 +1,37 @@
+2020-09-02 00:23:24.3593 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/2/2020 12:23:23 AM
+===================================================================
+
+2020-09-02 00:23:53.8451 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+    "userdata": {
+        "customeremailaddress": "hassanrazathegreat@gmail.com",
+        "customermobilenumber": "",
+        "otptype": "forgetpassword",
+        "otp": "",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/2/2020 12:23:53 AM
+===================================================================
+
+2020-09-02 00:30:24.6210 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "hassanrazathegreat@gmail.com",
+"customermobilenumber" : "",
+"OtpType" : "forgetpassword",
+"Otp" : "",
+"deviceid" : "312d03f76144fbb2",
+"devicetype" : "android"
+}
+}
+Request DateTime :9/2/2020 12:30:24 AM
+===================================================================
+

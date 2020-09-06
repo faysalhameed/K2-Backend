@@ -17,6 +17,6 @@ namespace CustomerBO.User
 
     public class OTPContainerBO
     {
-        public OtpBO userdate { get; set; }
+        public OtpBO userdata { get; set; }
     }
 }

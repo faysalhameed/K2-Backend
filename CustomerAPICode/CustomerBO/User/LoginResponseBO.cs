@@ -12,6 +12,8 @@ namespace CustomerBO.User
         public string customerlastname { get; set; }
         public string responsemessage { get; set; }
         public string Sesssiontoken { get; set; }
-   
+        public int loginresponsecode { get; set; }
+        public Userdata userdata { get; set; }
+
     }
 }

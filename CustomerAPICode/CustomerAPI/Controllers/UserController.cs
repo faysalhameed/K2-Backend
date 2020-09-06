@@ -136,35 +136,86 @@ namespace CustomerAPI.Controllers
                     {
                         firstname = result.Item2;
                         lastname = result.Item3;
+                        string _msg = "";
+                        if(result.Item5.loginresponsecode == 2)
+                        {
+                            _msg = "New device detected. Otp sent in email.";
+                            var SuccessMsg = new
+                            {
+                                issuccessful = true,
+                                loginresponsecode = result.Item5.loginresponsecode,
+                                customerid = respone,
+                                customerfirstname = firstname,
+                                customerlastname = lastname,
+                                responsemessage = _msg,
+                                sesssiontoken = result.Item4, //Guid.NewGuid()
+                                userdata = (string) null
+                            };
+                            return new OkObjectResult(SuccessMsg);
+                        }
+                        else
+                        {
+                            _msg = "Login successfully !";
+                            var SuccessMsg = new
+                            {
+                                issuccessful = true,
+                                loginresponsecode = result.Item5.loginresponsecode,
+                                customerid = respone,
+                                customerfirstname = firstname,
+                                customerlastname = lastname,
+                                responsemessage = _msg,
+                                sesssiontoken = result.Item4, //Guid.NewGuid()
+                                userdata = result.Item5.userdata
+                            };
+                            return new OkObjectResult(SuccessMsg);
+                        }
                     }
                     else
                     {
                         firstname = Param.logindata.userfirstname;
                         lastname = Param.logindata.userlastname;
+                        var SuccessMsg = new
+                        {
+                            issuccessful = true,
+                            customerid = respone,
+                            customerfirstname = firstname,
+                            customerlastname = lastname,
+                            responsemessage = "Login successfully !",
+                            sesssiontoken = result.Item4 //Guid.NewGuid()
+                        };
+                        return new OkObjectResult(SuccessMsg);
                     }
-                    var SuccessMsg = new {
-                        issuccessful = true,
-                        customerid = respone,
-                        customerfirstname = firstname,
-                        customerlastname = lastname,
-                        responsemessage = "Login successfully !",
-                        sesssiontoken = result.Item4 //Guid.NewGuid()
-                    };
-                    return new OkObjectResult(SuccessMsg);
                 }
                 else if (respone == -1)
                 {
-                    // from db side  
-                    var FaultyMsg = new
+                    if (Param.logindata.authenticationmedium.ToLower() == "custom")
                     {
-                        issuccessful = false,
-                        customerid = respone,
-                        customerfirstname = Param.logindata.userfirstname,
-                        customerlastname = Param.logindata.userlastname,
-                        responsemessage = "Error Occured!",
-                        sesssiontoken = ""
-                    };
-                    return new OkObjectResult(FaultyMsg);
+                        var FaultyMsg = new
+                        {
+                            issuccessful = false,
+                            customerid = respone,
+                            customerfirstname = Param.logindata.userfirstname,
+                            customerlastname = Param.logindata.userlastname,
+                            responsemessage = "Login Failed.",
+                            sesssiontoken = ""
+                        };
+                        return new OkObjectResult(FaultyMsg);
+                    }
+                    else
+                    {
+                        // from db side  
+                        var FaultyMsg = new
+                        {
+                            issuccessful = false,
+                            customerid = respone,
+                            customerfirstname = Param.logindata.userfirstname,
+                            customerlastname = Param.logindata.userlastname,
+                            responsemessage = "Error Occured!",
+                            sesssiontoken = ""
+                        };
+                        return new OkObjectResult(FaultyMsg);
+                    }
+                    
                 }
                 else if (respone == -2)
                 {
@@ -453,21 +504,26 @@ namespace CustomerAPI.Controllers
         {
             try
             {
-                if (Param == null || Param.userdate == null)
+                if (Param == null || Param.userdata == null)
                 {
                     return BadRequest();
                 }
                 UserBL objbl = new UserBL(logger);
-                var result = await objbl.OTPHandling(Param.userdate);
-                if (result != null)
+                var result = await objbl.OTPHandling(Param.userdata);
+                if (result != null && result.issuccessfullCode > 0)
                 {
-                    var SuccessMsg = new { issuccessfullCode = result.Result.issuccessfullCode, responsemessage = "successfully!" };
+                    var SuccessMsg = new { issuccessfullCode = result.issuccessfullCode, responsemessage = "OTP sent successfully!" };
+                    return new OkObjectResult(SuccessMsg);
+                }
+                else if(result != null && result.issuccessfullCode < 1)
+                {
+                    var SuccessMsg = new { issuccessfullCode = result.issuccessfullCode, responsemessage = "Failed to send OTP!" };
                     return new OkObjectResult(SuccessMsg);
                    
                 }
                 else
                 {
-                    var FaultyMsg = new { issuccessfullCode = result.issuccessfullCode, responsemessage = "Fail!" };
+                    var FaultyMsg = new { issuccessfullCode = result.issuccessfullCode, responsemessage = "Error occured" };
                     return new OkObjectResult(FaultyMsg);
                 }
             }

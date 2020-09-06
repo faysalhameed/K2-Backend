@@ -1,0 +1,54 @@
+2020-09-05 21:01:08.1391 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/5/2020 9:01:07 PM
+===================================================================
+
+2020-09-05 21:01:40.5759 INFO Request Type :POST
+Request EndPoint :/api/user/Login
+Request Body :{
+    "userdate": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "962012d09b8170d912f0669f6d7d9d07",
+        "deviceid": "ae0a43fd57191097",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+Request DateTime :9/5/2020 9:01:40 PM
+===================================================================
+
+2020-09-05 21:02:45.4869 ERROR 
+***Error Message**
+ClassName : UserBL
+Method name : CreateActivityObject
+DateTime : 9/5/2020 9:02:45 PM
+Exception Msg : System.NullReferenceException: Object reference not set to an instance of an object.
+   at CustomerBL.User.UserBL.CreateActivityObject(LoginBO obj) in C:\Users\hamza\Source\Repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerBL\User\UserBL.cs:line 40
+************************
+2020-09-05 21:02:48.3688 ERROR 
+***Error Message**
+ClassName : User Controller
+Method name : Login
+DateTime : 9/5/2020 9:02:47 PM
+Exception Msg : System.NullReferenceException: Object reference not set to an instance of an object.
+   at CustomerAPI.Controllers.UserController.Login(LoginRootBO Param) in C:\Users\hamza\Source\Repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerAPI\Controllers\UserController.cs:line 223
+************************
+2020-09-05 21:04:58.2592 INFO Request Type :POST
+Request EndPoint :/api/user/Login
+Request Body :{
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "962012d09b8170d912f0669f6d7d9d07",
+        "deviceid": "ae0a43fd57191097",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+Request DateTime :9/5/2020 9:04:58 PM
+===================================================================
+

@@ -1,0 +1,115 @@
+2020-09-06 00:38:34.6585 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/6/2020 12:38:34 AM
+===================================================================
+
+2020-09-06 01:15:29.4631 INFO Request Type :POST
+Request EndPoint :/api/user/Login
+Request Body :{
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "962012d09b8170d912f0669f6d7d9d07",
+        "deviceid": "ae0a43fd57191097",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+Request DateTime :9/6/2020 1:15:29 AM
+===================================================================
+
+2020-09-06 01:16:27.3618 ERROR 
+***Error Message**
+ClassName : UserDAL
+Method name : CustomLoginUser
+DateTime : 9/6/2020 1:16:26 AM
+Exception Msg : Microsoft.Data.SqlClient.SqlException (0x80131904): Procedure or function 'sp_AuthenticateUserCustom' expects parameter '@ResultParam', which was not supplied.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryConsumeMetaData()
+   at Microsoft.Data.SqlClient.SqlDataReader.get_MetaData()
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReaderTds(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, Boolean isAsync, Int32 timeout, Task& task, Boolean asyncWrite, Boolean inRetry, SqlDataReader ds, Boolean describeParameterEncryptionRequest)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, TaskCompletionSource`1 completion, Int32 timeout, Task& task, Boolean& usedCache, Boolean asyncWrite, Boolean inRetry, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.RunExecuteReader(CommandBehavior cmdBehavior, RunBehavior runBehavior, Boolean returnStream, String method)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.SqlClient.SqlCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   at System.Data.Common.DbCommand.ExecuteReader()
+   at CustomerDAL.UsersOperations.UserDAL.CustomLoginUser(String UserName, String Password, String deviceID) in C:\Users\hamza\Source\Repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerDAL\UsersOperations\UserDAL.cs:line 239
+ClientConnectionId:7accb20a-6a8a-4978-aa24-1adb0125efd2
+Error Number:201,State:4,Class:16
+************************
+2020-09-06 01:17:05.2098 INFO Request Type :POST
+Request EndPoint :/api/user/Login
+Request Body :{
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "962012d09b8170d912f0669f6d7d9d07",
+        "deviceid": "ae0a43fd57191097-hamza",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+Request DateTime :9/6/2020 1:17:05 AM
+===================================================================
+
+2020-09-06 01:17:25.8366 INFO Request Type :POST
+Request EndPoint :/api/user/Login
+Request Body :{
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "962012d09b8170d912f0669f6d7d9d07",
+        "deviceid": "ae0a43fd57191097-hamza",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+Request DateTime :9/6/2020 1:17:25 AM
+===================================================================
+
+2020-09-06 01:18:55.4984 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/6/2020 1:18:55 AM
+===================================================================
+
+2020-09-06 01:19:03.6984 INFO Request Type :POST
+Request EndPoint :/api/user/Login
+Request Body :{
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "962012d09b8170d912f0669f6d7d9d07",
+        "deviceid": "ae0a43fd57191097-hamza",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+Request DateTime :9/6/2020 1:19:03 AM
+===================================================================
+
+2020-09-06 01:19:26.9127 INFO Request Type :POST
+Request EndPoint :/api/user/Login
+Request Body :{
+    "logindata": {
+        "emailaddress": "hassanrazathegreat@gmail.com",
+        "phonenumber": "",
+        "customermobilenumber": "",
+        "userpassword": "962012d09b8170d912f0669f6d7d9d07",
+        "deviceid": "ae0a43fd57191097-hamza123",
+        "devicetype": "android",
+        "authenticationmedium": "custom"
+    }
+}
+Request DateTime :9/6/2020 1:19:26 AM
+===================================================================
+

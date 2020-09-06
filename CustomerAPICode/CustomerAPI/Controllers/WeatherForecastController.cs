@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CustomerDAL.Tailor;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -26,6 +27,8 @@ namespace CustomerAPI.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
+            //TailorDAL objDAL = new TailorDAL();
+            //objDAL.TailorTestfunction(1);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
