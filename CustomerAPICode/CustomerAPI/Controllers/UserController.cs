@@ -538,11 +538,10 @@ namespace CustomerAPI.Controllers
         #region TailorListing
 
         // First the backend will check sessiontoken and deviceid existance in customerDB in customerloginactivities table.
-        // Then the backend will connect to tailordatabase and fetch tailor listings. I have created the tailorDB on live server.
-        // if the searchtype = 'top' then just call the "sp_RetrieveTailorListing" procedure
-        // if the searchtype = 'nearest' then call the "sp_RetrieveTailorListing" procedure and then call private function (see region: 'privatenearestdistancecalculatingmethods' below) for calculating distance.
-        // If after figuring our distance for all the tailors then sort the tailor data based on distance. Lowest distance data will come first.
-        // Send the listing back to app
+        // Then the backend will call the tailorapi and fetch tailor listings.
+        // if the searchtype = 'top' then call the tailor listing api with searchtype = 'top'
+        // if the searchtype = 'nearest' then call the tailor listing api with searchtype = 'nearest'
+        // Get the JSON from the tailor api response and generate a response for the app       
 
         //Request:
 
@@ -595,8 +594,8 @@ namespace CustomerAPI.Controllers
         #region PromotionListing
 
         // For this Api. you need to first check the sessiontoken and deviceid existance in customerDb in customerloginactivities table.
-        // Secondly you need to connect to TailorDB and call the Stored procedure 'sp_RetrievePromotions'
-        // Return the data back to app
+        // Secondly you need to call the tailorapi promotionlisting
+        // Get the json from the promotionlisting api and generate a response for the app
 
         //Request:
         // {
@@ -639,51 +638,7 @@ namespace CustomerAPI.Controllers
         //  }			
         // }
 
-        #endregion
-
-        #region privatenearestdistancecalculatingmethods
-        private double distance(double lat1, double lon1, double lat2, double lon2, string unit)
-        {
-            if ((lat1 == lat2) && (lon1 == lon2))
-            {
-                return 0;
-            }
-            else
-            {
-                double theta = lon1 - lon2;
-                double dist = Math.Sin(deg2rad(lat1)) * Math.Sin(deg2rad(lat2)) + Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) * Math.Cos(deg2rad(theta));
-                dist = Math.Acos(dist);
-                dist = rad2deg(dist);
-                dist = dist * 60 * 1.1515;
-                if (unit == "K")
-                {
-                    dist = dist * 1.609344;
-                }
-                else if (unit == "N")
-                {
-                    dist = dist * 0.8684;
-                }
-                return (dist);
-            }
-        }
-
-        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        //::  This function converts decimal degrees to radians             :::
-        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        private double deg2rad(double deg)
-        {
-            return (deg * Math.PI / 180.0);
-        }
-
-        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        //::  This function converts radians to decimal degrees             :::
-        //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-        private double rad2deg(double rad)
-        {
-            return (rad / Math.PI * 180.0);
-        }
-        #endregion
-
+        #endregion      
 
     }
 
