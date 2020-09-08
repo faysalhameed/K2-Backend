@@ -1,0 +1,150 @@
+2020-09-08 02:04:50.8615 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/8/2020 2:04:49 AM
+===================================================================
+
+2020-09-08 02:06:23.9940 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "listingcount": "4",
+        "city": "all",
+        "devicelatitude": "34.5677",
+        "devicelongitude": "46.56544"
+    }
+}
+Request DateTime :9/8/2020 2:06:23 AM
+===================================================================
+
+2020-09-08 02:10:08.3699 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/8/2020 2:10:07 AM
+===================================================================
+
+2020-09-08 02:11:26.5633 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "listingcount": "4",
+        "city": "all",
+        "devicelatitude": "34.5677",
+        "devicelongitude": "46.56544"
+    }
+}
+Request DateTime :9/8/2020 2:11:26 AM
+===================================================================
+
+2020-09-08 03:29:26.5333 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/8/2020 3:29:25 AM
+===================================================================
+
+2020-09-08 03:29:31.1425 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "listingcount": "4",
+        "city": "all",
+        "devicelatitude": "34.5677",
+        "devicelongitude": "46.56544"
+    }
+}
+Request DateTime :9/8/2020 3:29:31 AM
+===================================================================
+
+2020-09-08 03:29:55.6297 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "listingcount": "4",
+        "city": "all",
+        "devicelatitude": "34.5677",
+        "devicelongitude": "46.56544"
+    }
+}
+Request DateTime :9/8/2020 3:29:55 AM
+===================================================================
+
+2020-09-08 03:31:11.7715 INFO Request Type :POST
+Request EndPoint :/api/User/FetchPromotionList
+Request Body :{
+    "userdata": {
+        "listingcount": "4",
+        "city": "all",
+        "devicelatitude": "34.5677",
+        "devicelongitude": "46.56544",
+        "gender" : "male"
+    }
+}
+Request DateTime :9/8/2020 3:31:11 AM
+===================================================================
+
+2020-09-08 03:35:15.5933 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/8/2020 3:35:14 AM
+===================================================================
+
+2020-09-08 19:37:40.8637 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/8/2020 7:37:40 PM
+===================================================================
+
+2020-09-08 19:40:34.1962 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "customerid" : "",
+        "sessiontoken" : "",
+        "listingcount": "4",
+        "city": "all",
+        "devicelatitude": "34.5677",
+        "devicelongitude": "46.56544",
+        "deviceid" : "",
+        "searchtype" : "",
+        "devicetype" : ""
+    }
+}
+Request DateTime :9/8/2020 7:40:34 PM
+===================================================================
+
+2020-09-08 19:41:10.7107 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "customerid" : "1",
+        "sessiontoken" : "",
+        "listingcount": "4",
+        "city": "all",
+        "devicelatitude": "34.5677",
+        "devicelongitude": "46.56544",
+        "deviceid" : "",
+        "searchtype" : "",
+        "devicetype" : ""
+    }
+}
+Request DateTime :9/8/2020 7:41:10 PM
+===================================================================
+
+2020-09-08 19:54:23.6001 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "customerid" : "1",
+        "sessiontoken" : "",
+        "listingcount": "4",
+        "city": "all",
+        "devicelatitude": "34.5677",
+        "devicelongitude": "46.56544",
+        "deviceid" : "",
+        "searchtype" : "",
+        "devicetype" : ""
+    }
+}
+Request DateTime :9/8/2020 7:54:23 PM
+===================================================================
+
