@@ -13,12 +13,16 @@ using CustomerBO.User;
 using CustomerDAL.Models;
 using CustomerCommon;
 using logginglibrary;
+using CustomerBO.Tailor;
+using CustomerBL.Tailor;
+using CustomerBO.Promotions;
 
 namespace CustomerAPI.Controllers
 {
     // Db Password is : K@2Te@m123
     //[Route("api/[controller]")]
     //[ApiController]
+   
     [Route("api/[controller]/[action]/{id?}")]
     [ApiController]
     public class UserController : ControllerBase
@@ -536,6 +540,93 @@ namespace CustomerAPI.Controllers
         #endregion
 
         #region TailorListing
+
+        public async Task<IActionResult> FetchTailorList(TailorBOContainer Param)
+        {
+            try
+            {
+                if(Param == null || Param.userdata == null || string.IsNullOrEmpty(Param.userdata.sessiontoken) || string.IsNullOrEmpty(Param.userdata.deviceid) ) 
+                {
+                    return BadRequest();
+                }
+
+                UserBL objuserBL = new UserBL(logger);
+                bool isVerify = await objuserBL.VerifySessionToken(Param.userdata.sessiontoken, Param.userdata.deviceid);
+                if(!isVerify)
+                {
+                    // return faulty msg 
+                    var objData = new { issuccessfull = false, responsemessage = "Token verification failed", tailorlist = (string) null };
+                    var FaultyMsg = new { reponse = objData };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else
+                {
+                    TailorBL objTailor = new TailorBL();
+                    var result = await objTailor.GetTailorData(Param);
+                    if(result != null)
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "successfully fetch list", tailorlist = result };
+                        var SuccessObj = new { reponse = objData };
+                        return new OkObjectResult(SuccessObj);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, responsemessage = "Error while fetching list", tailorlist = (string)null };
+                        var FaultyMsg = new { reponse = objData };
+                        return new OkObjectResult(FaultyMsg);
+                    }
+                }    
+                
+            }
+            catch (Exception ex)
+            {
+               return BadRequest();
+            }
+        }
+
+        public async Task<IActionResult> FetchPromotionList(PromotionBOcontainer Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null || string.IsNullOrEmpty(Param.userdata.sessiontoken) || string.IsNullOrEmpty(Param.userdata.deviceid))
+                {
+                    return BadRequest();
+                }
+
+                UserBL objuserBL = new UserBL(logger);
+                bool isVerify = await objuserBL.VerifySessionToken(Param.userdata.sessiontoken, Param.userdata.deviceid);
+                if (!isVerify)
+                {
+                    // return faulty msg 
+                    var objData = new { issuccessfull = false, responsemessage = "Token verification failed", promotionlist = (string)null };
+                    var FaultyMsg = new { reponse = objData };
+                    return new OkObjectResult(FaultyMsg);
+                }
+                else
+                {
+                    TailorBL objTailor = new TailorBL();
+                    var result = await objTailor.GetPromotionData(Param);
+                    if (result != null)
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "successfully fetch list", promotionlist = result };
+                        var SuccessObj = new { reponse = objData };
+                        return new OkObjectResult(SuccessObj);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, responsemessage = "Error while fetching list", promotionlist = (string)null };
+                        var FaultyMsg = new { reponse = objData };
+                        return new OkObjectResult(FaultyMsg);
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
 
         // First the backend will check sessiontoken and deviceid existance in customerDB in customerloginactivities table.
         // Then the backend will call the tailorapi and fetch tailor listings.

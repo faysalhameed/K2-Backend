@@ -862,5 +862,32 @@ namespace CustomerBL.User
 
         #endregion
 
+
+        #region Verify session Token 
+
+        public async Task<bool> VerifySessionToken(string SessionToken, string DeviceID)
+        {
+            try
+            {
+                UserDAL objDal = new UserDAL(logger);
+                int i = await objDal.VerifyToken(SessionToken, DeviceID);
+                if(i > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+
     }
 }
