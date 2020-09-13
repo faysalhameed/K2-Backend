@@ -1,4 +1,5 @@
 ﻿using System;
+using logginglibrary;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
@@ -6,8 +7,10 @@ namespace TailorDAL.Models
 {
     public partial class TailorContext : DbContext
     {
-        public TailorContext()
+        private ILog logger;
+        public TailorContext(ILog templogger)
         {
+            this.logger = templogger;
         }
 
         public TailorContext(DbContextOptions<TailorContext> options)
@@ -28,10 +31,20 @@ namespace TailorDAL.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            try
             {
+                if (!optionsBuilder.IsConfigured)
+                {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=SQL5080.site4now.net;Database=DB_A6503A_TailorDB;user id=DB_A6503A_TailorDB_admin;password=K@2Te@m123;");
+                    optionsBuilder.UseSqlServer("Server=SQL5080.site4now.net;Database=DB_A6503A_TailorDB;user id=DB_A6503A_TailorDB_admin;password=K@2Te@m123;");
+
+                    logger.Information("Opening connection to TailorDB.");
+
+                }
+            }
+            catch(Exception ex)
+            {
+                logger.Error("Error occurred in opening TailorDB connection. Error =" + ex.Message);
             }
         }
 

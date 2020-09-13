@@ -1,5 +1,7 @@
-﻿using System;
+﻿using logginglibrary;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TailorBO.BOTailor;
@@ -10,16 +12,24 @@ namespace TailorBL.BLTailor
 {
     public class TailorBLL
     {
+        private ILog logger;
+        public TailorBLL(ILog templogger)
+        {
+            this.logger = templogger;
+        }
         public async Task<List<TailorBOResponse>> TailorListingBL(TailorEntityBO obj)
         {
             try
             {
-                TailorDALClass objDal = new TailorDALClass();
+                TailorDALClass objDal = new TailorDALClass(logger);
                 if (string.IsNullOrEmpty(obj.city))
                 {
                     obj.city = "all";
                 }
                 var result = await objDal.TailorListingfunction(obj.city, obj.listingcount);
+
+                logger.Information("Tailor listing function of Tailor data layer called from TailorListingB method in TailorBLL class. Data = " + String.Join(";", result.Select(o => o.ToString())));
+
                 if (result != null )
                 {
                     if(result.Count == 0)
@@ -56,6 +66,10 @@ namespace TailorBL.BLTailor
                                 tailorlongitude = result[i].tailorlongitude,
                                 tailorrating = result[i].tailorrating
                             });
+
+                            logger.Information("Nearest Item added in list in method TailorListingBL within class TailorBLL . Data = " + String.Join(";", result.Select(o => o.ToString())));
+
+
                         }
                         lstSort.Sort((x, y) => x.DistanceSort.CompareTo(y.DistanceSort));
                         result = null;
@@ -72,6 +86,9 @@ namespace TailorBL.BLTailor
                                 tailorrating = lstSort[i].tailorrating
                             });
                         }
+
+                        logger.Information("Final List with Nearest sorted items being returned from TailorListingBL method with in TailorBLL class. Data = " + String.Join(";", result.Select(o => o.ToString())));
+
                         return result;
                     }
                 }
@@ -79,6 +96,7 @@ namespace TailorBL.BLTailor
             }
             catch (Exception ex)
             {
+                logger.Error("Error occurred in TailorListingBL methind with in TailorBLL class. Error =" + ex.Message);
                 return null;
             }
         }

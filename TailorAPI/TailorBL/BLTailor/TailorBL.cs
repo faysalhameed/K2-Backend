@@ -1,5 +1,7 @@
-﻿using System;
+﻿using logginglibrary;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TailorBO.BOTailor;
@@ -10,17 +12,26 @@ namespace TailorBL.BLTailor
 {
     public class TailorBL
     {
+        private ILog logger;
+        public TailorBL(ILog templogger)
+        {
+            this.logger = templogger;
+        }
         public async Task<List<TailorBOResponse>> TailorListingBL(TailorEntityBO obj)
         {
             try
             {
-                TailorDALClass objDal = new TailorDALClass();
+                TailorDALClass objDal = new TailorDALClass(logger);
                 if(string.IsNullOrEmpty(obj.city))
                 {
                     obj.city = "all";
                 }
                 var result = await objDal.TailorListingfunction(obj.city, obj.listingcount);
-                if(result != null && result.Count > 0)
+
+                logger.Information("Calling Tailor Listing Data Layer Object within TailorListingBL Method inside Class TailoBL.");
+
+
+                if (result != null && result.Count > 0)
                 {
                     if(obj.searchtype == "top")
                     {
@@ -51,6 +62,10 @@ namespace TailorBL.BLTailor
                                 tailorlongitude = result[i].tailorlongitude,
                                 tailorrating = result[i].tailorrating
                             });
+
+                            logger.Information("Nearest Item added in lstSort List in method TailorListingBL in class TailorBL");
+
+
                         }
                         lstSort.Sort((x, y) => x.DistanceSort.CompareTo(y.DistanceSort));
                         result = null;
@@ -67,13 +82,20 @@ namespace TailorBL.BLTailor
                                 tailorrating = lstSort[i].tailorrating
                             });
                         }
+
+                        logger.Information("Return sorted Nearest item List with in  Business Layer Object within TailorListingBL Method inside Class TailorBL. Data = " + String.Join(";", result.Select(o => o.ToString())));
+
                         return result;
                     }
                 }
+
+                logger.Information("Nothing to return in Nearest sorted list." + String.Join(";", result.Select(o => o.ToString())));
+
                 return null;
             }
             catch (Exception ex)
             {
+                logger.Error("Error Occurred in TailorListingBL methond in class TailorBL. Error = " + ex.Message);
                 return null;
             }
         }

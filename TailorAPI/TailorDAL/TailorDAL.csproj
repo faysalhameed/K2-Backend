@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\logginglibrary\logginglibrary.csproj" />
     <ProjectReference Include="..\TailorBO\TailorBO.csproj" />
   </ItemGroup>
 

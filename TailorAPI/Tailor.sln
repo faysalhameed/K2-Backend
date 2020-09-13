@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TailorBL", "TailorBL\Tailor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TailorAPI", "TailorAPI\TailorAPI.csproj", "{1A88D976-4047-4F3B-ACA1-6DEE289EB4FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TailorCommon", "TailorCommon\TailorCommon.csproj", "{28BE995C-121B-44AD-8C43-223EBB998DAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TailorCommon", "TailorCommon\TailorCommon.csproj", "{28BE995C-121B-44AD-8C43-223EBB998DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logginglibrary", "logginglibrary\logginglibrary.csproj", "{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{28BE995C-121B-44AD-8C43-223EBB998DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28BE995C-121B-44AD-8C43-223EBB998DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28BE995C-121B-44AD-8C43-223EBB998DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

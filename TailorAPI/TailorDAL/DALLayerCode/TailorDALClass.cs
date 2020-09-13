@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using logginglibrary;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TailorBO.BOPromotion;
@@ -11,12 +13,17 @@ namespace TailorDAL.DALLayerCode
 {
     public class TailorDALClass
     {
+        private ILog logger;
+        public TailorDALClass(ILog templogger)
+        {
+            this.logger = templogger;
+        }
         public async Task<List<TailorBOResponse>> TailorListingfunction(string city, int listingCount)
         {
             try
             {
                 List<TailorBOResponse> lst = new List<TailorBOResponse>();
-                using (var dbContext = new TailorContext())
+                using (var dbContext = new TailorContext(logger))
                 {
                     using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
                     {
@@ -52,6 +59,8 @@ namespace TailorDAL.DALLayerCode
                                 }
                             }
                         }
+
+                        logger.Information("Returning list of tailors from tailor database by calling procedure sp_RetrieveTailorListing from TailorListingfunction method with in class TailorDALClass. Data = " + String.Join(";", lst.Select(o => o.ToString())));
                         return lst;
                     }
                 }
@@ -59,6 +68,8 @@ namespace TailorDAL.DALLayerCode
             catch (Exception ex)
             {
                 //logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "SaveUser", DateTime.Now.ToString(), ex.ToString()));
+                logger.Error("ERROR while fetching TAILOR LISTINGS from TailorListingfunction method with in class TailorDALClass. Error =" + ex.Message);
+
                 return null;
                 // return null; // also we can log exception through common layer }
             }
@@ -69,7 +80,7 @@ namespace TailorDAL.DALLayerCode
             try
             {
                 List<PromotionBOResponse> lst = new List<PromotionBOResponse>();
-                using (var dbContext = new TailorContext())
+                using (var dbContext = new TailorContext(logger))
                 {
                     using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
                     {
@@ -111,6 +122,9 @@ namespace TailorDAL.DALLayerCode
                                 }
                             }
                         }
+
+                        logger.Information("Returning list of promotions from tailor database by calling procedure sp_RetrievePromotions from PromotionListingfunction method with in class TailorDALClass. Data = " + String.Join(";", lst.Select(o => o.ToString())));
+
                         return lst;
                     }
                 }
@@ -118,6 +132,8 @@ namespace TailorDAL.DALLayerCode
             catch (Exception ex)
             {
                 //logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "SaveUser", DateTime.Now.ToString(), ex.ToString()));
+
+                logger.Error("ERROR while fetching promotions from PromotionListingfunction method with in class TailorDALClass. Error =" + ex.Message);
                 return null;
                 // return null; // also we can log exception through common layer }
             }

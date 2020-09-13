@@ -1,4 +1,5 @@
-﻿using System;
+﻿using logginglibrary;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,13 +10,22 @@ namespace TailorBL.BLPromotion
 {
     public class PromotionBL
     {
+        private ILog logger;
+
+        public PromotionBL(ILog templogger)
+        {
+            this.logger = templogger;
+        }
         public async Task<List<PromotionBOResponse>> getPromotions(PromotionBO obj)
         {
             try
             {
-                TailorDALClass objdal = new TailorDALClass();
+                TailorDALClass objdal = new TailorDALClass(logger);
                 var result = await objdal.PromotionListingfunction(obj.city, obj.listingcount, obj.gender);
-                if(result != null)
+
+                logger.Information("Calling Promotion Listing Data Layer Object within getPromotions Method inside Class PromotionBL.");
+
+                if (result != null)
                 {
                     return result;
                 }
