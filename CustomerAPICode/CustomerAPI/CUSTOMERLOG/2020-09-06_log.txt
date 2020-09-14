@@ -113,3 +113,213 @@ Request Body :{
 Request DateTime :9/6/2020 1:19:26 AM
 ===================================================================
 
+2020-09-06 19:57:15.8266 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/6/2020 7:57:15 PM
+===================================================================
+
+2020-09-06 19:58:01.5971 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": {"emailaddress":"hassanrazathegreat@gmail.com","phonenumber":"","customermobilenumber":"","userpassword":"962012d09b8170d912f0669f6d7d9d07","deviceid":"ae0a43fd57191097","devicetype":"android","authenticationmedium":"custom"}
+}
+
+Request DateTime :9/6/2020 7:58:01 PM
+===================================================================
+
+2020-09-06 19:58:23.4878 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": {"emailaddress":"hassanrazathegreat@gmail.com","phonenumber":"","customermobilenumber":"","userpassword":"962012d09b8170d912f0669f6d7d9d0","deviceid":"ae0a43fd57191097","devicetype":"android","authenticationmedium":"custom"}
+}
+
+Request DateTime :9/6/2020 7:58:23 PM
+===================================================================
+
+2020-09-06 19:58:30.6864 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": {"emailaddress":"hassanrazathegreat@gmail.com","phonenumber":"","customermobilenumber":"","userpassword":"962012d09b8170d912f0669f6d7d9d07","deviceid":"ae0a43fd57191097","devicetype":"android","authenticationmedium":"custom"}
+}
+
+Request DateTime :9/6/2020 7:58:30 PM
+===================================================================
+
+2020-09-06 19:59:17.4722 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": 
+    {
+        "emailaddress":"hassanrazathegreat@gmail.com",
+        "phonenumber":"",
+        "customermobilenumber":"",
+        "userpassword":"962012d09b8170d912f0669f6d7d9d07",
+        "deviceid":"1234567890",
+        "devicetype":"android",
+        "authenticationmedium":"custom"
+    }
+}
+
+Request DateTime :9/6/2020 7:59:17 PM
+===================================================================
+
+2020-09-06 20:01:40.6843 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": 
+    {
+        "emailaddress":"faysalbth@gmail.com",
+        "phonenumber":"",
+        "customermobilenumber":"",
+        "userpassword":"12345",
+        "deviceid":"123456789",
+        "devicetype":"android",
+        "authenticationmedium":"custom"
+    }
+}
+
+Request DateTime :9/6/2020 8:01:40 PM
+===================================================================
+
+2020-09-06 20:01:46.7051 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": 
+    {
+        "emailaddress":"faysalbth@gmail.com",
+        "phonenumber":"",
+        "customermobilenumber":"",
+        "userpassword":"123456",
+        "deviceid":"123456789",
+        "devicetype":"android",
+        "authenticationmedium":"custom"
+    }
+}
+
+Request DateTime :9/6/2020 8:01:46 PM
+===================================================================
+
+2020-09-06 20:03:28.0340 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "6A87310E",
+"deviceid" : "123456789",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :9/6/2020 8:03:28 PM
+===================================================================
+
+2020-09-06 20:03:43.0558 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdate" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "6A87310E",
+"deviceid" : "123456789",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :9/6/2020 8:03:43 PM
+===================================================================
+
+2020-09-06 20:04:15.7940 INFO Request Type :POST
+Request EndPoint :/api/user/OTPVerification
+Request Body :{
+"userdata" :
+{
+"customeremailaddress" : "faysalbth@gmail.com",
+"customermobilenumber" : "",
+"otptype" : "logintime",
+"otp" : "6A87310E",
+"deviceid" : "123456789",
+"devicetype" : "android"
+}
+}
+
+Request DateTime :9/6/2020 8:04:15 PM
+===================================================================
+
+2020-09-06 20:04:48.5261 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": 
+    {
+        "emailaddress":"faysalbth@gmail.com",
+        "phonenumber":"",
+        "customermobilenumber":"",
+        "userpassword":"123456",
+        "deviceid":"123456789",
+        "devicetype":"android",
+        "authenticationmedium":"custom"
+    }
+}
+
+Request DateTime :9/6/2020 8:04:48 PM
+===================================================================
+
+2020-09-06 20:05:53.2318 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": 
+    {
+        "emailaddress":"faysalbth@gmail.com",
+        "phonenumber":"",
+        "customermobilenumber":"",
+        "userpassword":"123456",
+        "deviceid":"123456789",
+        "devicetype":"android",
+        "authenticationmedium":"custom"
+    }
+}
+
+Request DateTime :9/6/2020 8:05:53 PM
+===================================================================
+
+2020-09-06 20:06:20.7596 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": 
+    {
+        "emailaddress":"faysalbth@gmail.com",
+        "phonenumber":"",
+        "customermobilenumber":"",
+        "userpassword":"123456",
+        "deviceid":"123456789",
+        "devicetype":"android",
+        "authenticationmedium":"custom"
+    }
+}
+
+Request DateTime :9/6/2020 8:06:20 PM
+===================================================================
+
+2020-09-06 20:24:52.0518 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "logindata": 
+    {
+        "emailaddress":"faysalbth@gmail.com",
+        "phonenumber":"",
+        "customermobilenumber":"",
+        "userpassword":"123456",
+        "deviceid":"123456789",
+        "devicetype":"android",
+        "authenticationmedium":"custom"
+    }
+}
+
+Request DateTime :9/6/2020 8:24:52 PM
+===================================================================
+

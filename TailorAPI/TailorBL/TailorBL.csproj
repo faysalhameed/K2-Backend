@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TailorBO\TailorBO.csproj" />
+    <ProjectReference Include="..\TailorCommon\TailorCommon.csproj" />
+    <ProjectReference Include="..\TailorDAL\TailorDAL.csproj" />
+  </ItemGroup>
+
+</Project>

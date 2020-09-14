@@ -631,11 +631,10 @@ namespace CustomerAPI.Controllers
 
 
         // First the backend will check sessiontoken and deviceid existance in customerDB in customerloginactivities table.
-        // Then the backend will connect to tailordatabase and fetch tailor listings. I have created the tailorDB on live server.
-        // if the searchtype = 'top' then just call the "sp_RetrieveTailorListing" procedure
-        // if the searchtype = 'nearest' then call the "sp_RetrieveTailorListing" procedure and then call private function (see region: 'privatenearestdistancecalculatingmethods' below) for calculating distance.
-        // If after figuring our distance for all the tailors then sort the tailor data based on distance. Lowest distance data will come first.
-        // Send the listing back to app
+        // Then the backend will call the tailorapi and fetch tailor listings.
+        // if the searchtype = 'top' then call the tailor listing api with searchtype = 'top'
+        // if the searchtype = 'nearest' then call the tailor listing api with searchtype = 'nearest'
+        // Get the JSON from the tailor api response and generate a response for the app       
 
         //Request:
 
@@ -688,8 +687,8 @@ namespace CustomerAPI.Controllers
         #region PromotionListing
 
         // For this Api. you need to first check the sessiontoken and deviceid existance in customerDb in customerloginactivities table.
-        // Secondly you need to connect to TailorDB and call the Stored procedure 'sp_RetrievePromotions'
-        // Return the data back to app
+        // Secondly you need to call the tailorapi promotionlisting
+        // Get the json from the promotionlisting api and generate a response for the app
 
         //Request:
         // {
@@ -732,7 +731,7 @@ namespace CustomerAPI.Controllers
         //  }			
         // }
 
-        #endregion
+        #endregion      
 
         #region privatenearestdistancecalculatingmethods
         private double distance(double lat1, double lon1, double lat2, double lon2, string unit)
@@ -775,47 +774,6 @@ namespace CustomerAPI.Controllers
         {
             return (rad / Math.PI * 180.0);
         }
-        #endregion
-
-        #region Authorizd device
-
-        public IActionResult DeviceVerification(DeviceVerificationBOContainer Param)
-        {
-            try
-            {
-                if (Param == null || Param.userdata == null  || string.IsNullOrEmpty(Param.userdata.deviceid))
-                {
-                    return BadRequest();
-                }
-
-                DeviceBL objBL = new DeviceBL();
-                var response =  objBL.VerifyDevice(Param.userdata);
-                if(response != null)
-                {
-                    if(response.responsecode > 0)
-                    {
-                        var objData = new { issuccessfull = true, responsemessage = "verified device" };
-                        return new OkObjectResult(objData);
-                    }
-                    else
-                    {
-                        var objData = new { issuccessfull = false, responsemessage = "UnAuthentic Device" };
-                        return new OkObjectResult(objData);
-                    }
-                    
-                }
-                else
-                {
-                    var objData = new { issuccessfull = false, responsemessage = "UnAuthentic Device" };
-                    return new OkObjectResult(objData);
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest();
-            }
-        }
-
         #endregion
 
 

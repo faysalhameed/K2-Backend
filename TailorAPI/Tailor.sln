@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TailorBO", "TailorBO\TailorBO.csproj", "{389FE156-071C-44D5-B518-3FCCF987502A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TailorDAL", "TailorDAL\TailorDAL.csproj", "{6FAD309D-8C21-466C-A617-D8D288507945}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TailorBL", "TailorBL\TailorBL.csproj", "{7DADED8C-60A9-4424-BF4E-4AC311160F40}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TailorAPI", "TailorAPI\TailorAPI.csproj", "{1A88D976-4047-4F3B-ACA1-6DEE289EB4FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TailorCommon", "TailorCommon\TailorCommon.csproj", "{28BE995C-121B-44AD-8C43-223EBB998DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "logginglibrary", "logginglibrary\logginglibrary.csproj", "{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{389FE156-071C-44D5-B518-3FCCF987502A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{389FE156-071C-44D5-B518-3FCCF987502A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{389FE156-071C-44D5-B518-3FCCF987502A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{389FE156-071C-44D5-B518-3FCCF987502A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6FAD309D-8C21-466C-A617-D8D288507945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6FAD309D-8C21-466C-A617-D8D288507945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6FAD309D-8C21-466C-A617-D8D288507945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6FAD309D-8C21-466C-A617-D8D288507945}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DADED8C-60A9-4424-BF4E-4AC311160F40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DADED8C-60A9-4424-BF4E-4AC311160F40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DADED8C-60A9-4424-BF4E-4AC311160F40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DADED8C-60A9-4424-BF4E-4AC311160F40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A88D976-4047-4F3B-ACA1-6DEE289EB4FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A88D976-4047-4F3B-ACA1-6DEE289EB4FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A88D976-4047-4F3B-ACA1-6DEE289EB4FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A88D976-4047-4F3B-ACA1-6DEE289EB4FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{28BE995C-121B-44AD-8C43-223EBB998DAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28BE995C-121B-44AD-8C43-223EBB998DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28BE995C-121B-44AD-8C43-223EBB998DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28BE995C-121B-44AD-8C43-223EBB998DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{831A84DE-7B5F-4C24-B8D7-799C2F2B6D87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2F05CCB5-F47D-474F-8695-222BA20BC4CA}
+	EndGlobalSection
+EndGlobal
