@@ -39,7 +39,8 @@ namespace CustomerBL.Tailor
                 using (var client = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(objTailor), Encoding.UTF8, "application/json");
-                    var postTask = await client.PostAsync("http://silayeebackend-001-site2.dtempurl.com/api/Tailor/TailorListing", content);
+                    var postTask = await client.PostAsync("https://localhost:44364/api/Tailor/TailorListing", content);
+                    //var postTask = await client.PostAsync("http://silayeebackend-001-site2.dtempurl.com/api/Tailor/TailorListing", content);
                     if (postTask.IsSuccessStatusCode)
                     {
                         string jsonResponse = await postTask.Content.ReadAsStringAsync();

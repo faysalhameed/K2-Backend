@@ -1,0 +1,25 @@
+2020-09-14 21:43:52.7824 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/14/2020 9:43:51 PM
+===================================================================
+
+2020-09-14 21:44:50.1967 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "male",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "devicelatitude": "",
+        "devicelongitude": "",
+        "latlongpermissionallowed": 2
+    }
+}
+Request DateTime :9/14/2020 9:44:50 PM
+===================================================================
+

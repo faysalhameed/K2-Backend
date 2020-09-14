@@ -1,0 +1,29 @@
+2020-09-11 21:32:29.0217 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/11/2020 9:32:27 PM
+===================================================================
+
+2020-09-11 21:40:01.4906 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/11/2020 9:40:00 PM
+===================================================================
+
+2020-09-11 21:40:53.6038 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "",
+        "devicelongitude": "",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5"
+    }
+}
+Request DateTime :9/11/2020 9:40:53 PM
+===================================================================
+

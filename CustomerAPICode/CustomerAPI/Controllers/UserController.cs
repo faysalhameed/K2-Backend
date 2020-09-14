@@ -16,6 +16,8 @@ using logginglibrary;
 using CustomerBO.Tailor;
 using CustomerBL.Tailor;
 using CustomerBO.Promotions;
+using CustomerBO.Device;
+using CustomerBL.Device;
 
 namespace CustomerAPI.Controllers
 {
@@ -556,8 +558,8 @@ namespace CustomerAPI.Controllers
                 {
                     // return faulty msg 
                     var objData = new { issuccessfull = false, responsemessage = "Token verification failed", tailorlist = (string) null };
-                    var FaultyMsg = new { reponse = objData };
-                    return new OkObjectResult(FaultyMsg);
+                    //var FaultyMsg = new { reponse = objData };
+                    return new OkObjectResult(objData);
                 }
                 else
                 {
@@ -566,14 +568,14 @@ namespace CustomerAPI.Controllers
                     if(result != null)
                     {
                         var objData = new { issuccessfull = true, responsemessage = "successfully fetch list", tailorlist = result };
-                        var SuccessObj = new { reponse = objData };
-                        return new OkObjectResult(SuccessObj);
+                        //var SuccessObj = new { reponse = objData };
+                        return new OkObjectResult(objData);
                     }
                     else
                     {
                         var objData = new { issuccessfull = false, responsemessage = "Error while fetching list", tailorlist = (string)null };
-                        var FaultyMsg = new { reponse = objData };
-                        return new OkObjectResult(FaultyMsg);
+                        //var FaultyMsg = new { reponse = objData };
+                        return new OkObjectResult(objData);
                     }
                 }    
                 
@@ -599,8 +601,8 @@ namespace CustomerAPI.Controllers
                 {
                     // return faulty msg 
                     var objData = new { issuccessfull = false, responsemessage = "Token verification failed", promotionlist = (string)null };
-                    var FaultyMsg = new { reponse = objData };
-                    return new OkObjectResult(FaultyMsg);
+                    //var FaultyMsg = new { reponse = objData };
+                    return new OkObjectResult(objData);
                 }
                 else
                 {
@@ -609,14 +611,14 @@ namespace CustomerAPI.Controllers
                     if (result != null)
                     {
                         var objData = new { issuccessfull = true, responsemessage = "successfully fetch list", promotionlist = result };
-                        var SuccessObj = new { reponse = objData };
-                        return new OkObjectResult(SuccessObj);
+                        //var SuccessObj = new { reponse = objData };
+                        return new OkObjectResult(objData);
                     }
                     else
                     {
                         var objData = new { issuccessfull = false, responsemessage = "Error while fetching list", promotionlist = (string)null };
-                        var FaultyMsg = new { reponse = objData };
-                        return new OkObjectResult(FaultyMsg);
+                        //var FaultyMsg = new { reponse = objData };
+                        return new OkObjectResult(objData);
                     }
                 }
 
@@ -773,6 +775,47 @@ namespace CustomerAPI.Controllers
         {
             return (rad / Math.PI * 180.0);
         }
+        #endregion
+
+        #region Authorizd device
+
+        public IActionResult DeviceVerification(DeviceVerificationBOContainer Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null  || string.IsNullOrEmpty(Param.userdata.deviceid))
+                {
+                    return BadRequest();
+                }
+
+                DeviceBL objBL = new DeviceBL();
+                var response =  objBL.VerifyDevice(Param.userdata);
+                if(response != null)
+                {
+                    if(response.responsecode > 0)
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "verified device" };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, responsemessage = "UnAuthentic Device" };
+                        return new OkObjectResult(objData);
+                    }
+                    
+                }
+                else
+                {
+                    var objData = new { issuccessfull = false, responsemessage = "UnAuthentic Device" };
+                    return new OkObjectResult(objData);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
         #endregion
 
 

@@ -15,6 +15,7 @@ namespace CustomerBO.Tailor
         public int listingcount { get; set; }
         public string deviceid { get; set; }
         public string devicetype { get; set; }
+        public int latlongpermissionallowed { get; set; }
     }
 
     public class TailorBOContainer
