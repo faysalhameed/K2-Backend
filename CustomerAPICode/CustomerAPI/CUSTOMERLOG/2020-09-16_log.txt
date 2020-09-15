@@ -1,0 +1,20 @@
+2020-09-16 00:00:42.5318 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"type" : "all", 
+			"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3"
+		}
+}
+Request DateTime :9/16/2020 12:00:42 AM
+===================================================================
+

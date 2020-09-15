@@ -1,5 +1,7 @@
 ﻿using CustomerBO.Device;
+using CustomerDAL.Logging;
 using CustomerDAL.Models;
+using logginglibrary;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,6 +11,13 @@ namespace CustomerDAL.Device
 {
     public class DeviceDAL
     {
+        private ILog logger;
+
+        public DeviceDAL(ILog templogger)
+        {
+            this.logger = templogger;
+        }
+
         public  DeviceBOResponse AuthDeviceID(string deviceID)
         {
             try
@@ -43,6 +52,7 @@ namespace CustomerDAL.Device
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("DeviceDAL", "AuthDeviceID", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }

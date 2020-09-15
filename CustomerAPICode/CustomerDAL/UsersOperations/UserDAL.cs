@@ -716,6 +716,7 @@ namespace CustomerDAL.UsersOperations
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "VerifyToken", DateTime.Now.ToString(), ex.ToString()));
                 return -1;
             }
         }

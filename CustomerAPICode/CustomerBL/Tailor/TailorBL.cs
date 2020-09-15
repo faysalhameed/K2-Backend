@@ -1,5 +1,7 @@
 ﻿using CustomerBO.Promotions;
 using CustomerBO.Tailor;
+using CustomerDAL.Logging;
+using logginglibrary;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,6 +13,13 @@ namespace CustomerBL.Tailor
 {
     public class TailorBL
     {
+        private ILog logger;
+
+        public TailorBL(ILog templogger)
+        {
+            this.logger = templogger;
+        }
+
         public async Task<List<Tailorlist>> GetTailorData(TailorBOContainer objTailor)
         {
             try
@@ -28,6 +37,7 @@ namespace CustomerBL.Tailor
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("TailorBL", "GetTailorData", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }
@@ -39,8 +49,8 @@ namespace CustomerBL.Tailor
                 using (var client = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(objTailor), Encoding.UTF8, "application/json");
-                    var postTask = await client.PostAsync("https://localhost:44364/api/Tailor/TailorListing", content);
-                    //var postTask = await client.PostAsync("http://silayeebackend-001-site2.dtempurl.com/api/Tailor/TailorListing", content);
+                    //var postTask = await client.PostAsync("https://localhost:44364/api/Tailor/TailorListing", content);
+                    var postTask = await client.PostAsync("http://silayeebackend-001-site2.dtempurl.com/api/Tailor/TailorListing", content);
                     if (postTask.IsSuccessStatusCode)
                     {
                         string jsonResponse = await postTask.Content.ReadAsStringAsync();
@@ -51,6 +61,7 @@ namespace CustomerBL.Tailor
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("TailorBL", "CallTailorAPI", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }
@@ -73,6 +84,7 @@ namespace CustomerBL.Tailor
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("TailorBL", "GetPromotionData", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }

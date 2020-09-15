@@ -1,5 +1,7 @@
 ﻿using CustomerBO.Device;
 using CustomerDAL.Device;
+using CustomerDAL.Logging;
+using logginglibrary;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,11 +11,18 @@ namespace CustomerBL.Device
 {
     public class DeviceBL
     {
+        private ILog logger;
+
+        public DeviceBL(ILog templogger)
+        {
+            this.logger = templogger;
+        }
+
         public DeviceBOResponse VerifyDevice(DeviceVerificationBO obj)
         {
             try
             {
-                DeviceDAL objdal = new DeviceDAL();
+                DeviceDAL objdal = new DeviceDAL(logger);
                 var result = objdal.AuthDeviceID(obj.deviceid);
                 if(result != null)
                 {
@@ -23,6 +32,7 @@ namespace CustomerBL.Device
             }
             catch (Exception ex)
             {
+                logger.Error(LogUserLogin.CreateErrorMsg("DeviceBL", "VerifyDevice", DateTime.Now.ToString(), ex.ToString()));
                 return null;
             }
         }

@@ -18,6 +18,8 @@ using CustomerBL.Tailor;
 using CustomerBO.Promotions;
 using CustomerBO.Device;
 using CustomerBL.Device;
+using CustomerBO.TopDress;
+using CustomerBL.Dress;
 
 namespace CustomerAPI.Controllers
 {
@@ -563,7 +565,7 @@ namespace CustomerAPI.Controllers
                 }
                 else
                 {
-                    TailorBL objTailor = new TailorBL();
+                    TailorBL objTailor = new TailorBL(logger);
                     var result = await objTailor.GetTailorData(Param);
                     if(result != null)
                     {
@@ -606,7 +608,7 @@ namespace CustomerAPI.Controllers
                 }
                 else
                 {
-                    TailorBL objTailor = new TailorBL();
+                    TailorBL objTailor = new TailorBL(logger);
                     var result = await objTailor.GetPromotionData(Param);
                     if (result != null)
                     {
@@ -774,6 +776,92 @@ namespace CustomerAPI.Controllers
         {
             return (rad / Math.PI * 180.0);
         }
+        #endregion
+
+
+        #region Authorizd device
+
+        public IActionResult DeviceVerification(DeviceVerificationBOContainer Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null || string.IsNullOrEmpty(Param.userdata.deviceid))
+                {
+                    return BadRequest();
+                }
+
+                DeviceBL objBL = new DeviceBL(logger);
+                var response = objBL.VerifyDevice(Param.userdata);
+                if (response != null)
+                {
+                    if (response.responsecode > 0)
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "verified device" };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, responsemessage = "UnAuthentic Device" };
+                        return new OkObjectResult(objData);
+                    }
+
+                }
+                else
+                {
+                    var objData = new { issuccessfull = false, responsemessage = "UnAuthentic Device" };
+                    return new OkObjectResult(objData);
+                }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
+        #region Top Dress API
+
+        public async Task<IActionResult> FetchTopDress(TopDressBOContainer Param)
+        {
+            try
+            {
+                if(Param == null || Param.userdata == null)
+                {
+                    return BadRequest();
+                }
+                DressBL objBL = new DressBL(logger);
+                var result = await objBL.GetTopDress(Param.userdata);
+                if(result != null)
+                {
+                    if(result.Item2 > 0 || result.Item2 == -2)
+                    {
+                        var objData = new { issuccessfull = true, topdresslist = result.Item1, responsemessage = "Successfully Fetch" };
+                        return new OkObjectResult(objData);
+                    }
+                    else if(result.Item2 == -1)
+                    {
+                        var objData = new { issuccessfull = false, topdresslist = (string) null, responsemessage = "Device Authentication failed" };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, topdresslist = (string)null, responsemessage = "Failed to fetch data..." };
+                        return new OkObjectResult(objData);
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserController", "FetchTopDress", DateTime.Now.ToString(), ex.ToString()));
+                return BadRequest();
+            }
+        }
+
         #endregion
 
 
