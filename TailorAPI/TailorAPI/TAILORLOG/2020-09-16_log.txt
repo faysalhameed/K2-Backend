@@ -1,0 +1,222 @@
+2020-09-16 23:28:09.8577 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/16/2020 11:28:09 PM
+===================================================================
+
+2020-09-16 23:29:27.2097 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/16/2020 11:29:26 PM
+===================================================================
+
+2020-09-16 23:30:13.8419 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all"
+    }
+}
+Request DateTime :9/16/2020 11:30:13 PM
+===================================================================
+
+2020-09-16 23:30:46.5131 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all"
+    }
+}
+Request DateTime :9/16/2020 11:30:46 PM
+===================================================================
+
+2020-09-16 23:35:21.4470 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/16/2020 11:35:21 PM
+===================================================================
+
+2020-09-16 23:37:51.9513 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all"
+    }
+}
+Request DateTime :9/16/2020 11:37:51 PM
+===================================================================
+
+2020-09-16 23:43:17.8806 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/16/2020 11:43:17 PM
+===================================================================
+
+2020-09-16 23:43:30.0611 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all"
+    }
+}
+Request DateTime :9/16/2020 11:43:30 PM
+===================================================================
+
+2020-09-16 23:43:37.4755 INFO Opening connection to TailorDB.
+2020-09-16 23:43:46.3117 INFO Returning list of tailors from tailor database by calling procedure sp_RetrieveTailorListing from TailorListingfunction method with in class TailorDALClass. Data = TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse
+2020-09-16 23:43:46.3927 INFO Tailor listing function of Tailor data layer called from TailorListingB method in TailorBLL class. Data = TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse
+2020-09-16 23:43:46.5495 INFO Calling Tailor Business Layer Object within TailorListing Method inside Class TailorController. Data = TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse
+2020-09-16 23:43:57.4979 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all"
+    }
+}
+Request DateTime :9/16/2020 11:43:57 PM
+===================================================================
+
+2020-09-16 23:45:02.5476 INFO Opening connection to TailorDB.
+2020-09-16 23:45:05.6799 INFO Returning list of tailors from tailor database by calling procedure sp_RetrieveTailorListing from TailorListingfunction method with in class TailorDALClass. Data = TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse
+2020-09-16 23:45:05.7208 INFO Tailor listing function of Tailor data layer called from TailorListingB method in TailorBLL class. Data = TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse
+2020-09-16 23:45:05.7854 INFO Calling Tailor Business Layer Object within TailorListing Method inside Class TailorController. Data = TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse;TailorBO.BOTailor.TailorBOResponse
+2020-09-16 23:46:52.4352 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all",
+        "ageto" : "1",
+        "agefrom" : "60",
+        "name" : ""
+    }
+}
+Request DateTime :9/16/2020 11:46:52 PM
+===================================================================
+
+2020-09-16 23:47:02.5565 INFO Opening connection to TailorDB.
+2020-09-16 23:47:03.1107 INFO Returning list of tailors from tailor database by calling procedure sp_RetrieveTailorListing from TailorListingfunction method with in class TailorDALClass. Data = 
+2020-09-16 23:47:03.1413 INFO Tailor listing function of Tailor data layer called from TailorListingB method in TailorBLL class. Data = 
+2020-09-16 23:47:03.1699 INFO Calling Tailor Business Layer Object within TailorListing Method inside Class TailorController. Data = 
+2020-09-16 23:48:16.3566 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all",
+        "ageto" : "1",
+        "agefrom" : "60",
+        "name" : "hamza"
+    }
+}
+Request DateTime :9/16/2020 11:48:16 PM
+===================================================================
+
+2020-09-16 23:48:17.9909 INFO Opening connection to TailorDB.
+2020-09-16 23:48:18.3619 INFO Returning list of tailors from tailor database by calling procedure sp_RetrieveTailorListing from TailorListingfunction method with in class TailorDALClass. Data = 
+2020-09-16 23:48:18.3939 INFO Tailor listing function of Tailor data layer called from TailorListingB method in TailorBLL class. Data = 
+2020-09-16 23:48:18.4348 INFO Calling Tailor Business Layer Object within TailorListing Method inside Class TailorController. Data = 
+2020-09-16 23:48:22.6324 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all",
+        "ageto" : "1",
+        "agefrom" : "60",
+        "name" : "hamza"
+    }
+}
+Request DateTime :9/16/2020 11:48:22 PM
+===================================================================
+
+2020-09-16 23:48:35.2224 INFO Opening connection to TailorDB.
+2020-09-16 23:48:49.3840 INFO Returning list of tailors from tailor database by calling procedure sp_RetrieveTailorListing from TailorListingfunction method with in class TailorDALClass. Data = 
+2020-09-16 23:48:49.4418 INFO Tailor listing function of Tailor data layer called from TailorListingB method in TailorBLL class. Data = 
+2020-09-16 23:48:49.5244 INFO Calling Tailor Business Layer Object within TailorListing Method inside Class TailorController. Data = 
+2020-09-16 23:50:40.4293 INFO Request Type :POST
+Request EndPoint :/api/Tailor/TailorListing
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all",
+        "ageto" : "1",
+        "agefrom" : "60",
+        "name" : "ahmed"
+    }
+}
+Request DateTime :9/16/2020 11:50:40 PM
+===================================================================
+
+2020-09-16 23:50:43.9931 INFO Opening connection to TailorDB.
+2020-09-16 23:50:44.4246 INFO Returning list of tailors from tailor database by calling procedure sp_RetrieveTailorListing from TailorListingfunction method with in class TailorDALClass. Data = 
+2020-09-16 23:50:44.4928 INFO Tailor listing function of Tailor data layer called from TailorListingB method in TailorBLL class. Data = 
+2020-09-16 23:50:44.5425 INFO Calling Tailor Business Layer Object within TailorListing Method inside Class TailorController. Data = 

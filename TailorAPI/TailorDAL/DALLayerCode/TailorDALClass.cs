@@ -18,7 +18,8 @@ namespace TailorDAL.DALLayerCode
         {
             this.logger = templogger;
         }
-        public async Task<List<TailorBOResponse>> TailorListingfunction(string city, int listingCount)
+
+        public async Task<List<TailorBOResponse>> TailorListingfunction(string city, int listingCount,string Gender,string name,int agefrom , int ageto)
         {
             try
             {
@@ -27,7 +28,7 @@ namespace TailorDAL.DALLayerCode
                 {
                     using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
                     {
-                        cmd.CommandText = "sp_RetrieveTailorListing";
+                        cmd.CommandText = "sp_RetrieveTailorListingAdvanced";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         var cityParam = cmd.CreateParameter();
@@ -39,6 +40,89 @@ namespace TailorDAL.DALLayerCode
                         listingParam.ParameterName = "listingcount";
                         listingParam.Value = listingCount;
                         cmd.Parameters.Add(listingParam);
+
+                        var GenderParam = cmd.CreateParameter();
+                        GenderParam.ParameterName = "gender";
+                        GenderParam.Value = Gender;
+                        cmd.Parameters.Add(GenderParam);
+
+                        var NameParam = cmd.CreateParameter();
+                        NameParam.ParameterName = "name";
+                        NameParam.Value = name;
+                        cmd.Parameters.Add(NameParam);
+
+                        var AgetoParam = cmd.CreateParameter();
+                        AgetoParam.ParameterName = "ageto";
+                        AgetoParam.Value = ageto;
+                        cmd.Parameters.Add(AgetoParam);
+
+                        var AgeFromParam = cmd.CreateParameter();
+                        AgeFromParam.ParameterName = "agefrom";
+                        AgeFromParam.Value = agefrom;
+                        cmd.Parameters.Add(AgeFromParam);
+
+                        await dbContext.Database.OpenConnectionAsync();
+
+                        using (var reader = await cmd.ExecuteReaderAsync())
+                        {
+                            if (reader.HasRows)
+                            {
+                                while (reader.Read())
+                                {
+                                    lst.Add(new TailorBOResponse()
+                                    {
+                                        tailorid = Convert.ToInt32(reader["Tailorid"]),
+                                        tailorcompanytitle = reader["Tailorcompanytitle"].ToString(),
+                                        tailorcompanyimage = reader["Tailorcompanyimage"].ToString(),
+                                        tailorrating = reader["Tailorrating"].ToString(),
+                                        tailorlatitude = reader["Tailorlatitude"].ToString(),
+                                        tailorlongitude = reader["Tailorlongitude"].ToString()
+                                    });
+                                }
+                            }
+                        }
+
+                        logger.Information("Returning list of tailors from tailor database by calling procedure sp_RetrieveTailorListing from TailorListingfunction method with in class TailorDALClass. Data = " + String.Join(";", lst.Select(o => o.ToString())));
+                        return lst;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //logger.Error(LogUserLogin.CreateErrorMsg("UserDAL", "SaveUser", DateTime.Now.ToString(), ex.ToString()));
+                logger.Error("ERROR while fetching TAILOR LISTINGS from TailorListingfunction method with in class TailorDALClass. Error =" + ex.Message);
+
+                return null;
+                // return null; // also we can log exception through common layer }
+            }
+        }
+
+        public async Task<List<TailorBOResponse>> TailorListingfunction(string city, int listingCount,string Gender)
+        {
+            try
+            {
+                List<TailorBOResponse> lst = new List<TailorBOResponse>();
+                using (var dbContext = new TailorContext(logger))
+                {
+                    using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
+                    {
+                        cmd.CommandText = "sp_RetrieveTailorListingAdvanced";
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        var cityParam = cmd.CreateParameter();
+                        cityParam.ParameterName = "city";
+                        cityParam.Value = city;
+                        cmd.Parameters.Add(cityParam);
+
+                        var listingParam = cmd.CreateParameter();
+                        listingParam.ParameterName = "listingcount";
+                        listingParam.Value = listingCount;
+                        cmd.Parameters.Add(listingParam);
+
+                        var GenderParam = cmd.CreateParameter();
+                        GenderParam.ParameterName = "gender";
+                        GenderParam.Value = Gender;
+                        cmd.Parameters.Add(GenderParam);
 
                         await dbContext.Database.OpenConnectionAsync();
 

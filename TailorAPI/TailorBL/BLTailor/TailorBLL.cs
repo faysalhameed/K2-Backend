@@ -26,7 +26,26 @@ namespace TailorBL.BLTailor
                 {
                     obj.city = "all";
                 }
-                var result = await objDal.TailorListingfunction(obj.city, obj.listingcount);
+
+                if (obj.latlongpermissionallowed == 1 || obj.latlongpermissionallowed == 2)
+                {
+                    obj.searchtype = "top";
+                }
+
+                var result = new List<TailorBOResponse>();
+                if (!string.IsNullOrEmpty(obj.ageto) && !string.IsNullOrEmpty(obj.agefrom))
+                {
+                    int ageto, agefrom = -1;
+                    int.TryParse(obj.ageto, out ageto);
+                    int.TryParse(obj.agefrom, out agefrom);
+                    result = await objDal.TailorListingfunction(obj.city, obj.listingcount,obj.gender,obj.name,agefrom,ageto);
+                }
+                else
+                {
+                    result = await objDal.TailorListingfunction(obj.city, obj.listingcount, obj.gender);
+                }
+
+                 
 
                 logger.Information("Tailor listing function of Tailor data layer called from TailorListingB method in TailorBLL class. Data = " + String.Join(";", result.Select(o => o.ToString())));
 

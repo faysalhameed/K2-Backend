@@ -16,6 +16,10 @@ namespace CustomerBO.Tailor
         public string deviceid { get; set; }
         public string devicetype { get; set; }
         public int latlongpermissionallowed { get; set; }
+        public string gender { get; set; }
+        public string agefrom { get; set; }
+        public string ageto { get; set; }
+        public string name { get; set; }
     }
 
     public class TailorBOContainer

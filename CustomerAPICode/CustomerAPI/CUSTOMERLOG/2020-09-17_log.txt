@@ -1,0 +1,398 @@
+2020-09-17 21:37:40.4109 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/17/2020 9:37:39 PM
+===================================================================
+
+2020-09-17 21:37:56.5021 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "brands",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:37:56 PM
+===================================================================
+
+2020-09-17 21:39:51.7596 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "all",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "all",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:39:51 PM
+===================================================================
+
+2020-09-17 21:41:05.6232 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "brands",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:41:05 PM
+===================================================================
+
+2020-09-17 21:41:52.5349 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "all",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:41:52 PM
+===================================================================
+
+2020-09-17 21:42:23.5680 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "all",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "all",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:42:23 PM
+===================================================================
+
+2020-09-17 21:43:27.3991 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "all",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "all",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:43:27 PM
+===================================================================
+
+2020-09-17 21:44:48.2824 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "all",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "all",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "all",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:44:48 PM
+===================================================================
+
+2020-09-17 21:45:45.9281 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "all",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "all",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "all",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:45:45 PM
+===================================================================
+
+2020-09-17 21:47:08.5299 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "all",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "all",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:47:08 PM
+===================================================================
+
+2020-09-17 21:47:28.0099 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "all",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "all",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:47:28 PM
+===================================================================
+
+2020-09-17 21:47:33.5950 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "all",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "all",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "",
+        "type": "",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:47:33 PM
+===================================================================
+
+2020-09-17 21:51:28.9374 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "dresscategory": "all",
+        "gender": "",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "type": "all",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "listingcount": "5"
+    }
+}
+Request DateTime :9/17/2020 9:51:28 PM
+===================================================================
+
+2020-09-17 21:53:36.8093 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "gender": "all",
+        "latlongpermissionallowed": 2,
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "dresscategory": "all",
+        "listingcount": "5",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "type": "all",
+        "devicetype": "android"
+    }
+}
+Request DateTime :9/17/2020 9:53:36 PM
+===================================================================
+
+2020-09-17 21:58:12.5816 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "dresscategory": "all",
+        "gender": "all",
+        "agefrom": "",
+        "ageto": "",
+        "area": "all",
+        "devicelatitude": "-1",
+        "devicelongitude": "-1",
+        "latlongpermissionallowed": 2,
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "type": "all",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "listingcount": "5",
+        "searchtype": "top"
+    }
+}
+Request DateTime :9/17/2020 9:58:12 PM
+===================================================================
+
+2020-09-17 22:25:53.8658 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/17/2020 10:25:52 PM
+===================================================================
+
+2020-09-17 22:26:42.8005 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all",
+        "ageto" : "60",
+        "agefrom" : "1",
+        "name" : "ahmed"
+    }
+}
+Request DateTime :9/17/2020 10:26:42 PM
+===================================================================
+
+2020-09-17 22:28:06.5668 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTailorList
+Request Body :{
+    "userdata": {
+        "customerid": "16",
+        "city": "all",
+        "devicelatitude": "34.6786",
+        "devicelongitude": "45.6766",
+        "sessiontoken": "bd96333a-b85a-4ea9-9537-c949d625d047",
+        "searchtype": "top",
+        "deviceid": "312d03f76144fbb2",
+        "listingcount": "5",
+        "gender" : "all",
+        "ageto" : "",
+        "agefrom" : "",
+        "name" : "ahmed"
+    }
+}
+Request DateTime :9/17/2020 10:28:06 PM
+===================================================================
+
