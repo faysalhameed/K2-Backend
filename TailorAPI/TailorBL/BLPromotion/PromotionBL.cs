@@ -21,7 +21,7 @@ namespace TailorBL.BLPromotion
             try
             {
                 TailorDALClass objdal = new TailorDALClass(logger);
-                var result = await objdal.PromotionListingfunction(obj.city, obj.listingcount, obj.gender);
+                var result = await objdal.PromotionListingfunction(obj);
 
                 logger.Information("Calling Promotion Listing Data Layer Object within getPromotions Method inside Class PromotionBL.");
 

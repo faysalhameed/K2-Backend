@@ -10,6 +10,14 @@ namespace TailorBO.BOPromotion
         public int listingcount { get; set; }
         public string gender { get; set; }
 
+        public int agefrom { get; set; }
+
+        public int ageto { get; set; }
+
+        public string promotionsourcetype { get; set; }
+
+        public int pagecount  {get; set;}
+
 
     }
 

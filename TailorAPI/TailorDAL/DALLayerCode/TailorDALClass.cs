@@ -159,7 +159,7 @@ namespace TailorDAL.DALLayerCode
             }
         }
 
-        public async Task<List<PromotionBOResponse>> PromotionListingfunction(string city, int listingCount, string genderType)
+        public async Task<List<PromotionBOResponse>> PromotionListingfunction(PromotionBO promotionObject)
         {
             try
             {
@@ -168,23 +168,44 @@ namespace TailorDAL.DALLayerCode
                 {
                     using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
                     {
-                        cmd.CommandText = "sp_RetrievePromotions";
+                        cmd.CommandText = "sp_RetrievePromotionsAdvanced";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         var cityParam = cmd.CreateParameter();
                         cityParam.ParameterName = "city";
-                        cityParam.Value = city;
+                        cityParam.Value = promotionObject.city;
                         cmd.Parameters.Add(cityParam);
 
                         var listingParam = cmd.CreateParameter();
                         listingParam.ParameterName = "listingcount";
-                        listingParam.Value = listingCount;
+                        listingParam.Value = promotionObject.listingcount;
                         cmd.Parameters.Add(listingParam);
 
                         var GenderParam = cmd.CreateParameter();
                         GenderParam.ParameterName = "gendertype";
-                        GenderParam.Value = genderType;
+                        GenderParam.Value = promotionObject.gender;
                         cmd.Parameters.Add(GenderParam);
+
+                        var AgefromParam = cmd.CreateParameter();
+                        AgefromParam.ParameterName = "agefrom";
+                        AgefromParam.Value = promotionObject.agefrom;
+                        cmd.Parameters.Add(AgefromParam);
+
+                        var AgetoParam = cmd.CreateParameter();
+                        AgetoParam.ParameterName = "ageto";
+                        AgetoParam.Value = promotionObject.ageto;
+                        cmd.Parameters.Add(AgetoParam);
+
+                        var PromotionsourcetypeParam = cmd.CreateParameter();
+                        PromotionsourcetypeParam.ParameterName = "type";
+                        PromotionsourcetypeParam.Value = promotionObject.promotionsourcetype;
+                        cmd.Parameters.Add(PromotionsourcetypeParam);
+
+                        var PagecountParam = cmd.CreateParameter();
+                        PagecountParam.ParameterName = "pagecount";
+                        PagecountParam.Value = promotionObject.pagecount;
+                        cmd.Parameters.Add(PagecountParam);
+
 
                         await dbContext.Database.OpenConnectionAsync();
 

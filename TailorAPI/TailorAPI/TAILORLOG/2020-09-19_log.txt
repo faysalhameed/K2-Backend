@@ -1,0 +1,71 @@
+2020-09-19 13:13:26.3484 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/19/2020 1:13:25 PM
+===================================================================
+
+2020-09-19 13:19:58.2641 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{
+    "userdata": {
+        "gender": "all",
+        "listingcount": "5",
+        "agefrom": "-1",
+        "ageto": "-1",
+        "city": "all",
+        "promotionsourcetype" : "all",
+        "pagecount" : 1
+    }
+}
+Request DateTime :9/19/2020 1:19:58 PM
+===================================================================
+
+2020-09-19 13:30:09.9386 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/19/2020 1:30:09 PM
+===================================================================
+
+2020-09-19 13:30:17.3843 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{
+    "userdata": {
+        "gender": "all",
+        "listingcount": "5",
+        "agefrom": "-1",
+        "ageto": "-1",
+        "city": "all",
+        "promotionsourcetype" : "all",
+        "pagecount" : 1
+    }
+}
+Request DateTime :9/19/2020 1:30:17 PM
+===================================================================
+
+2020-09-19 13:31:12.8458 INFO Opening connection to TailorDB.
+2020-09-19 13:33:02.3285 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/19/2020 1:33:01 PM
+===================================================================
+
+2020-09-19 13:33:20.2512 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{
+    "userdata": {
+        "gender": "all",
+        "listingcount": "5",
+        "agefrom": "-1",
+        "ageto": "-1",
+        "city": "all",
+        "promotionsourcetype" : "all",
+        "pagecount" : 1
+    }
+}
+Request DateTime :9/19/2020 1:33:20 PM
+===================================================================
+
+2020-09-19 13:33:25.7990 INFO Opening connection to TailorDB.
+2020-09-19 13:33:43.9645 INFO Returning list of promotions from tailor database by calling procedure sp_RetrievePromotions from PromotionListingfunction method with in class TailorDALClass. Data = TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse
+2020-09-19 13:33:44.0789 INFO Calling Promotion Listing Data Layer Object within getPromotions Method inside Class PromotionBL.
+2020-09-19 13:33:44.4505 INFO Calling Promotion Business Layer Object within PromotionListing Method inside Class TailorController. Data = TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse

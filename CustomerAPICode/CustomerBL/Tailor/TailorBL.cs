@@ -97,7 +97,11 @@ namespace CustomerBL.Tailor
                 {
                     city = objPromo.userdata.city,
                     listingcount = objPromo.userdata.listingcount,
-                    gender = objPromo.userdata.gender
+                    gender = objPromo.userdata.gender,
+                    agefrom = objPromo.userdata.agefrom,
+                    ageto = objPromo.userdata.ageto,
+                    promotionsourcetype = objPromo.userdata.promotionsourcetype,
+                    pagecount = objPromo.userdata.pagecount
                 };
                 var RequestObjFinal = new
                 {
