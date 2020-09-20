@@ -83,7 +83,7 @@ namespace CustomerDAL.Dress
 
                         var PagecountParam = cmd.CreateParameter();
                         PagecountParam.ParameterName = "pagecount";
-                        PagecountParam.Value = ageto;
+                        PagecountParam.Value = objParam.pagecount;
                         cmd.Parameters.Add(PagecountParam);
 
                         await dbContext.Database.OpenConnectionAsync();
