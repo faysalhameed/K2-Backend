@@ -19,7 +19,7 @@ namespace TailorDAL.DALLayerCode
             this.logger = templogger;
         }
 
-        public async Task<List<TailorBOResponse>> TailorListingfunction(string city, int listingCount,string Gender,string name,int agefrom , int ageto)
+        public async Task<List<TailorBOResponse>> TailorListingfunction(string city, int listingCount,string Gender,string name,int agefrom , int ageto,int pagecount)
         {
             try
             {
@@ -60,6 +60,11 @@ namespace TailorDAL.DALLayerCode
                         AgeFromParam.ParameterName = "agefrom";
                         AgeFromParam.Value = agefrom;
                         cmd.Parameters.Add(AgeFromParam);
+
+                        var PagecountParam = cmd.CreateParameter();
+                        PagecountParam.ParameterName = "pagecount";
+                        PagecountParam.Value = pagecount;
+                        cmd.Parameters.Add(PagecountParam);
 
                         await dbContext.Database.OpenConnectionAsync();
 

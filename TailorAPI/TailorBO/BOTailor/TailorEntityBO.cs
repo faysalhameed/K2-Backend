@@ -20,6 +20,8 @@ namespace TailorBO.BOTailor
         public string agefrom { get; set; }
         public string ageto { get; set; }
         public string name { get; set; }
+
+        public int pagecount { get; set; }
     }
 
     public class TailorEntityBOContainer

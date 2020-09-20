@@ -38,7 +38,7 @@ namespace TailorBL.BLTailor
                     int ageto, agefrom = -1;
                     int.TryParse(obj.ageto, out ageto);
                     int.TryParse(obj.agefrom, out agefrom);
-                    result = await objDal.TailorListingfunction(obj.city, obj.listingcount,obj.gender,obj.name,agefrom,ageto);
+                    result = await objDal.TailorListingfunction(obj.city, obj.listingcount,obj.gender,obj.name,agefrom,ageto,obj.pagecount);
                 }
                 else
                 {
