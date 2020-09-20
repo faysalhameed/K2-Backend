@@ -81,6 +81,11 @@ namespace CustomerDAL.Dress
                         AgeToParam.Value = ageto;
                         cmd.Parameters.Add(AgeToParam);
 
+                        var PagecountParam = cmd.CreateParameter();
+                        PagecountParam.ParameterName = "pagecount";
+                        PagecountParam.Value = ageto;
+                        cmd.Parameters.Add(PagecountParam);
+
                         await dbContext.Database.OpenConnectionAsync();
 
                         using (var reader = await cmd.ExecuteReaderAsync())
