@@ -20,6 +20,10 @@ using CustomerBO.Device;
 using CustomerBL.Device;
 using CustomerBO.TopDress;
 using CustomerBL.Dress;
+using CustomerBO.Measurements;
+using CustomerBL.Measurements;
+using CustomerBO.SaveAddress;
+using CustomerBL.SaveAddress;
 
 namespace CustomerAPI.Controllers
 {
@@ -543,7 +547,7 @@ namespace CustomerAPI.Controllers
 
         #endregion
 
-        #region TailorListing
+        #region TailorListing and promotion Listing API
         
         public async Task<IActionResult> FetchTailorList(TailorBOContainer Param)
         {
@@ -861,6 +865,97 @@ namespace CustomerAPI.Controllers
                 return BadRequest();
             }
         }
+
+        #endregion
+
+        #region Saved Measurements API
+
+        public async Task<IActionResult> GetSavedMeasurement(MeasurementBOContainer Param)
+        {
+            try
+            {
+                if(Param == null || Param.userdata == null)
+                {
+                    return BadRequest();
+                }
+
+                MeasurementBL objBL = new MeasurementBL(logger);
+                var result = await objBL.GetMeasurementBL(Param.userdata);
+                if (result != null)
+                {
+                    if (result.Item2 > 0 || result.Item2 == -2)
+                    {
+                        var objData = new { issuccessfull = true, measurementlist = result.Item1, responsemessage = "Successfully Fetch" };
+                        return new OkObjectResult(objData);
+                    }
+                    else if (result.Item2 == -1)
+                    {
+                        var objData = new { issuccessfull = false, measurementlist = (string)null, responsemessage = "Device Authentication failed" };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, measurementlist = (string)null, responsemessage = "Failed to fetch data..." };
+                        return new OkObjectResult(objData);
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserController", "GetSavedMeasurement", DateTime.Now.ToString(), ex.ToString()));
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
+        #region Save Address API
+
+        public async Task<IActionResult> GetSavedAddress(SaveAddressBOContainer Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null)
+                {
+                    return BadRequest();
+                }
+
+                SaveAddressBL objBL = new SaveAddressBL(logger);
+                var result = await objBL.GetSaveAddressBL(Param.userdata);
+                if (result != null)
+                {
+                    if (result.Item2 > 0 || result.Item2 == -2)
+                    {
+                        var objData = new { issuccessfull = true, measurementlist = result.Item1, responsemessage = "Successfully Fetch" };
+                        return new OkObjectResult(objData);
+                    }
+                    else if (result.Item2 == -1)
+                    {
+                        var objData = new { issuccessfull = false, measurementlist = (string)null, responsemessage = "Device Authentication failed" };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, measurementlist = (string)null, responsemessage = "Failed to fetch data..." };
+                        return new OkObjectResult(objData);
+                    }
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserController", "GetSavedMeasurement", DateTime.Now.ToString(), ex.ToString()));
+                return BadRequest();
+            }
+        }
+
 
         #endregion
 

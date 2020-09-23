@@ -1,0 +1,51 @@
+2020-09-23 23:30:01.6186 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/23/2020 11:30:00 PM
+===================================================================
+
+2020-09-23 23:30:51.0634 INFO Request Type :POST
+Request EndPoint :/api/User/GetSavedMeasurement
+Request Body :{
+    "userdata" :
+        {
+            "customerid" : "16",
+            "deviceid" : "312d03f76144fbb2",
+            "devicetype": "android",
+            "sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab"
+        }
+}
+
+Request DateTime :9/23/2020 11:30:51 PM
+===================================================================
+
+2020-09-23 23:32:37.4815 INFO Request Type :POST
+Request EndPoint :/api/User/GetSavedMeasurement
+Request Body :{
+    "userdata" :
+        {
+            "customerid" : "1",
+            "deviceid" : "312d03f76144fbb2",
+            "devicetype": "android",
+            "sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab"
+        }
+}
+
+Request DateTime :9/23/2020 11:32:37 PM
+===================================================================
+
+2020-09-23 23:33:16.9420 INFO Request Type :POST
+Request EndPoint :/api/User/GetSavedAddress
+Request Body :{
+    "userdata" :
+        {
+            "customerid" : "1",
+            "deviceid" : "312d03f76144fbb2",
+            "devicetype": "android",
+            "sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab"
+        }
+}
+
+Request DateTime :9/23/2020 11:33:16 PM
+===================================================================
+

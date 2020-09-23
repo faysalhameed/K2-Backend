@@ -28,7 +28,7 @@ namespace CustomerDAL.Dress
                 {
                     using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
                     {
-                        cmd.CommandText = "sp_GetCustomerTopDresses";
+                        cmd.CommandText = "sp_GetCustomerTopDresses_SecondVersion"; //"sp_GetCustomerTopDresses";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         var ListingParam = cmd.CreateParameter();
@@ -51,10 +51,10 @@ namespace CustomerDAL.Dress
                         DressCategoryParam.Value = objParam.dresscategory;
                         cmd.Parameters.Add(DressCategoryParam);
 
-                        var TypeParam = cmd.CreateParameter();
-                        TypeParam.ParameterName = "type";
-                        TypeParam.Value = objParam.type;
-                        cmd.Parameters.Add(TypeParam);
+                        //var TypeParam = cmd.CreateParameter();
+                        //TypeParam.ParameterName = "type";
+                        //TypeParam.Value = objParam.type;
+                        //cmd.Parameters.Add(TypeParam);
 
                         var SessionTokenParam = cmd.CreateParameter();
                         SessionTokenParam.ParameterName = "sessiontoken";
@@ -85,6 +85,21 @@ namespace CustomerDAL.Dress
                         PagecountParam.ParameterName = "pagecount";
                         PagecountParam.Value = objParam.pagecount;
                         cmd.Parameters.Add(PagecountParam);
+
+                        var TailorProductPrintNameParam = cmd.CreateParameter();
+                        TailorProductPrintNameParam.ParameterName = "tailorproductprintname";
+                        TailorProductPrintNameParam.Value = objParam.tailorproductprintname;
+                        cmd.Parameters.Add(TailorProductPrintNameParam);
+
+                        var BrandProductPrintNameParam = cmd.CreateParameter();
+                        BrandProductPrintNameParam.ParameterName = "brandproductprintname";
+                        BrandProductPrintNameParam.Value = objParam.brandproductprintname;
+                        cmd.Parameters.Add(BrandProductPrintNameParam);
+
+                        var TailorNameParam = cmd.CreateParameter();
+                        TailorNameParam.ParameterName = "tailorname";
+                        TailorNameParam.Value = objParam.tailorname;
+                        cmd.Parameters.Add(TailorNameParam);
 
                         await dbContext.Database.OpenConnectionAsync();
 

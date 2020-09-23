@@ -1,0 +1,191 @@
+2020-09-22 22:30:20.8013 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:20 PM
+===================================================================
+
+2020-09-22 22:30:20.8013 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:20 PM
+===================================================================
+
+2020-09-22 22:30:20.8206 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:20 PM
+===================================================================
+
+2020-09-22 22:30:20.8013 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:20 PM
+===================================================================
+
+2020-09-22 22:30:20.8013 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:20 PM
+===================================================================
+
+2020-09-22 22:30:21.8384 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:21 PM
+===================================================================
+
+2020-09-22 22:30:21.8384 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:21 PM
+===================================================================
+
+2020-09-22 22:30:21.8384 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:21 PM
+===================================================================
+
+2020-09-22 22:30:21.8384 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:21 PM
+===================================================================
+
+2020-09-22 22:30:22.0176 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.0356 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.1170 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.2046 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.2788 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.4720 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.6851 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.5797 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.8605 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:22.9963 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:22 PM
+===================================================================
+
+2020-09-22 22:30:23.1235 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:23 PM
+===================================================================
+
+2020-09-22 22:30:23.3462 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 10:30:23 PM
+===================================================================
+
+2020-09-22 23:05:55.6902 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{"userdata":{"city":"all","listingcount":5,"gender":"all","agefrom":20,"ageto":100,"promotionsourcetype":"","pagecount":1,"silayeepromotioname":"great offer","brandpromotionname":"all","tailorpromotionname":"all"}}
+Request DateTime :9/22/2020 11:05:55 PM
+===================================================================
+
+2020-09-22 23:06:01.8795 INFO Opening connection to TailorDB.
+2020-09-22 23:06:08.2997 ERROR ERROR while fetching promotions from PromotionListingfunction method with in class TailorDALClass. Error =Procedure or function sp_RetrievePromotionsAdvanced has too many arguments specified.
+2020-09-22 23:06:08.4042 INFO Calling Promotion Listing Data Layer Object within getPromotions Method inside Class PromotionBL.
+2020-09-22 23:06:19.9339 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{"userdata":{"city":"all","listingcount":5,"gender":"all","agefrom":20,"ageto":100,"promotionsourcetype":"","pagecount":1,"silayeepromotioname":"great offer","brandpromotionname":"all","tailorpromotionname":"all"}}
+Request DateTime :9/22/2020 11:06:19 PM
+===================================================================
+
+2020-09-22 23:06:52.0691 INFO Opening connection to TailorDB.
+2020-09-22 23:08:06.0362 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 11:08:05 PM
+===================================================================
+
+2020-09-22 23:08:15.2853 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{"userdata":{"city":"all","listingcount":5,"gender":"all","agefrom":20,"ageto":100,"promotionsourcetype":"","pagecount":1,"silayeepromotioname":"great offer","brandpromotionname":"all","tailorpromotionname":"all"}}
+Request DateTime :9/22/2020 11:08:15 PM
+===================================================================
+
+2020-09-22 23:08:19.1062 INFO Opening connection to TailorDB.
+2020-09-22 23:10:05.7248 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 11:10:05 PM
+===================================================================
+
+2020-09-22 23:10:50.0944 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{"userdata":{"city":"all","listingcount":5,"gender":"all","agefrom":20,"ageto":100,"promotionsourcetype":"","pagecount":1,"silayeepromotioname":"great offer","brandpromotionname":"all","tailorpromotionname":"all"}}
+Request DateTime :9/22/2020 11:10:50 PM
+===================================================================
+
+2020-09-22 23:10:53.6168 INFO Opening connection to TailorDB.
+2020-09-22 23:11:00.4143 INFO Returning list of promotions from tailor database by calling procedure sp_RetrievePromotions from PromotionListingfunction method with in class TailorDALClass. Data = TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse
+2020-09-22 23:11:00.5235 INFO Calling Promotion Listing Data Layer Object within getPromotions Method inside Class PromotionBL.
+2020-09-22 23:11:00.6987 INFO Calling Promotion Business Layer Object within PromotionListing Method inside Class TailorController. Data = TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse
+2020-09-22 23:11:20.7689 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{"userdata":{"city":"all","listingcount":5,"gender":"all","agefrom":20,"ageto":100,"promotionsourcetype":"","pagecount":1,"silayeepromotioname":"","brandpromotionname":"","tailorpromotionname":""}}
+Request DateTime :9/22/2020 11:11:20 PM
+===================================================================
+
+2020-09-22 23:11:25.6139 INFO Opening connection to TailorDB.
+2020-09-22 23:11:26.1441 INFO Returning list of promotions from tailor database by calling procedure sp_RetrievePromotions from PromotionListingfunction method with in class TailorDALClass. Data = 
+2020-09-22 23:11:26.2810 INFO Calling Promotion Listing Data Layer Object within getPromotions Method inside Class PromotionBL.
+2020-09-22 23:11:26.4022 INFO Calling Promotion Business Layer Object within PromotionListing Method inside Class TailorController. Data = 
+2020-09-22 23:11:54.1477 INFO Request Type :POST
+Request EndPoint :/api/Tailor/PromotionListing
+Request Body :{"userdata":{"city":"all","listingcount":5,"gender":"all","agefrom":20,"ageto":100,"promotionsourcetype":"","pagecount":1,"silayeepromotioname":"all","brandpromotionname":"all","tailorpromotionname":"all"}}
+Request DateTime :9/22/2020 11:11:54 PM
+===================================================================
+
+2020-09-22 23:11:56.9058 INFO Opening connection to TailorDB.
+2020-09-22 23:12:00.3239 INFO Returning list of promotions from tailor database by calling procedure sp_RetrievePromotions from PromotionListingfunction method with in class TailorDALClass. Data = TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse
+2020-09-22 23:12:00.4137 INFO Calling Promotion Listing Data Layer Object within getPromotions Method inside Class PromotionBL.
+2020-09-22 23:12:00.5850 INFO Calling Promotion Business Layer Object within PromotionListing Method inside Class TailorController. Data = TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse;TailorBO.BOPromotion.PromotionBOResponse

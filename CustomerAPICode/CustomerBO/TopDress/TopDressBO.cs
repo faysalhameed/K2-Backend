@@ -16,8 +16,11 @@ namespace CustomerBO.TopDress
         public string deviceid { get; set; }
         public string devicetype { get; set; }
         public int listingcount { get; set; }
-
         public int pagecount { get; set; }
+        public string tailorproductprintname { get; set; }
+        public string brandproductprintname { get; set; }
+        public string tailorname { get; set; }
+
     }
 
 

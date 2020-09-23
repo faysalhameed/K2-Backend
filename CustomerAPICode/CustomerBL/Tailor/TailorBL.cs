@@ -101,7 +101,10 @@ namespace CustomerBL.Tailor
                     agefrom = objPromo.userdata.agefrom,
                     ageto = objPromo.userdata.ageto,
                     promotionsourcetype = objPromo.userdata.promotionsourcetype,
-                    pagecount = objPromo.userdata.pagecount
+                    pagecount = objPromo.userdata.pagecount,
+                    silayeepromotioname = objPromo.userdata.silayeepromotioname,
+                    brandpromotionname = objPromo.userdata.brandpromotionname,
+                    tailorpromotionname = objPromo.userdata.tailorpromotionname
                 };
                 var RequestObjFinal = new
                 {
@@ -110,6 +113,7 @@ namespace CustomerBL.Tailor
                 using (var client = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(RequestObjFinal), Encoding.UTF8, "application/json");
+                    //var postTask = await client.PostAsync("https://localhost:44364/api/Tailor/PromotionListing", content);
                     var postTask = await client.PostAsync("http://silayeebackend-001-site2.dtempurl.com/api/Tailor/PromotionListing", content);
                     if (postTask.IsSuccessStatusCode)
                     {

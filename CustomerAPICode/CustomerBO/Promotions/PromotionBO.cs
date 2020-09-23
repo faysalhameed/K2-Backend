@@ -21,6 +21,9 @@ namespace CustomerBO.Promotions
         public string promotionsourcetype { get; set; }
 
         public int pagecount { get; set; }
+        public string silayeepromotioname { get; set; }
+        public string brandpromotionname { get; set; }
+        public string tailorpromotionname { get; set; }
     }
 
     public class PromotionBOcontainer

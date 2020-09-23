@@ -173,7 +173,7 @@ namespace TailorDAL.DALLayerCode
                 {
                     using (var cmd = dbContext.Database.GetDbConnection().CreateCommand())
                     {
-                        cmd.CommandText = "sp_RetrievePromotionsAdvanced";
+                        cmd.CommandText = "sp_RetrievePromotionsAdvanced_SecondVersion";
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         var cityParam = cmd.CreateParameter();
@@ -201,16 +201,30 @@ namespace TailorDAL.DALLayerCode
                         AgetoParam.Value = promotionObject.ageto;
                         cmd.Parameters.Add(AgetoParam);
 
-                        var PromotionsourcetypeParam = cmd.CreateParameter();
-                        PromotionsourcetypeParam.ParameterName = "type";
-                        PromotionsourcetypeParam.Value = promotionObject.promotionsourcetype;
-                        cmd.Parameters.Add(PromotionsourcetypeParam);
+                        //var PromotionsourcetypeParam = cmd.CreateParameter();
+                        //PromotionsourcetypeParam.ParameterName = "type";
+                        //PromotionsourcetypeParam.Value = promotionObject.promotionsourcetype;
+                        //cmd.Parameters.Add(PromotionsourcetypeParam);
 
                         var PagecountParam = cmd.CreateParameter();
                         PagecountParam.ParameterName = "pagecount";
                         PagecountParam.Value = promotionObject.pagecount;
                         cmd.Parameters.Add(PagecountParam);
+                        
+                        var SilayeePromotionNameParam = cmd.CreateParameter();
+                        SilayeePromotionNameParam.ParameterName = "Silayeepromotioname";
+                        SilayeePromotionNameParam.Value = promotionObject.silayeepromotioname;
+                        cmd.Parameters.Add(SilayeePromotionNameParam);
 
+                        var BrandPromotionNameParam = cmd.CreateParameter();
+                        BrandPromotionNameParam.ParameterName = "Brandpromotionname";
+                        BrandPromotionNameParam.Value = promotionObject.brandpromotionname;
+                        cmd.Parameters.Add(BrandPromotionNameParam);
+
+                        var TailorPromotionNameParam = cmd.CreateParameter();
+                        TailorPromotionNameParam.ParameterName = "Tailorpromotionname";
+                        TailorPromotionNameParam.Value = promotionObject.tailorpromotionname;
+                        cmd.Parameters.Add(TailorPromotionNameParam);
 
                         await dbContext.Database.OpenConnectionAsync();
 

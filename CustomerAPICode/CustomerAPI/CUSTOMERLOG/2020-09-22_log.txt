@@ -1,0 +1,408 @@
+2020-09-22 23:05:04.6047 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 11:05:03 PM
+===================================================================
+
+2020-09-22 23:05:42.6362 INFO Request Type :POST
+Request EndPoint :/api/User/FetchPromotionList
+Request Body :{
+    "userdata" : {
+        "customerid": "16",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "city": "all",
+        "listingcount": "5",
+        "gender": "all",
+        "agefrom": "20",
+        "ageto": "100",
+        "promotionsourcetype": "",
+        "pagecount": "1",
+        "silayeepromotioname" : "great offer",
+        "brandpromotionname" : "all",
+        "tailorpromotionname" : "all"
+    }
+}
+Request DateTime :9/22/2020 11:05:42 PM
+===================================================================
+
+2020-09-22 23:06:17.4922 INFO Request Type :POST
+Request EndPoint :/api/User/FetchPromotionList
+Request Body :{
+    "userdata" : {
+        "customerid": "16",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "city": "all",
+        "listingcount": "5",
+        "gender": "all",
+        "agefrom": "20",
+        "ageto": "100",
+        "promotionsourcetype": "",
+        "pagecount": "1",
+        "silayeepromotioname" : "great offer",
+        "brandpromotionname" : "all",
+        "tailorpromotionname" : "all"
+    }
+}
+Request DateTime :9/22/2020 11:06:17 PM
+===================================================================
+
+2020-09-22 23:08:12.4894 INFO Request Type :POST
+Request EndPoint :/api/User/FetchPromotionList
+Request Body :{
+    "userdata" : {
+        "customerid": "16",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "city": "all",
+        "listingcount": "5",
+        "gender": "all",
+        "agefrom": "20",
+        "ageto": "100",
+        "promotionsourcetype": "",
+        "pagecount": "1",
+        "silayeepromotioname" : "great offer",
+        "brandpromotionname" : "all",
+        "tailorpromotionname" : "all"
+    }
+}
+Request DateTime :9/22/2020 11:08:12 PM
+===================================================================
+
+2020-09-22 23:10:47.8991 INFO Request Type :POST
+Request EndPoint :/api/User/FetchPromotionList
+Request Body :{
+    "userdata" : {
+        "customerid": "16",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "city": "all",
+        "listingcount": "5",
+        "gender": "all",
+        "agefrom": "20",
+        "ageto": "100",
+        "promotionsourcetype": "",
+        "pagecount": "1",
+        "silayeepromotioname" : "great offer",
+        "brandpromotionname" : "all",
+        "tailorpromotionname" : "all"
+    }
+}
+Request DateTime :9/22/2020 11:10:47 PM
+===================================================================
+
+2020-09-22 23:11:17.1858 INFO Request Type :POST
+Request EndPoint :/api/User/FetchPromotionList
+Request Body :{
+    "userdata" : {
+        "customerid": "16",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "city": "all",
+        "listingcount": "5",
+        "gender": "all",
+        "agefrom": "20",
+        "ageto": "100",
+        "promotionsourcetype": "",
+        "pagecount": "1",
+        "silayeepromotioname" : "",
+        "brandpromotionname" : "",
+        "tailorpromotionname" : ""
+    }
+}
+Request DateTime :9/22/2020 11:11:17 PM
+===================================================================
+
+2020-09-22 23:11:51.2300 INFO Request Type :POST
+Request EndPoint :/api/User/FetchPromotionList
+Request Body :{
+    "userdata" : {
+        "customerid": "16",
+        "sessiontoken": "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+        "deviceid": "312d03f76144fbb2",
+        "devicetype": "android",
+        "city": "all",
+        "listingcount": "5",
+        "gender": "all",
+        "agefrom": "20",
+        "ageto": "100",
+        "promotionsourcetype": "",
+        "pagecount": "1",
+        "silayeepromotioname" : "all",
+        "brandpromotionname" : "all",
+        "tailorpromotionname" : "all"
+    }
+}
+Request DateTime :9/22/2020 11:11:51 PM
+===================================================================
+
+2020-09-22 23:22:02.9759 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"type" : "all", 
+			"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "all"
+		}
+}
+Request DateTime :9/22/2020 11:22:02 PM
+===================================================================
+
+2020-09-22 23:24:19.9290 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 11:24:18 PM
+===================================================================
+
+2020-09-22 23:24:26.0984 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"type" : "all", 
+			"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "all"
+		}
+}
+Request DateTime :9/22/2020 11:24:26 PM
+===================================================================
+
+2020-09-22 23:26:04.7433 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "100",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"type" : "all", 
+			"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "all"
+		}
+}
+Request DateTime :9/22/2020 11:26:04 PM
+===================================================================
+
+2020-09-22 23:33:50.1942 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"type" : "all", 
+			"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "Sadiq Tailors"
+		}
+}
+Request DateTime :9/22/2020 11:33:50 PM
+===================================================================
+
+2020-09-22 23:40:54.1948 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "Sadiq Tailors"
+		}
+}
+Request DateTime :9/22/2020 11:40:54 PM
+===================================================================
+
+2020-09-22 23:42:47.4318 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "Sadiq Tailors",
+            "pagecount" : "3"
+		}
+}
+Request DateTime :9/22/2020 11:42:47 PM
+===================================================================
+
+2020-09-22 23:42:57.1785 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "Sadiq Tailors",
+            "pagecount" : "3"
+		}
+}
+Request DateTime :9/22/2020 11:42:57 PM
+===================================================================
+
+2020-09-22 23:45:23.5290 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "Sadiq Tailors",
+            "pagecount" : "2"
+		}
+}
+Request DateTime :9/22/2020 11:45:23 PM
+===================================================================
+
+2020-09-22 23:45:32.3634 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "Sadiq Tailors",
+            "pagecount" : "1"
+		}
+}
+Request DateTime :9/22/2020 11:45:32 PM
+===================================================================
+
+2020-09-22 23:46:40.0888 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :9/22/2020 11:46:38 PM
+===================================================================
+
+2020-09-22 23:46:54.5211 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "",
+            "brandproductprintname" : "",
+            "tailorname" : "",
+            "pagecount" : "1"
+		}
+}
+Request DateTime :9/22/2020 11:46:54 PM
+===================================================================
+
+2020-09-22 23:47:16.5398 INFO Request Type :POST
+Request EndPoint :/api/User/FetchTopDress
+Request Body :{
+	"userdata" :
+		{
+			"dresscategory" : "all",
+			"gender" : "all",
+			"agefrom" : "1",
+			"ageto" : "60",
+			"area" : "all", 
+	 		"sessiontoken" : "b1c6b026-d76d-4af5-b0d9-ca53814d37ab",
+			"deviceid" : "312d03f76144fbb2",
+			"devicetype" : "android",	
+			"listingcount" : "3",
+            "tailorproductprintname" : "all",
+            "brandproductprintname" : "all",
+            "tailorname" : "all",
+            "pagecount" : "1"
+		}
+}
+Request DateTime :9/22/2020 11:47:16 PM
+===================================================================
+
