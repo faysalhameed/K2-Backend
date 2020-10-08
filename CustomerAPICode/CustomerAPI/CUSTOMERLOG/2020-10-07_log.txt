@@ -1,0 +1,176 @@
+2020-10-07 22:20:32.8216 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :10/7/2020 10:20:32 PM
+===================================================================
+
+2020-10-07 22:37:43.1630 INFO Request Type :POST
+Request EndPoint :/api/User/PreOrder
+Request Body :{
+  "userdata":
+           {
+                "preorder":
+                        {
+                           "preorderid":"-1",
+                           "customerid":"16",
+                           "tailorid":"1",
+                           "status":"preorder",
+                           "totalestimatedcost":"100.00",
+                           "pickcountry":"pakistan",
+                           "pickprovince":"punjab",
+                           "pickcity":"lahore",
+                           "pickzipcode":"54000",
+                           "pickaddress":"Thokar Niaz baig",
+                           "dropcountry":"pakistan",
+                           "dropprovince":"punjab",
+                           "dropcity":"lahore",
+                           "dropzipcode":"lahore",
+                           "dropaddress":"Eden value homes",
+                           "devicetype":"android",
+                           "deviceid":"4eb429c63199d2c5",
+                           "sessiontoken":"97bd0243-8dcd-4476-9643-d522fa054ad9",
+                           "preorderproducts":[
+                           {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"3",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"2",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"1",
+								   "addontype":"TEXT",
+								   "addontype":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"2",
+								   "addontype":"TEXT",
+								   "addontype":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"1",
+								   "attributeid":"1",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"2",
+								   "attributeid":"2",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							}
+							]
+           }                  
+}
+}
+
+Request DateTime :10/7/2020 10:37:43 PM
+===================================================================
+
+2020-10-07 22:46:31.7726 ERROR 
+***Error Message**
+ClassName : PreOrderDAL
+Method name : FuncPreOrderDAL
+DateTime : 10/7/2020 10:46:31 PM
+Exception Msg : Microsoft.Data.SqlClient.SqlException (0x80131904): Conversion failed when converting the nvarchar value '4eb429c63199d2c5' to data type int.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__164_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.Tasks.Task.<>c.<.cctor>b__274_0(Object obj)
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location where exception was thrown ---
+   at CustomerDAL.PreOrder.PreOrderDAL.FuncPreOrderDAL(DataTable PreorderType, DataTable PreOrderProdutType, DataTable PreOrderProductImageType, DataTable PreOrderProductAddOnType, DataTable PreOrderProductMeasurmentType, String deviceID, String DeviceType, String SessionToken, Int32 customerID) in E:\Code\K2\faysalhameed\K2-Backend\CustomerAPICode\CustomerDAL\PreOrder\PreOrderDAL.cs:line 83
+ClientConnectionId:61abb455-3de7-41d9-82ca-f8cc995ae66b
+Error Number:245,State:1,Class:16
+************************
+2020-10-07 22:46:52.7646 INFO Request Type :POST
+Request EndPoint :/api/User/PreOrder
+Request Body :{
+  "userdata":
+           {
+                "preorder":
+                        {
+                           "preorderid":"-1",
+                           "customerid":"16",
+                           "tailorid":"1",
+                           "status":"preorder",
+                           "totalestimatedcost":"100.00",
+                           "pickcountry":"pakistan",
+                           "pickprovince":"punjab",
+                           "pickcity":"lahore",
+                           "pickzipcode":"54000",
+                           "pickaddress":"Thokar Niaz baig",
+                           "dropcountry":"pakistan",
+                           "dropprovince":"punjab",
+                           "dropcity":"lahore",
+                           "dropzipcode":"lahore",
+                           "dropaddress":"Eden value homes",
+                           "devicetype":"android",
+                           "deviceid":"12",
+                           "sessiontoken":"97bd0243-8dcd-4476-9643-d522fa054ad9",
+                           "preorderproducts":[
+                           {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"3",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"2",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"1",
+								   "addontype":"TEXT",
+								   "addontype":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"2",
+								   "addontype":"TEXT",
+								   "addontype":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"1",
+								   "attributeid":"1",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"2",
+								   "attributeid":"2",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							}
+							]
+           }                  
+}
+}
+
+Request DateTime :10/7/2020 10:46:52 PM
+===================================================================
+

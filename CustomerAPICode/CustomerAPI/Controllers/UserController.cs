@@ -24,6 +24,12 @@ using CustomerBO.Measurements;
 using CustomerBL.Measurements;
 using CustomerBO.SaveAddress;
 using CustomerBL.SaveAddress;
+using CustomerBL.Categories;
+using CustomerBO.Categories;
+using CustomerBO.Template;
+using CustomerBL.Template;
+using CustomerBO.PreOrder;
+using CustomerBL.PreOrder;
 
 namespace CustomerAPI.Controllers
 {
@@ -958,6 +964,130 @@ namespace CustomerAPI.Controllers
 
 
         #endregion
+
+        #region Get Categoires 
+
+        public async Task<IActionResult> GetDressCategories(CategoriesBOContainer Param)
+        {
+            try
+            {
+                if(Param == null || Param.userdata == null)
+                {
+                    return BadRequest();
+                }
+
+                UserBL objuserBL = new UserBL(logger);
+                bool isVerify = await objuserBL.VerifySessionToken(Param.userdata.sessiontoken, Param.userdata.deviceid);
+                if (!isVerify)
+                {
+                    var objData = new { issuccessfull = false, responsemessage = "Token verification failed", dresscategorieslist = (string)null };
+                    return new OkObjectResult(objData);
+                }
+                else
+                {
+                    CategoriesBL objBL = new CategoriesBL(logger);
+                    var result = await objBL.GetDressCategoryBL();
+                    if (result != null)
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "successfully fetch list", dresscategorieslist = result };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, responsemessage = "Error while fetching list", dresscategorieslist = (string)null };
+                        return new OkObjectResult(objData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserController", "GetDressCategories", DateTime.Now.ToString(), ex.ToString()));
+                return BadRequest();
+            }
+        }
+
+        #endregion
+
+        #region Get Measurement Template
+
+        public async Task<IActionResult> GetMeasurementTemplate(MeasurementTemplateBOContainer Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null)
+                {
+                    return BadRequest();
+                }
+
+                UserBL objuserBL = new UserBL(logger);
+                bool isVerify = await objuserBL.VerifySessionToken(Param.userdata.sessiontoken, Param.userdata.deviceid);
+                if (!isVerify)
+                {
+                    var objData = new { issuccessfull = false, responsemessage = "Token verification failed", dresscategorieslist = (string)null };
+                    return new OkObjectResult(objData);
+                }
+                else
+                {
+                    MeasurementTemplateBL objBL = new MeasurementTemplateBL(logger);
+                    var result = await objBL.GetMeasurementTemplateBL(Param);
+                    if (result != null)
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "successfully fetch list", dresscategorieslist = result };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, responsemessage = "Error while fetching list", dresscategorieslist = (string)null };
+                        return new OkObjectResult(objData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserController", "GetDressCategories", DateTime.Now.ToString(), ex.ToString()));
+                return BadRequest();
+            }
+        }
+
+
+        #endregion
+
+        #region Order Management 
+
+        public async Task<IActionResult> PreOrder(PreOrderBO Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null)
+                {
+                    return BadRequest();
+                }
+
+                PreOrderBL objBL = new PreOrderBL(logger);
+                var result = await objBL.FuncPreOrderBL(Param);
+                if (result.Item1 > 0)
+                {
+                    var objData = new { issuccessfull = true, responsemessage = "successfully" };
+                    return new OkObjectResult(objData);
+                }
+                else
+                {
+                    var objData = new { issuccessfull = false, responsemessage = result.Item2 };
+                    return new OkObjectResult(objData);
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserController", "PreOrder", DateTime.Now.ToString(), ex.ToString()));
+                return BadRequest();
+            }
+        }
+
+
+
+        #endregion
+
 
 
     }
