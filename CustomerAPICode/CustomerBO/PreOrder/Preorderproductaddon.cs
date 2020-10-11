@@ -8,5 +8,6 @@ namespace CustomerBO.PreOrder
     {
         public string preorderproductaddonid { get; set; }
         public string addontype { get; set; }
+        public string addonvalue { get; set; }
     }
 }

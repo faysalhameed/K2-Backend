@@ -112,14 +112,25 @@ namespace CustomerBL.PreOrder
                 TBLPreorderProducttype.Columns.Add(new DataColumn("Productsourceid", typeof(int)));
                 TBLPreorderProducttype.Columns.Add(new DataColumn("Tailorstitchost", typeof(decimal)));
 
-                
 
+                int _preorderproductID = 0;
+                
                 for (int i = 0; i < obj.userdata.preorder.preorderproducts.Count; i++)
                 {
+
+                    int _preorderproductimageID = 0;
+                    int _preorderproductaddonID = 0;
+                    int _preorderproductmeasurementID = 0;
+
                     int preorderproductID, _preorderID, _productID, _dressCategoryID, ProductSourceID = -1;
                     decimal EstimatedCost, TailorStitchCost = -1;
 
                     int.TryParse(obj.userdata.preorder.preorderproducts[i].preorderproductid, out preorderproductID);
+                    if(preorderproductID < 1)
+                    {
+                        --_preorderproductID;
+                        preorderproductID = _preorderproductID;
+                    }
                     int.TryParse(obj.userdata.preorder.preorderid, out _preorderID);
                     int.TryParse(obj.userdata.preorder.preorderproducts[i].productid, out _productID);
                     int.TryParse(obj.userdata.preorder.preorderproducts[i].dresscategoryid, out _dressCategoryID);
@@ -148,6 +159,11 @@ namespace CustomerBL.PreOrder
                         DataRow drProductImageType = TBLPreorderProductImagetype.NewRow();
                         int _preorderProductImageID = -1;
                         int.TryParse(obj.userdata.preorder.preorderproducts[i].preorderproductimages[j].preorderproductimageid,out _preorderProductImageID);
+                        if(_preorderProductImageID < 1)
+                        {
+                            --_preorderproductimageID;
+                            _preorderProductImageID = _preorderproductimageID;
+                        }
                         string _imgPreOrderImage = obj.userdata.preorder.preorderproducts[i].preorderproductimages[j].image;
                         drProductImageType["Preorderproductimageid"] = _preorderProductImageID;
                         drProductImageType["Preorderproductid"] = preorderproductID;
@@ -163,12 +179,17 @@ namespace CustomerBL.PreOrder
                     {
                         int _preorderProductAddonID = -1;
                         int.TryParse(obj.userdata.preorder.preorderproducts[i].preorderproductaddons[k].preorderproductaddonid, out _preorderProductAddonID);
+                        if(_preorderProductAddonID < 1)
+                        {
+                            --_preorderproductaddonID;
+                            _preorderProductAddonID = _preorderproductaddonID;
+                        }
                         DataRow drAddonType = TBLPreorderProductAddOntype.NewRow();
                         drAddonType["Preorderproductaddonid"] = _preorderProductAddonID;
                         drAddonType["Preorderproductid"] = preorderproductID;
                         // need to confirm from faisal bhai both are same addon type
                         drAddonType["Addontype"] = obj.userdata.preorder.preorderproducts[i].preorderproductaddons[k].addontype; 
-                        drAddonType["Addonvalue"] = obj.userdata.preorder.preorderproducts[i].preorderproductaddons[k].addontype;
+                        drAddonType["Addonvalue"] = obj.userdata.preorder.preorderproducts[i].preorderproductaddons[k].addonvalue;
                         TBLPreorderProductAddOntype.Rows.Add(drAddonType);
                     }
 
@@ -183,6 +204,11 @@ namespace CustomerBL.PreOrder
                         decimal _AttributeValue = 0;
                         int.TryParse(obj.userdata.preorder.preorderproducts[i].preorderproductmeasurements[l].attributeid, out AttributeID);
                         int.TryParse(obj.userdata.preorder.preorderproducts[i].preorderproductmeasurements[l].preorderproductmeasurementid, out _preorderProductMeasurementID);
+                        if(_preorderProductMeasurementID < 1)
+                        {
+                            --_preorderproductmeasurementID;
+                            _preorderProductMeasurementID = _preorderproductmeasurementID;
+                        }
                         decimal.TryParse(obj.userdata.preorder.preorderproducts[i].preorderproductmeasurements[l].attributevalue, out _AttributeValue);
                         DataRow drMeasurementType = TBLPreorderProductMeasurementtype.NewRow();
                         drMeasurementType["Preorderproductmeasurementid"] = _preorderProductMeasurementID;
