@@ -13,6 +13,10 @@ namespace CustomerBO.PreOrder
         public string productsource { get; set; }
         public string productsourceid { get; set; }
         public string tailorstitchcost { get; set; }
+        public string isproductimagesavailable { get; set; }
+        public string isproductaddonavailable { get; set; }
+        public string isproductmeasurementavailable { get; set; }
+
         public List<Preorderproductimage> preorderproductimages { get; set; }
         public List<Preorderproductaddon> preorderproductaddons { get; set; }
         public List<Preorderproductmeasurement> preorderproductmeasurements { get; set; }

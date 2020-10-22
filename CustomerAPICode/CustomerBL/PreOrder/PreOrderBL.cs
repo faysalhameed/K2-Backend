@@ -1,10 +1,15 @@
-﻿using CustomerBO.PreOrder;
+﻿using CustomerBL.Template;
+using CustomerBO.PreOrder;
+using CustomerBO.Template;
 using CustomerDAL.PreOrder;
 using logginglibrary;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Runtime.InteropServices;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace CustomerBL.PreOrder
@@ -17,10 +22,248 @@ namespace CustomerBL.PreOrder
             this.logger = templogger;
         }
 
+        private async Task<Tuple<int, bool, string>> CartValidations(PreOrderBO obj)
+        {
+            try
+            {
+                #region Address verification
+
+                if (string.IsNullOrEmpty(obj.userdata.preorder.pickaddress) 
+                    ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.pickcity)
+                    ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.pickcountry)
+                   ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.pickprovince)
+                   ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.pickzipcode)
+                   ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.dropaddress)
+                   ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.dropcity)
+                   ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.dropcountry)
+                   ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.dropprovince)
+                   ||
+                   string.IsNullOrEmpty(obj.userdata.preorder.dropzipcode)
+                 )
+                {
+                    return new Tuple<int, bool, string>(-1, false, "Pick or Drop address missing.");
+                }
+
+                #endregion
+
+                #region Tailor Selection Check
+
+                if (string.IsNullOrEmpty(obj.userdata.preorder.tailorid))
+                {
+                    return new Tuple<int, bool, string>(-2, false, "Tailor not selected.");
+                }
+
+                #endregion
+
+                #region Product selection Check 
+
+                if(obj.userdata.preorder.preorderproducts == null && obj.userdata.preorder.preorderproducts.Count < 1)
+                {
+                    return new Tuple<int, bool, string>(-3, false, "Product selection missing !");
+                }
+
+                #endregion
+
+                #region Product Image selection Check 
+
+                bool _isImageFound = true;
+                int productCount = obj.userdata.preorder.preorderproducts.Count;
+                for (int i = 0; i < productCount; i++)
+                {
+                    int _count = obj.userdata.preorder.preorderproducts[i].preorderproductimages.Count;
+                    if(_count < 1)
+                    {
+                        _isImageFound = false;
+                        break;
+                    }
+                }
+
+                if(!_isImageFound)
+                {
+                    return new Tuple<int, bool, string>(-3, false, "Product image missing !");
+                }
+
+                #endregion
+
+                
+                return new Tuple<int, bool, string>(1, true, "Validation clear");
+            }
+            catch (Exception ex)
+            {
+                return new Tuple<int, bool, string>(-2, false, ex.ToString());
+            }
+        }
+
+        public async Task<List<MeasurementTemplateBOResponse>> FetchMeasurmentTemplate(string deviceid, string dresscategoryid, string sessiontoken)
+        {
+            try
+            {
+                MeasurementTemplateBO objMeasurementTemplate = new MeasurementTemplateBO();
+                objMeasurementTemplate.deviceid = deviceid;
+                objMeasurementTemplate.dresscategoryid = dresscategoryid;
+                objMeasurementTemplate.sessiontoken = sessiontoken;
+                MeasurementTemplateBOContainer objMeasurementTemplateContainer = new MeasurementTemplateBOContainer();
+                objMeasurementTemplateContainer.userdata = objMeasurementTemplate;
+                MeasurementTemplateBL objTemplateBL = new MeasurementTemplateBL(logger);
+                var result = await objTemplateBL.GetMeasurementTemplateBL(objMeasurementTemplateContainer);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        private async Task<Tuple<bool,int,string>> CartValidationsNew(PreOrderBO obj)
+        {
+            try
+            {
+                #region Product Count Check 
+
+                int _totalproductcount = -1;
+                int.TryParse(obj.userdata.preorder.totalproductcount, out _totalproductcount);
+                if(_totalproductcount < 1)
+                {
+                    return new Tuple<bool, int, string>(false, -4, "No product found.");
+                }
+
+                #endregion
+
+                #region Attributes checks (image, addon, measurement etc)
+
+                for (int i = 0; i < obj.userdata.preorder.preorderproducts.Count; i++)
+                {
+                    bool _isproductimagesavailable, _isproductaddonavailable, _isproductmeasurementavailable = false;
+                    bool.TryParse(obj.userdata.preorder.preorderproducts[i].isproductimagesavailable, out _isproductimagesavailable);
+                    bool.TryParse(obj.userdata.preorder.preorderproducts[i].isproductaddonavailable, out _isproductaddonavailable);
+                    bool.TryParse(obj.userdata.preorder.preorderproducts[i].isproductmeasurementavailable, out _isproductmeasurementavailable);
+                    if(!_isproductimagesavailable)
+                    {
+                        return new Tuple<bool, int, string>(false,-5,"Image selection missing.");
+                    }
+                    else if(!_isproductaddonavailable)
+                    {
+                        return new Tuple<bool, int, string>(false, -6, "Product addon missing.");
+                    }
+                    else if(!_isproductmeasurementavailable)
+                    {
+                        return new Tuple<bool, int, string>(false,-7,"Product measurement missing.");
+                    }
+                }
+
+                #endregion
+                return new Tuple<bool, int, string>(true, 1, "");
+            }
+            catch (Exception ex)
+            {
+                return new Tuple<bool, int, string>(false,-3,ex.ToString();
+            }
+        }
+
         public async Task<Tuple<int,string>> FuncPreOrderBL(PreOrderBO obj)
         {
             try
             {
+                #region Cart Validation
+
+                if(obj.userdata.preorder.status.ToLower() == "cart")
+                {
+                    #region Old Logic Commented Code
+                    //var res =  await CartValidations(obj);
+                    //if(res.Item1 > 1)
+                    //{
+                    //    #region Measurement List Check 
+
+                    //    int productCount = obj.userdata.preorder.preorderproducts.Count;
+                    //    bool isMeasurementListfound = true;
+                    //    for (int j = 0; j < productCount; j++)
+                    //    {
+                    //        int _measurementCount = obj.userdata.preorder.preorderproducts[j].preorderproductmeasurements.Count;
+                    //        if (_measurementCount < 1)
+                    //        {
+                    //            var list = await FetchMeasurmentTemplate(obj.userdata.preorder.deviceid, obj.userdata.preorder.preorderproducts[j].dresscategoryid, obj.userdata.preorder.sessiontoken);
+                    //            if (list == null)
+                    //            {
+                    //                isMeasurementListfound = false;
+                    //                break;
+                    //            }
+                    //            else
+                    //            {
+                    //                for (int k = 0; k < list.Count; k++)
+                    //                {
+                    //                    Preorderproductmeasurement objMeasure = new Preorderproductmeasurement();
+                    //                    objMeasure.attributeid = "-1";
+                    //                    objMeasure.preorderproductmeasurementid = "-1";
+                    //                    objMeasure.attributename = list[k].attributename;
+                    //                    objMeasure.attributevalue = list[k].sizemax.ToString(); // min or max value ? 
+                    //                    obj.userdata.preorder.preorderproducts[j].preorderproductmeasurements.Add(objMeasure);
+                    //                }
+                    //            }
+                    //        }
+                    //        else
+                    //        {
+                    //            for (int k = 0; k < _measurementCount; k++)
+                    //            {
+                    //                var tempObj = obj.userdata.preorder.preorderproducts[j].preorderproductmeasurements[k];
+                    //                if(string.IsNullOrEmpty(tempObj.attributename) || string.IsNullOrEmpty(tempObj.attributevalue))
+                    //                {
+                    //                    var list = await FetchMeasurmentTemplate(obj.userdata.preorder.deviceid, obj.userdata.preorder.preorderproducts[j].dresscategoryid, obj.userdata.preorder.sessiontoken);
+                    //                    if (list == null)
+                    //                    {
+                    //                        isMeasurementListfound = false;
+                    //                        break;
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        for (int l = 0; l < list.Count; l++)
+                    //                        {
+                    //                            if(string.IsNullOrEmpty(obj.userdata.preorder.preorderproducts[j].preorderproductmeasurements[k].attributename))
+                    //                            {
+                    //                                // check count if not equal the return 
+                    //                                // void below code 
+                    //                            }
+                    //                            Preorderproductmeasurement objMeasure = new Preorderproductmeasurement();
+                    //                            objMeasure.attributeid = "-1";
+                    //                            objMeasure.preorderproductmeasurementid = "-1";
+                    //                            objMeasure.attributename = list[k].attributename;
+                    //                            objMeasure.attributevalue = list[k].sizemax.ToString(); // min or max value ? 
+                    //                            obj.userdata.preorder.preorderproducts[j].preorderproductmeasurements.Add(objMeasure);
+                    //                        }
+                    //                    }
+                    //                }
+                    //            }
+                    //        }
+                    //    }
+
+                    //    if (!isMeasurementListfound)
+                    //    {
+                    //        return new Tuple<int, string>(-1, "Measurment missing !");
+                    //    }
+
+                    //    #endregion
+                    //}
+                    //else
+                    //{
+                    //    return new Tuple<int, string>(res.Item1, res.Item3);
+                    //}
+                    #endregion
+                    var response = await CartValidationsNew(obj);
+                    if(!response.Item1)
+                    {
+                        return new Tuple<int, string>(response.Item2, response.Item3);
+                    }
+                }
+
+                #endregion
+
                 #region Pre Order Type
 
                 DataTable TBLPreordertype = new DataTable();
@@ -40,8 +283,20 @@ namespace CustomerBL.PreOrder
                 TBLPreordertype.Columns.Add(new DataColumn("Dropzipcode", typeof(string)));
                 TBLPreordertype.Columns.Add(new DataColumn("Dropaddress", typeof(string)));
 
+                TBLPreordertype.Columns.Add(new DataColumn("istailoravailable", typeof(bool)));
+                TBLPreordertype.Columns.Add(new DataColumn("totalproductcount", typeof(int)));
+                TBLPreordertype.Columns.Add(new DataColumn("ispickaddressavailable", typeof(bool)));
+                TBLPreordertype.Columns.Add(new DataColumn("isdropaddressavailable", typeof(bool)));
+                
+
                 int preorderID, customerID, tailorID = -1;
                 decimal totalEstimatedCost = -1;
+                bool _istailoravailable, _ispickaddressavailable, _isdropaddressavailable = false;
+                int _totalproductcount = -1;
+                int.TryParse(obj.userdata.preorder.totalproductcount, out _totalproductcount);
+                bool.TryParse(obj.userdata.preorder.istailoravailable, out _istailoravailable);
+                bool.TryParse(obj.userdata.preorder.ispickaddresscomplete, out _ispickaddressavailable);
+                bool.TryParse(obj.userdata.preorder.isdropaddresscomplete, out _isdropaddressavailable);
 
                 int.TryParse(obj.userdata.preorder.preorderid, out preorderID);
                 int.TryParse(obj.userdata.preorder.customerid, out customerID);
@@ -66,7 +321,13 @@ namespace CustomerBL.PreOrder
                 drPreOrderType["Dropzipcode"] = obj.userdata.preorder.dropzipcode;
                 drPreOrderType["Dropaddress"] = obj.userdata.preorder.dropaddress;
 
-                TBLPreordertype.Rows.Add(drPreOrderType);
+                drPreOrderType["istailoravailable"] = _istailoravailable;
+                drPreOrderType["totalproductcount"] = _totalproductcount;
+                drPreOrderType["ispickaddressavailable"] = _ispickaddressavailable;
+                drPreOrderType["isdropaddressavailable"] = _isdropaddressavailable;
+                
+
+                TBLPreordertype.Rows.Add(drPreOrderType); 
 
                 #endregion
 
@@ -111,6 +372,10 @@ namespace CustomerBL.PreOrder
                 TBLPreorderProducttype.Columns.Add(new DataColumn("Productsource", typeof(string)));
                 TBLPreorderProducttype.Columns.Add(new DataColumn("Productsourceid", typeof(int)));
                 TBLPreorderProducttype.Columns.Add(new DataColumn("Tailorstitchost", typeof(decimal)));
+                // new code added
+                TBLPreorderProducttype.Columns.Add(new DataColumn("isproductimagesavailable", typeof(bool)));
+                TBLPreorderProducttype.Columns.Add(new DataColumn("isproductaddonavailable", typeof(bool)));
+                TBLPreorderProducttype.Columns.Add(new DataColumn("isproductmeasurementavailable", typeof(bool)));
 
 
                 int _preorderproductID = 0;
@@ -121,6 +386,13 @@ namespace CustomerBL.PreOrder
                     int _preorderproductimageID = 0;
                     int _preorderproductaddonID = 0;
                     int _preorderproductmeasurementID = 0;
+                    
+                    bool _isproductimagesavailable = false;
+                    bool _isproductaddonavailable = false;
+                    bool _isproductmeasurementavailable = false;
+                    bool.TryParse(obj.userdata.preorder.preorderproducts[i].isproductimagesavailable, out _isproductimagesavailable);
+                    bool.TryParse(obj.userdata.preorder.preorderproducts[i].isproductaddonavailable, out _isproductaddonavailable);
+                    bool.TryParse(obj.userdata.preorder.preorderproducts[i].isproductmeasurementavailable, out _isproductmeasurementavailable);
 
                     int preorderproductID, _preorderID, _productID, _dressCategoryID, ProductSourceID = -1;
                     decimal EstimatedCost, TailorStitchCost = -1;
@@ -224,7 +496,12 @@ namespace CustomerBL.PreOrder
                     drPreOrderProductType["Productsourceid"] = ProductSourceID;
                     drPreOrderProductType["Tailorstitchost"] = TailorStitchCost;
 
-                    TBLPreorderProducttype.Rows.Add(drPreOrderProductType);
+                    drPreOrderProductType["isproductimagesavailable"] = _isproductimagesavailable;
+                    drPreOrderProductType["isproductaddonavailable"] = _isproductaddonavailable;
+                    drPreOrderProductType["isproductmeasurementavailable"] = _isproductmeasurementavailable;
+                    
+
+                    TBLPreorderProducttype.Rows.Add(drPreOrderProductType); 
                 }
 
                 #endregion
