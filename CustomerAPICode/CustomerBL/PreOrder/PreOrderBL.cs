@@ -164,7 +164,7 @@ namespace CustomerBL.PreOrder
             }
             catch (Exception ex)
             {
-                return new Tuple<bool, int, string>(false,-3,ex.ToString();
+                return new Tuple<bool, int, string>(false,-3,ex.ToString());
             }
         }
 
