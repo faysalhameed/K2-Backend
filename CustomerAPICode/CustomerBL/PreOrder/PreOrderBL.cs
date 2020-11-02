@@ -1,12 +1,16 @@
 ﻿using CustomerBL.Template;
+using CustomerBO.Order;
 using CustomerBO.PreOrder;
 using CustomerBO.Template;
+using CustomerDAL.Logging;
 using CustomerDAL.PreOrder;
 using logginglibrary;
 using Microsoft.VisualBasic;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -126,6 +130,40 @@ namespace CustomerBL.PreOrder
         {
             try
             {
+                #region Tailor Selection check 
+
+                bool _isTailorAvailable = false;
+                bool.TryParse(obj.userdata.preorder.istailoravailable, out _isTailorAvailable);
+
+                if(!_isTailorAvailable)
+                {
+                    return new Tuple<bool, int, string>(false, -8, "Tailor selection missing.");
+                }
+
+                #endregion
+
+                #region Pick Address Selection 
+
+                bool _isPickAddressAvailable = false;
+                bool.TryParse(obj.userdata.preorder.ispickaddresscomplete, out _isPickAddressAvailable);
+                if(!_isPickAddressAvailable)
+                {
+                    return new Tuple<bool, int, string>(false, -9, "Pickup address missing.");
+                }
+
+                #endregion
+
+                #region Drop Address Selection
+
+                bool _isDropAddressAvailable = false;
+                bool.TryParse(obj.userdata.preorder.isdropaddresscomplete, out _isDropAddressAvailable);
+                if (!_isDropAddressAvailable)
+                {
+                    return new Tuple<bool, int, string>(false, -9, "Drop address missing.");
+                }
+
+                #endregion
+
                 #region Product Count Check 
 
                 int _totalproductcount = -1;
@@ -526,5 +564,54 @@ namespace CustomerBL.PreOrder
                 return new Tuple<int, string>(-2, ex.ToString());
             }
         }
+    
+        
+        
+        public async Task<Tuple<bool,string, string>> CallCreateOrderAPI(PreOrderBO obj)
+        {
+            try
+            {
+                var result = await CallOrderAPI(obj);
+                if (result != null)
+                {
+                    
+                    return new Tuple<bool, string, string>(result.Item1, result.Item2,result.Item3);
+                    
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LogUserLogin.CreateErrorMsg("PreOrderBL", "CallCreateOrderAPI", DateTime.Now.ToString(), ex.ToString()));
+                return null;
+            }
+        }
+
+        private async Task<Tuple<bool,string,string>> CallOrderAPI(PreOrderBO obj)
+        {
+            try
+            {
+                using (var client = new HttpClient())
+                {
+                    StringContent content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
+                    var postTask = await client.PostAsync("https://localhost:44364/api/Order/CreateOrder", content);
+                    //var postTask = await client.PostAsync("http://silayeebackend-001-site2.dtempurl.com/api/Order/CreateOrder", content);
+                    if (postTask.IsSuccessStatusCode)
+                    {
+                        string jsonResponse = await postTask.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<OrderBOResponse>(jsonResponse);
+                        return new Tuple<bool,string,string>(result.issuccessfull, result.OrderNumber,result.responsemessage);
+                    }
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LogUserLogin.CreateErrorMsg("TailorBL", "CallTailorAPI", DateTime.Now.ToString(), ex.ToString()));
+                return null;
+            }
+        }
+
+
     }
 }

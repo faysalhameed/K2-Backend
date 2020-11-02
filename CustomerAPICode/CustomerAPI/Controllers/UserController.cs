@@ -1067,8 +1067,16 @@ namespace CustomerAPI.Controllers
                 var result = await objBL.FuncPreOrderBL(Param);
                 if (result.Item1 > 0)
                 {
-                    var objData = new { issuccessfull = true, responsemessage = "successfully" };
-                    return new OkObjectResult(objData);
+                    if(Param.userdata.preorder.status.ToLower() == "cart")
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "Order updated in Cart." };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "Preorder created successfully." };
+                        return new OkObjectResult(objData);
+                    }
                 }
                 else
                 {
@@ -1085,6 +1093,56 @@ namespace CustomerAPI.Controllers
         }
 
 
+
+        #endregion
+
+
+        #region Create Order API 
+
+        public async Task<IActionResult> CreatOrder(PreOrderBO Param)
+        {
+            try
+            {
+                if (Param == null || Param.userdata == null)
+                {
+                    return BadRequest();
+                }
+
+                #region Session token Check
+
+                UserBL objuserBL = new UserBL(logger);
+                bool isVerify = await objuserBL.VerifySessionToken(Param.userdata.preorder.sessiontoken, Param.userdata.preorder.deviceid);
+                if (!isVerify)
+                {
+                    var objData = new { issuccessfull = false, responsemessage = "Token verification failed", orderid = (string)null };
+                    return new OkObjectResult(objData);
+                }
+                else
+                {
+                    PreOrderBL objbl = new PreOrderBL(logger);
+                    var response = await objbl.CallCreateOrderAPI(Param);
+                    if(response.Item1)
+                    {
+                        var objData = new { issuccessfull = true, responsemessage = "Order created successfully.", ordernumber = response.Item2 };
+                        return new OkObjectResult(objData);
+                    }
+                    else
+                    {
+                        var objData = new { issuccessfull = false, responsemessage = response.Item3, ordernumber = "-1" };
+                        return new OkObjectResult(objData);
+                    }
+                }
+
+                #endregion
+
+            }
+            catch (Exception ex)
+            {
+                logger.Error(LoggingRequest.CreateErrorMsg("UserController", "CreatOrder", DateTime.Now.ToString(), ex.ToString()));
+                return BadRequest();
+            }
+           
+        }
 
         #endregion
 
