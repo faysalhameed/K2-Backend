@@ -1,0 +1,283 @@
+2020-10-23 21:59:53.3751 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :10/23/2020 9:59:53 PM
+===================================================================
+
+2020-10-23 22:14:59.5615 INFO Request Type :POST
+Request EndPoint :/api/User/GetMeasurementTemplate
+Request Body :{
+  "userdata":
+           {
+                "preorder":
+                        {
+                           "preorderid":"-1",
+                           "customerid":"16",
+                           "tailorid":"1",
+                           "status":"preorder",
+                           "totalestimatedcost":"100.00",
+                           "pickcountry":"pakistan",
+                           "pickprovince":"punjab",
+                           "pickcity":"lahore",
+                           "pickzipcode":"54000",
+                           "pickaddress":"Thokar Niaz baig",
+                           "dropcountry":"pakistan",
+                           "dropprovince":"punjab",
+                           "dropcity":"lahore",
+                           "dropzipcode":"lahore",
+                           "dropaddress":"Eden value homes",
+                           "devicetype":"android",
+                           "deviceid":"1c5ed424447efb57",
+                           "sessiontoken":"97bd0243-8dcd-4476-9643-d522fa054ad9",
+                           "totalproductcount" : "2",
+                           "isdropaddressavailable" : "true",
+                           "ispickaddressavailable" : "true",
+                           "preorderproducts":[
+                           {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							},
+                            {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							}
+							]
+                    }                  
+        }
+}
+Request DateTime :10/23/2020 10:14:59 PM
+===================================================================
+
+2020-10-23 22:15:07.7283 ERROR 
+***Error Message**
+ClassName : UserDAL
+Method name : VerifyToken
+DateTime : 10/23/2020 10:15:07 PM
+Exception Msg : Microsoft.Data.SqlClient.SqlException (0x80131904): The parameterized query '(@sessionToken nvarchar(4000),@deviceID nvarchar(4000),@ResultPa' expects the parameter '@sessionToken', which was not supplied.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlCommand.FinishExecuteReader(SqlDataReader ds, RunBehavior runBehavior, String resetOptionsString, Boolean isInternal, Boolean forDescribeParameterEncryption, Boolean shouldCacheForAlwaysEncrypted)
+   at Microsoft.Data.SqlClient.SqlCommand.CompleteAsyncExecuteReader(Boolean isInternal, Boolean forDescribeParameterEncryption)
+   at Microsoft.Data.SqlClient.SqlCommand.InternalEndExecuteNonQuery(IAsyncResult asyncResult, Boolean isInternal, String endMethod)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryInternal(IAsyncResult asyncResult)
+   at Microsoft.Data.SqlClient.SqlCommand.EndExecuteNonQueryAsync(IAsyncResult asyncResult)
+   at System.Threading.Tasks.TaskFactory`1.FromAsyncCoreLogic(IAsyncResult iar, Func`2 endFunction, Action`1 endAction, Task`1 promise, Boolean requiresSynchronization)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteNonQueryAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.ExecuteSqlCommandAsync(DatabaseFacade databaseFacade, RawSqlString sql, IEnumerable`1 parameters, CancellationToken cancellationToken)
+   at CustomerDAL.UsersOperations.UserDAL.VerifyToken(String sessionToken, String deviceID) in C:\Users\USER\Source\Repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerDAL\UsersOperations\UserDAL.cs:line 711
+ClientConnectionId:1987b674-b5a5-4de2-8756-f89789c2a72a
+Error Number:8178,State:1,Class:16
+************************
+2020-10-23 22:15:11.1689 INFO Request Type :POST
+Request EndPoint :/api/User/PreOrder
+Request Body :{
+  "userdata":
+           {
+                "preorder":
+                        {
+                           "preorderid":"-1",
+                           "customerid":"16",
+                           "tailorid":"1",
+                           "status":"preorder",
+                           "totalestimatedcost":"100.00",
+                           "pickcountry":"pakistan",
+                           "pickprovince":"punjab",
+                           "pickcity":"lahore",
+                           "pickzipcode":"54000",
+                           "pickaddress":"Thokar Niaz baig",
+                           "dropcountry":"pakistan",
+                           "dropprovince":"punjab",
+                           "dropcity":"lahore",
+                           "dropzipcode":"lahore",
+                           "dropaddress":"Eden value homes",
+                           "devicetype":"android",
+                           "deviceid":"1c5ed424447efb57",
+                           "sessiontoken":"97bd0243-8dcd-4476-9643-d522fa054ad9",
+                           "totalproductcount" : "2",
+                           "isdropaddressavailable" : "true",
+                           "ispickaddressavailable" : "true",
+                           "preorderproducts":[
+                           {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							},
+                            {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							}
+							]
+                    }                  
+        }
+}
+Request DateTime :10/23/2020 10:15:11 PM
+===================================================================
+

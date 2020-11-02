@@ -120,3 +120,47 @@ Exception Msg : System.Net.Http.HttpRequestException: No connection could be mad
    at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
    at CustomerBL.PreOrder.PreOrderBL.CallOrderAPI(PreOrderBO obj) in E:\Code\K2\faysalhameed\K2-Backend\CustomerAPICode\CustomerBL\PreOrder\PreOrderBL.cs:line 597
 ************************
+2020-11-02 21:20:28.2872 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :11/2/2020 9:20:28 PM
+===================================================================
+
+2020-11-02 21:33:33.4296 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :11/2/2020 9:33:33 PM
+===================================================================
+
+2020-11-02 21:37:43.8876 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :{
+    "userdata" : ""
+}
+Request DateTime :11/2/2020 9:37:43 PM
+===================================================================
+
+2020-11-02 21:38:17.5463 INFO Request Type :POST
+Request EndPoint :/api/User/Login
+Request Body :{
+    "userdata" : ""
+}
+Request DateTime :11/2/2020 9:38:17 PM
+===================================================================
+
+2020-11-02 21:38:22.8791 ERROR 
+***Error Message**
+ClassName : UserBL
+Method name : CreateActivityObject
+DateTime : 11/2/2020 9:38:22 PM
+Exception Msg : System.NullReferenceException: Object reference not set to an instance of an object.
+   at CustomerBL.User.UserBL.CreateActivityObject(LoginBO obj) in C:\Users\USER\source\repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerBL\User\UserBL.cs:line 40
+************************
+2020-11-02 21:38:24.8901 ERROR 
+***Error Message**
+ClassName : User Controller
+Method name : Login
+DateTime : 11/2/2020 9:38:24 PM
+Exception Msg : System.NullReferenceException: Object reference not set to an instance of an object.
+   at CustomerAPI.Controllers.UserController.Login(LoginRootBO Param) in C:\Users\USER\source\repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerAPI\Controllers\UserController.cs:line 241
+************************

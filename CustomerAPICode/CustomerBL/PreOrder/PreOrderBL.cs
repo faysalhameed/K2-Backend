@@ -594,7 +594,7 @@ namespace CustomerBL.PreOrder
                 using (var client = new HttpClient())
                 {
                     StringContent content = new StringContent(JsonConvert.SerializeObject(obj), Encoding.UTF8, "application/json");
-                    var postTask = await client.PostAsync("https://localhost:44364/api/Order/CreateOrder", content);
+                    var postTask = await client.PostAsync("https://localhost:44329/api/Order/CreateOrder", content);
                     //var postTask = await client.PostAsync("http://silayeebackend-001-site2.dtempurl.com/api/Order/CreateOrder", content);
                     if (postTask.IsSuccessStatusCode)
                     {

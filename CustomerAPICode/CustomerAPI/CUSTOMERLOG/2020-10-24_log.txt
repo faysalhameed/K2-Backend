@@ -1,0 +1,391 @@
+2020-10-24 12:02:03.5687 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :10/24/2020 12:02:03 PM
+===================================================================
+
+2020-10-24 12:02:34.6314 INFO Request Type :POST
+Request EndPoint :/api/User/PreOrder
+Request Body :{
+  "userdata":
+           {
+                "preorder":
+                        {
+                           "preorderid":"-1",
+                           "customerid":"16",
+                           "tailorid":"1",
+                           "status":"preorder",
+                           "totalestimatedcost":"100.00",
+                           "pickcountry":"pakistan",
+                           "pickprovince":"punjab",
+                           "pickcity":"lahore",
+                           "pickzipcode":"54000",
+                           "pickaddress":"Thokar Niaz baig",
+                           "dropcountry":"pakistan",
+                           "dropprovince":"punjab",
+                           "dropcity":"lahore",
+                           "dropzipcode":"lahore",
+                           "dropaddress":"Eden value homes",
+                           "devicetype":"android",
+                           "deviceid":"1c5ed424447efb57",
+                           "sessiontoken":"97bd0243-8dcd-4476-9643-d522fa054ad9",
+                           "totalproductcount" : "2",
+                           "isdropaddressavailable" : "true",
+                           "ispickaddressavailable" : "true",
+                           "preorderproducts":[
+                           {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							},
+                            {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							}
+							]
+                    }                  
+        }
+}
+Request DateTime :10/24/2020 12:02:34 PM
+===================================================================
+
+2020-10-24 12:11:51.2147 INFO Request Type :POST
+Request EndPoint :/api/User/PreOrder
+Request Body :{
+  "userdata":
+           {
+                "preorder":
+                        {
+                           "preorderid":"-1",
+                           "customerid":"16",
+                           "tailorid":"1",
+                           "status":"preorder",
+                           "totalestimatedcost":"100.00",
+                           "pickcountry":"pakistan",
+                           "pickprovince":"punjab",
+                           "pickcity":"lahore",
+                           "pickzipcode":"54000",
+                           "pickaddress":"Thokar Niaz baig",
+                           "dropcountry":"pakistan",
+                           "dropprovince":"punjab",
+                           "dropcity":"lahore",
+                           "dropzipcode":"lahore",
+                           "dropaddress":"Eden value homes",
+                           "devicetype":"android",
+                           "deviceid":"1c5ed424447efb57",
+                           "sessiontoken":"97bd0243-8dcd-4476-9643-d522fa054ad9",
+                           "totalproductcount" : "2",
+                           "isdropaddressavailable" : "true",
+                           "ispickaddressavailable" : "true",
+                           "preorderproducts":[
+                           {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							},
+                            {
+                                "preorderproductid":"-1",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							}
+							]
+                    }                  
+        }
+}
+Request DateTime :10/24/2020 12:11:51 PM
+===================================================================
+
+2020-10-24 12:52:10.8635 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :10/24/2020 12:52:10 PM
+===================================================================
+
+2020-10-24 13:04:16.3220 INFO Request Type :POST
+Request EndPoint :/api/User/PreOrder
+Request Body :{
+  "userdata":
+           {
+                "preorder":
+                        {
+                           "preorderid":"7",
+                           "customerid":"16",
+                           "tailorid":"1",
+                           "status":"cart",
+                           "totalestimatedcost":"100.00",
+                           "pickcountry":"pakistan",
+                           "pickprovince":"punjab",
+                           "pickcity":"lahore",
+                           "pickzipcode":"54000",
+                           "pickaddress":"Thokar Niaz baig",
+                           "dropcountry":"pakistan",
+                           "dropprovince":"punjab",
+                           "dropcity":"lahore",
+                           "dropzipcode":"lahore",
+                           "dropaddress":"Eden value homes",
+                           "devicetype":"android",
+                           "deviceid":"1c5ed424447efb57",
+                           "sessiontoken":"97bd0243-8dcd-4476-9643-d522fa054ad9",
+                           "totalproductcount" : "2",
+                           "isdropaddresscomplete" : "true",
+                           "ispickaddresscomplete" : "true",
+                           "istailoravailable" : "true",
+                           "preorderproducts":[
+                           {
+                                "preorderproductid":"7",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"12",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"13",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"12",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"13",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"11",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"12",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							},
+                            {
+                                "preorderproductid":"8",
+                                "productid":"2",
+                                "dresscategoryid":"1",
+                                "estimatedcost":"10.00",
+                                "productsource":"tailor", 
+                                "productsourceid":"1",
+                                "tailorstitchcost":"10.00",
+                                "isproductimagesavailable" : "true",
+                                "isproductaddonavailable" : "true",
+                                "isproductmeasurementavailable" : "true",
+                                "preorderproductimages": [
+                                {
+                                   "preorderproductimageid":"10",
+                                   "image":"Image"
+								},
+								{
+                                   "preorderproductimageid":"11",
+                                   "image":"Image"
+								}],
+								"preorderproductaddons": [
+								{
+								   "preorderproductaddonid":"10",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								},
+								{
+								   "preorderproductaddonid":"11",
+								   "addontype":"TEXT",
+								   "addonvalue":"TEXT"
+								}],
+								"preorderproductmeasurements": [
+								{
+								   "preorderproductmeasurementid":"9",
+								   "attributeid":"",
+								   "attributename":"length",
+								   "attributevalue":"40.00"
+								},
+								{
+								   "preorderproductmeasurementid":"10",
+								   "attributeid":"",
+								   "attributename":"waist",
+								   "attributevalue":"32.00"
+								}]              
+							}
+							]
+                    }                  
+        }
+}
+Request DateTime :10/24/2020 1:04:16 PM
+===================================================================
+

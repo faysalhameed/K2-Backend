@@ -1099,7 +1099,7 @@ namespace CustomerAPI.Controllers
 
         #region Create Order API 
 
-        public async Task<IActionResult> CreatOrder(PreOrderBO Param)
+        public async Task<IActionResult> CreateOrder(PreOrderBO Param)
         {
             try
             {
