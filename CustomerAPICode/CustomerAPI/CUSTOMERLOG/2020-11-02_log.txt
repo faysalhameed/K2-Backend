@@ -164,3 +164,198 @@ DateTime : 11/2/2020 9:38:24 PM
 Exception Msg : System.NullReferenceException: Object reference not set to an instance of an object.
    at CustomerAPI.Controllers.UserController.Login(LoginRootBO Param) in C:\Users\USER\source\repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerAPI\Controllers\UserController.cs:line 241
 ************************
+2020-11-02 21:41:12.5527 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :11/2/2020 9:41:12 PM
+===================================================================
+
+2020-11-02 21:41:29.3603 INFO Request Type :POST
+Request EndPoint :/api/User/CreateOrder
+Request Body :{
+	"userdata": {
+		"preorder": {
+			"preorderid": "-1",
+			"customerid": "16",
+			"tailorid": "1",
+			"istailoravailable": "true",
+			"status": "order",
+			"totalproductcount": "1",
+			"totalestimatedcost": "100.00",
+			"pickcountry": "pakistan",
+			"pickprovince": "punjab",
+			"pickcity": "lahore",
+			"pickzipcode": "54000",
+			"pickaddress": "Thokar Niaz baig",
+			"ispickaddresscomplete": "true",
+			"dropcountry": "pakistan",
+			"dropprovince": "punjab",
+			"dropcity": "lahore",
+			"dropzipcode": "lahore",
+			"dropaddress": "Eden value homes",
+			"isdropaddresscomplete": "true",
+			"devicetype": "android",
+			"deviceid": "1c5ed424447efb57",
+			"sessiontoken": "97bd0243-8dcd-4476-9643-d522fa054ad9",
+			"preorderproducts": [{
+				"preorderproductid": "-1",
+				"productid": "2",
+				"dresscategoryid": "1",
+				"estimatedcost": "10.00",
+				"productsource": "tailor",
+				"productsourceid": "1",
+				"tailorstitchcost": "10.00",
+				"isproductimagesavailable": "true",
+				"isproductaddonavailable": "true",
+				"isproductmeasurementavailable": "true",
+				"preorderproductimages": [{
+						"preorderproductimageid": "",
+						"image": "Image"
+					},
+					{
+						"preorderproductimageid": "",
+						"image": "Image"
+					}
+				],
+				"preorderproductaddons": [{
+						"preorderproductaddonid": "",
+						"addontype": "TEXT",
+						"addonvalue": "TEXT"
+					},
+					{
+						"preorderproductaddonid": "",
+						"addontype": "TEXT",
+						"addonvalue": "TEXT"
+					}
+				],
+				"preorderproductmeasurements": [{
+						"preorderproductmeasurementid": "",
+						"attributeid": "",
+						"attributename": "length",
+						"attributevalue": "40.00"
+					},
+					{
+						"preorderproductmeasurementid": "",
+						"attributeid": "",
+						"attributename": "waist",
+						"attributevalue": "32.00"
+					}
+				]
+			}]
+		}
+	}
+}
+Request DateTime :11/2/2020 9:41:29 PM
+===================================================================
+
+2020-11-02 21:44:42.9073 ERROR 
+***Error Message**
+ClassName : TailorBL
+Method name : CallTailorAPI
+DateTime : 11/2/2020 9:44:42 PM
+Exception Msg : System.Threading.Tasks.TaskCanceledException: The operation was canceled.
+ ---> System.IO.IOException: Unable to read data from the transport connection: The I/O operation has been aborted because of either a thread exit or an application request..
+ ---> System.Net.Sockets.SocketException (995): The I/O operation has been aborted because of either a thread exit or an application request.
+   --- End of inner exception stack trace ---
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.GetResult(Int16 token)
+   at System.Net.Security.SslStream.<FillBufferAsync>g__InternalFillBufferAsync|215_0[TReadAdapter](TReadAdapter adap, ValueTask`1 task, Int32 min, Int32 initial)
+   at System.Net.Security.SslStream.ReadAsyncInternal[TReadAdapter](TReadAdapter adapter, Memory`1 buffer)
+   at System.Net.Http.HttpConnection.FillAsync()
+   at System.Net.Http.HttpConnection.ReadNextResponseHeaderLineAsync(Boolean foldedHeadersAllowed)
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Net.Http.HttpConnection.SendAsyncCore(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithNtConnectionAuthAsync(HttpConnection connection, HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.HttpConnectionPool.SendWithRetryAsync(HttpRequestMessage request, Boolean doRequestAuth, CancellationToken cancellationToken)
+   at System.Net.Http.RedirectHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.DiagnosticsHandler.SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+   at System.Net.Http.HttpClient.FinishSendAsyncBuffered(Task`1 sendTask, HttpRequestMessage request, CancellationTokenSource cts, Boolean disposeCts)
+   at CustomerBL.PreOrder.PreOrderBL.CallOrderAPI(PreOrderBO obj) in C:\Users\USER\source\repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerBL\PreOrder\PreOrderBL.cs:line 597
+************************
+2020-11-02 21:44:54.8817 ERROR 
+***Error Message**
+ClassName : UserController
+Method name : CreatOrder
+DateTime : 11/2/2020 9:44:54 PM
+Exception Msg : System.NullReferenceException: Object reference not set to an instance of an object.
+   at CustomerAPI.Controllers.UserController.CreateOrder(PreOrderBO Param) in C:\Users\USER\source\repos\faysalhameed\K2-Backend\CustomerAPICode\CustomerAPI\Controllers\UserController.cs:line 1124
+************************
+2020-11-02 21:45:05.0743 INFO Request Type :POST
+Request EndPoint :/api/User/CreateOrder
+Request Body :{
+	"userdata": {
+		"preorder": {
+			"preorderid": "-1",
+			"customerid": "16",
+			"tailorid": "1",
+			"istailoravailable": "true",
+			"status": "order",
+			"totalproductcount": "1",
+			"totalestimatedcost": "100.00",
+			"pickcountry": "pakistan",
+			"pickprovince": "punjab",
+			"pickcity": "lahore",
+			"pickzipcode": "54000",
+			"pickaddress": "Thokar Niaz baig",
+			"ispickaddresscomplete": "true",
+			"dropcountry": "pakistan",
+			"dropprovince": "punjab",
+			"dropcity": "lahore",
+			"dropzipcode": "lahore",
+			"dropaddress": "Eden value homes",
+			"isdropaddresscomplete": "true",
+			"devicetype": "android",
+			"deviceid": "1c5ed424447efb57",
+			"sessiontoken": "97bd0243-8dcd-4476-9643-d522fa054ad9",
+			"preorderproducts": [{
+				"preorderproductid": "-1",
+				"productid": "2",
+				"dresscategoryid": "1",
+				"estimatedcost": "10.00",
+				"productsource": "tailor",
+				"productsourceid": "1",
+				"tailorstitchcost": "10.00",
+				"isproductimagesavailable": "true",
+				"isproductaddonavailable": "true",
+				"isproductmeasurementavailable": "true",
+				"preorderproductimages": [{
+						"preorderproductimageid": "",
+						"image": "Image"
+					},
+					{
+						"preorderproductimageid": "",
+						"image": "Image"
+					}
+				],
+				"preorderproductaddons": [{
+						"preorderproductaddonid": "",
+						"addontype": "TEXT",
+						"addonvalue": "TEXT"
+					},
+					{
+						"preorderproductaddonid": "",
+						"addontype": "TEXT",
+						"addonvalue": "TEXT"
+					}
+				],
+				"preorderproductmeasurements": [{
+						"preorderproductmeasurementid": "",
+						"attributeid": "",
+						"attributename": "length",
+						"attributevalue": "40.00"
+					},
+					{
+						"preorderproductmeasurementid": "",
+						"attributeid": "",
+						"attributename": "waist",
+						"attributevalue": "32.00"
+					}
+				]
+			}]
+		}
+	}
+}
+Request DateTime :11/2/2020 9:45:05 PM
+===================================================================
+
