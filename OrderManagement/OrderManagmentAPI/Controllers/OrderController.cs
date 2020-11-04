@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using logginglibrary;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OrderManagmentBL.Categories;
@@ -16,6 +17,13 @@ namespace OrderManagmentAPI.Controllers
     [ApiController]
     public class OrderController : ControllerBase
     {
+
+        private ILog logger;
+
+        public OrderController(ILog logger)
+        {
+            this.logger = logger;
+        }
         #region Get Categoires 
 
         public async Task<IActionResult> GetDressCategories()

@@ -1,0 +1,6 @@
+2020-11-04 21:34:09.5209 INFO Request Type :GET
+Request EndPoint :/weatherforecast
+Request Body :
+Request DateTime :11/4/2020 9:34:07 PM
+===================================================================
+
