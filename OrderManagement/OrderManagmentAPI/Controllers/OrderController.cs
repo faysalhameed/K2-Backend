@@ -36,7 +36,7 @@ namespace OrderManagmentAPI.Controllers
             {
                 CategoriesBL objBL = new CategoriesBL(); //(logger);
 
-                logger.Information("Calling GetDressCategories() method with in class OrderController");
+                logger.Information("Calling GetDressCategoryBL() method in class CategoriesBL with in class OrderController and method GetDressCategories");
 
                 var result = await objBL.GetDressCategoryBL();
                 if (result != null)
