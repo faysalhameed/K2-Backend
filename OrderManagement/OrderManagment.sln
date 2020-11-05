@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30503.244
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagmentBO", "OrderManagmentBO\OrderManagmentBO.csproj", "{B7B3AC0A-7733-4706-A05A-EDA0A9871B1B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagmentBO", "OrderManagmentBO\OrderManagmentBO.csproj", "{B7B3AC0A-7733-4706-A05A-EDA0A9871B1B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagmentDAL", "OrderManagmentDAL\OrderManagmentDAL.csproj", "{9921150F-672C-4B30-820C-D34C8D232B47}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagmentDAL", "OrderManagmentDAL\OrderManagmentDAL.csproj", "{9921150F-672C-4B30-820C-D34C8D232B47}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagmentBL", "OrderManagmentBL\OrderManagmentBL.csproj", "{03C3942F-DE2B-49D6-ADE8-69A07951D2C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagmentBL", "OrderManagmentBL\OrderManagmentBL.csproj", "{03C3942F-DE2B-49D6-ADE8-69A07951D2C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagmentCommon", "OrderManagmentCommon\OrderManagmentCommon.csproj", "{4B722C24-DF4F-4039-9D6F-BF019A546534}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagmentCommon", "OrderManagmentCommon\OrderManagmentCommon.csproj", "{4B722C24-DF4F-4039-9D6F-BF019A546534}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderManagmentAPI", "OrderManagmentAPI\OrderManagmentAPI.csproj", "{DF216951-A00C-4E24-B161-B754A1078CF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderManagmentAPI", "OrderManagmentAPI\OrderManagmentAPI.csproj", "{DF216951-A00C-4E24-B161-B754A1078CF2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "logginglibrary", "logginglibrary\logginglibrary.csproj", "{5E8D3192-93D7-4BB0-ADD0-46485D5ED5B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{DF216951-A00C-4E24-B161-B754A1078CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF216951-A00C-4E24-B161-B754A1078CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF216951-A00C-4E24-B161-B754A1078CF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E8D3192-93D7-4BB0-ADD0-46485D5ED5B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E8D3192-93D7-4BB0-ADD0-46485D5ED5B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E8D3192-93D7-4BB0-ADD0-46485D5ED5B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E8D3192-93D7-4BB0-ADD0-46485D5ED5B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
